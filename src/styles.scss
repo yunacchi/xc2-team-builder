@@ -1,0 +1,26 @@
+// Local variables!
+@import 'variables';
+
+// Fonts!
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+// Vendors!
+
+// Font Awesome!
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/fa-solid";
+@import "~@fortawesome/fontawesome-free/scss/fa-brands";
+@import "~@fortawesome/fontawesome-free/scss/fa-regular";
+
+// Bootstrap!
+@import "~bootstrap/scss/bootstrap";
+
+// Global code!
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  min-height: 100%;
+}

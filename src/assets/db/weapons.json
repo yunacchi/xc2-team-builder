@@ -1,0 +1,279 @@
+{
+    "weapons": [
+        {
+            "id": "WB_SEIHAI",
+            "role": "ATK",
+            "driverCombos": {
+                "REX": "TOPPLE",
+                "NIA": "N/A",
+                "TORA": "N/A",
+                "MELEPH": "N/A",
+                "ZEKE": "N/A"
+            }
+        },
+        {
+            "id": "WB_NIA",
+            "role": "HLR",
+            "driverCombos": {
+                "REX": "",
+                "NIA": "N/A",
+                "TORA": "N/A",
+                "MELEPH": "N/A",
+                "ZEKE": "N/A"
+            }
+        },
+        {
+            "id": "WB_KAGUTSUCHI",
+            "role": "TNK",
+            "driverCombos": {
+                "REX": null,
+                "NIA": "N/A",
+                "TORA": "N/A",
+                "MELEPH": "BREAK",
+                "ZEKE": "N/A"
+            }
+        },
+        {
+            "id": "WB_SAIKA",
+            "role": "ATK",
+            "driverCombos": {
+                "REX": null,
+                "NIA": "N/A",
+                "TORA": "N/A",
+                "MELEPH": "N/A",
+                "ZEKE": "LAUNCH"
+            }
+        },
+        {
+            "id": "WB_SUZAKU",
+            "role": "ATK",
+            "driverCombos": {
+                "REX": "SMASH",
+                "NIA": "N/A",
+                "TORA": "N/A",
+                "MELEPH": "N/A",
+                "ZEKE": "N/A"
+            }
+        },
+        {
+            "id": "WB_HANA_JS",
+            "role": "HANA",
+            "driverCombos": {
+                "REX": "N/A",
+                "NIA": "N/A",
+                "TORA": "TOPPLE",
+                "MELEPH": "N/A",
+                "ZEKE": "N/A"
+            }
+        },
+        {
+            "id": "WB_HANA_JK",
+            "role": "HANA",
+            "driverCombos": {
+                "REX": "N/A",
+                "NIA": "N/A",
+                "TORA": "SMASH",
+                "MELEPH": "N/A",
+                "ZEKE": "N/A"
+            }
+        },
+        {
+            "id": "WB_HANA_JD",
+            "role": "HANA",
+            "driverCombos": {
+                "REX": "N/A",
+                "NIA": "N/A",
+                "TORA": ["BREAK", "LAUNCH"],
+                "MELEPH": "N/A",
+                "ZEKE": "N/A"
+            }
+        },
+        {
+            "id": "W_RINGS",
+            "role": "HLR",
+            "driverCombos": {
+                "REX": "",
+                "NIA": "BREAK",
+                "TORA": "N/A",
+                "MELEPH": "",
+                "ZEKE": ""
+            }
+        },
+        {
+            "id": "W_AXE",
+            "role": "ATK",
+            "driverCombos": {
+                "REX": "LAUNCH",
+                "NIA": "TOPPLE",
+                "TORA": "N/A",
+                "MELEPH": "",
+                "ZEKE": "TOPPLE"
+            }
+        },
+        {
+            "id": "W_LANCE",
+            "role": "ATK",
+            "driverCombos": {
+                "REX": "BREAK",
+                "NIA": "",
+                "TORA": "N/A",
+                "MELEPH": "SMASH",
+                "ZEKE": "SMASH"
+            }
+        },
+        {
+            "id": "W_CANNON",
+            "role": "ATK",
+            "driverCombos": {
+                "REX": "",
+                "NIA": "BREAK",
+                "TORA": "N/A",
+                "MELEPH": "BREAK",
+                "ZEKE": "BREAK"
+            }
+        },
+        {
+            "id": "W_HAMMER",
+            "role": "TNK",
+            "driverCombos": {
+                "REX": "",
+                "NIA": "",
+                "TORA": "N/A",
+                "MELEPH": "TOPPLE",
+                "ZEKE": "LAUNCH"
+            }
+        },
+        {
+            "id": "W_KATANA",
+            "role": "TNK",
+            "driverCombos": {
+                "REX": "BREAK",
+                "NIA": "",
+                "TORA": "N/A",
+                "MELEPH": "SMASH",
+                "ZEKE": ""
+            }
+        },
+        {
+            "id": "W_BALL",
+            "role": "HLR",
+            "driverCombos": {
+                "REX": "",
+                "NIA": "BREAK",
+                "TORA": "N/A",
+                "MELEPH": "",
+                "ZEKE": ""
+            }
+        },
+        {
+            "id": "W_CLAWS",
+            "role": "HLR",
+            "driverCombos": {
+                "REX": "",
+                "NIA": "LAUNCH",
+                "TORA": "N/A",
+                "MELEPH": "BREAK",
+                "ZEKE": "TOPPLE"
+            }
+        },
+        {
+            "id": "WB_BENKEI",
+            "role": "ATK",
+            "driverCombos": {
+                "REX": "BREAK",
+                "NIA": null,
+                "TORA": "N/A",
+                "MELEPH": "SMASH",
+                "ZEKE": null
+            }
+        },
+        {
+            "id": "WB_SATAHIKO",
+            "role": "TNK",
+            "driverCombos": {
+                "REX": null,
+                "NIA": null,
+                "TORA": "N/A",
+                "MELEPH": null,
+                "ZEKE": null
+            }
+        },
+        {
+            "id": "WB_KAMUI",
+            "role": "ATK",
+            "driverCombos": {
+                "REX": "",
+                "NIA": "BREAK",
+                "TORA": "N/A",
+                "MELEPH": null,
+                "ZEKE": null
+            }
+        },
+        {
+            "id": "WB_ZANTETSU",
+            "role": "TNK",
+            "driverCombos": {
+                "REX": null,
+                "NIA": null,
+                "TORA": "N/A",
+                "MELEPH": "BREAK",
+                "ZEKE": null
+            }
+        },
+        {
+            "id": "WB_RAGO",
+            "role": "ATK",
+            "driverCombos": {
+                "REX": null,
+                "NIA": null,
+                "TORA": "N/A",
+                "MELEPH": null,
+                "ZEKE": null
+            }
+        },
+        {
+            "id": "WB_OOTSUCHI",
+            "role": "TNK",
+            "driverCombos": {
+                "REX": null,
+                "NIA": null,
+                "TORA": "N/A",
+                "MELEPH": null,
+                "ZEKE": null
+            }
+        },
+        {
+            "id": "WB_SHULK",
+            "role": "ATK",
+            "driverCombos": {
+                "REX": null,
+                "NIA": null,
+                "TORA": "N/A",
+                "MELEPH": null,
+                "ZEKE": null
+            }
+        },
+        {
+            "id": "WB_FIORUN",
+            "role": "HLR",
+            "driverCombos": {
+                "REX": null,
+                "NIA": "BREAK",
+                "TORA": "N/A",
+                "MELEPH": null,
+                "ZEKE": null
+            }
+        },
+        {
+            "id": "WB_KASUMI",
+            "role": "HLR",
+            "driverCombos": {
+                "REX": null,
+                "NIA": null,
+                "TORA": null,
+                "MELEPH": null,
+                "ZEKE": null
+            }
+        }
+    ]
+}

@@ -1,0 +1,359 @@
+{
+    "blades": [
+        {
+            "albumNumber": 1,
+            "id": "SEIHAI_HOMURA",
+            "exclusiveDriver": "REX",
+            "type": "SEIHAI",
+            "chapter": 1,
+            "weapon": "WB_SEIHAI",
+            "element": "FIRE"
+        },
+        {
+            "albumNumber": 2,
+            "id": "SEIHAI_HIKARI",
+            "exclusiveDriver": "REX",
+            "type": "SEIHAI",
+            "chapter": 4,
+            "weapon": "WB_SEIHAI",
+            "element": "LIGHT"
+        },
+        {
+            "albumNumber": 3,
+            "id": "BYAKKO",
+            "exclusiveDriver": "NIA",
+            "type": "CHARA",
+            "chapter": 2,
+            "weapon": "W_RINGS",
+            "element": "WATER"
+        },
+        {
+            "albumNumber": 4,
+            "id": "HANA_JS",
+            "exclusiveDriver": "TORA",
+            "type": "HANA",
+            "chapter": 2,
+            "weapon": "WB_HANA_JS",
+            "element": "HANA"
+        },
+        {
+            "albumNumber": 5,
+            "id": "HANA_JK",
+            "exclusiveDriver": "TORA",
+            "type": "HANA",
+            "chapter": 2,
+            "weapon": "WB_HANA_JK",
+            "element": "HANA"
+        },
+        {
+            "albumNumber": 6,
+            "id": "HANA_JD",
+            "exclusiveDriver": "TORA",
+            "type": "HANA",
+            "chapter": 2,
+            "weapon": "WB_HANA_JD",
+            "element": "HANA"
+        },
+        {
+            "albumNumber": 7,
+            "id": "SUZAKU",
+            "exclusiveDriver": "REX",
+            "type": "STORY",
+            "chapter": 4,
+            "weapon": "WB_SUZAKU",
+            "element": "WIND"
+        },
+        {
+            "albumNumber": 8,
+            "id": "KAGUTSUCHI",
+            "exclusiveDriver": "MELEPH",
+            "type": "CHARA",
+            "chapter": 5,
+            "weapon": "WB_KAGUTSUCHI",
+            "element": "FIRE"
+        },
+        {
+            "albumNumber": 9,
+            "id": "SAIKA",
+            "exclusiveDriver": "ZEKE",
+            "type": "CHARA",
+            "chapter": 6,
+            "weapon": "WB_SAIKA",
+            "element": "ELECTRIC"
+        },
+        {
+            "albumNumber": 10,
+            "id": "NIA",
+            "exclusiveDriver": "REX",
+            "type": "STORY",
+            "isBestGirl": true,
+            "chapter": 7,
+            "weapon": "WB_NIA",
+            "element": "WATER"
+        },
+        {
+            "albumNumber": 11,
+            "id": "WADATSUMI",
+            "exclusiveDriver": "MELEPH",
+            "type": "STORY",
+            "chapter": 6,
+            "weapon": "W_KATANA",
+            "element": "WATER"
+        },
+        {
+            "albumNumber": 12,
+            "id": "GUREN",
+            "weapon": "W_HAMMER",
+            "element": ""
+        },
+        {
+            "albumNumber": 13,
+            "id": "ZIKARAO",
+            "weapon": "W_LANCE",
+            "type": "QUEST",
+            "acquisition": "Special: Beastly Core Crystal",
+            "element": "EARTH"
+        },
+        {
+            "albumNumber": 14,
+            "id": "VASARA",
+            "weapon": "W_KATANA",
+            "element": "DARK"
+        },
+        {
+            "albumNumber": 15,
+            "id": "MEI",
+            "weapon": "W_LANCE",
+            "element": "DARK"
+        },
+        {
+            "albumNumber": 16,
+            "id": "",
+            "weapon": "W_"
+        },
+        {
+            "albumNumber": 17,
+            "id": "YUUOU",
+            "weapon": "W_AXE",
+            "element": ""
+        },
+        {
+            "albumNumber": 18,
+            "id": "IDATEN",
+            "weapon": "W_BALL",
+            "element": "WIND"
+        },
+        {
+            "albumNumber": 19,
+            "id": "KUBIRA",
+            "weapon": "W_AXE",
+            "element": ""
+        },
+        {
+            "albumNumber": 20,
+            "id": "KASANE",
+            "weapon": "W_HAMMER",
+            "type": "QUEST",
+            "acquisition": "Special: Lucky Core Crystal",
+            "element": "DARK"
+        },
+        {
+            "albumNumber": 21,
+            "id": "MIKUMARI",
+            "type": "QUEST",
+            "weapon": "W_LANCE",
+            "acquisition": "Quest: Crystal Clear",
+            "element": ""
+        },
+        {
+            "albumNumber": 22,
+            "id": "SEORI",
+            "type": "QUEST",
+            "weapon": "W_KATANA",
+            "acquisition": "Quest: Blade-Sharp Memory",
+            "element": ""
+        },
+        {
+            "albumNumber": 23,
+            "id": "TOKIHA",
+            "weapon": "W_LANCE",
+            "element": ""
+        },
+        {
+            "albumNumber": 24,
+            "id": "ZAKURO",
+            "weapon": "W_CLAWS",
+            "element": ""
+        },
+        {
+            "albumNumber": 25,
+            "id": "AZAMI",
+            "weapon": "W_CANNON",
+            "element": "DARK"
+        },
+        {
+            "albumNumber": 26,
+            "id": "NANAKOORI",
+            "weapon": "W_CLAWS",
+            "element": "ICE"
+        },
+        {
+            "albumNumber": 27,
+            "id": "",
+            "weapon": "W_",
+            "element": ""
+        },
+        {
+            "albumNumber": 28,
+            "id": "UKA",
+            "weapon": "W_CLAWS",
+            "element": "EARTH"
+        },
+        {
+            "albumNumber": 29,
+            "id": "RINNE",
+            "weapon": "W_CANNON",
+            "type": "QUEST",
+            "acquisition": "Special: Inherited Core Crystal",
+            "element": "WATER"
+        },
+        {
+            "albumNumber": 30,
+            "id": "MUSUBI",
+            "weapon": "W_BALL",
+            "type": "QUEST",
+            "acquisition": "Quest: Tranquility",
+            "element": ""
+        },
+        {
+            "albumNumber": 31,
+            "id": "SHIKI",
+            "weapon": "W_CLAWS",
+            "element": "WIND"
+        },
+        {
+            "albumNumber": 32,
+            "id": "RAIKO",
+            "weapon": "W_HAMMER",
+            "element": "ELECTRIC"
+        },
+        {
+            "albumNumber": 33,
+            "id": "YAEGIRI",
+            "weapon": "W_AXE",
+            "element": "WIND"
+        },
+        {
+            "albumNumber": 34,
+            "id": "IBUKI",
+            "weapon": "W_HAMMER",
+            "element": "WIND"
+        },
+        {
+            "albumNumber": 35,
+            "id": "HOTARU",
+            "weapon": "W_BALL",
+            "element": ""
+        },
+        {
+            "albumNumber": 36,
+            "id": "KOSMOS",
+            "weapon": "W_CANNON",
+            "element": "LIGHT"
+        },
+        {
+            "albumNumber": 37,
+            "id": "",
+            "weapon": "W_",
+            "element": ""
+        },
+        {
+            "albumNumber": 38,
+            "id": "TSUKI",
+            "weapon": "W_BALL",
+            "element": "ICE"
+        },
+        {
+            "albumNumber": 39,
+            "id": "YOSHITSUNE",
+            "weapon": "WB_YOSHITSUNE",
+            "type": "DLC1",
+            "element": ""
+        },
+        {
+            "albumNumber": 40,
+            "id": "BENKEI",
+            "weapon": "WB_BENKEI",
+            "type": "DLC1",
+            "element": ""
+        },
+        {
+            "albumNumber": 41,
+            "id": "",
+            "weapon": "W_",
+            "type": "DLC1",
+            "element": ""
+        },
+        {
+            "albumNumber": 42,
+            "id": "KAMUI",
+            "weapon": "WB_KAMUI",
+            "type": "DLC1",
+            "element": ""
+        },
+        {
+            "albumNumber": 43,
+            "id": "",
+            "weapon": "W_",
+            "type": "DLC1",
+            "element": ""
+        },
+        {
+            "albumNumber": 44,
+            "id": "OOTSUCHI",
+            "weapon": "WB_OOTSUCHI",
+            "type": "DLC1",
+            "element": ""
+        },
+        {
+            "albumNumber": 45,
+            "id": "ZANTETSU",
+            "weapon": "WB_ZANTETSU",
+            "type": "DLC1",
+            "element": ""
+        },
+        {
+            "albumNumber": 46,
+            "id": "TELOS",
+            "weapon": "W_AXE",
+            "element": "DARK"
+        },
+        {
+            "albumNumber": 47,
+            "id": "",
+            "weapon": "W_",
+            "element": ""
+        },
+        {
+            "albumNumber": 48,
+            "id": "SHULK",
+            "weapon": "WB_SHULK",
+            "type": "DLC2",
+            "element": "LIGHT"
+        },
+        {
+            "albumNumber": 49,
+            "id": "FIORUN",
+            "weapon": "WB_FIORUN",
+            "type": "DLC2",
+            "element": "LIGHT"
+        },
+        {
+            "albumNumber": 999,
+            "id": "KASUMI",
+            "weapon": "WB_KASUMI",
+            "element": "",
+            "hidden": true
+        }
+    ]
+}
