@@ -83,7 +83,10 @@
             "driverCombos": {
                 "REX": "N/A",
                 "NIA": "N/A",
-                "TORA": ["BREAK", "LAUNCH"],
+                "TORA": [
+                    "BREAK",
+                    "LAUNCH"
+                ],
                 "MELEPH": "N/A",
                 "ZEKE": "N/A"
             }
@@ -181,21 +184,21 @@
             "role": "ATK",
             "driverCombos": {
                 "REX": "BREAK",
-                "NIA": null,
+                "NIA": "",
                 "TORA": "N/A",
                 "MELEPH": "SMASH",
-                "ZEKE": null
+                "ZEKE": "SMASH"
             }
         },
         {
             "id": "WB_SATAHIKO",
             "role": "TNK",
             "driverCombos": {
-                "REX": null,
-                "NIA": null,
+                "REX": "",
+                "NIA": "BREAK",
                 "TORA": "N/A",
-                "MELEPH": null,
-                "ZEKE": null
+                "MELEPH": "",
+                "ZEKE": ""
             }
         },
         {
@@ -205,41 +208,41 @@
                 "REX": "",
                 "NIA": "BREAK",
                 "TORA": "N/A",
-                "MELEPH": null,
-                "ZEKE": null
+                "MELEPH": "",
+                "ZEKE": ""
             }
         },
         {
             "id": "WB_ZANTETSU",
             "role": "TNK",
             "driverCombos": {
-                "REX": null,
-                "NIA": null,
+                "REX": "",
+                "NIA": "LAUNCH",
                 "TORA": "N/A",
                 "MELEPH": "BREAK",
-                "ZEKE": null
+                "ZEKE": "TOPPLE"
             }
         },
         {
             "id": "WB_RAGO",
             "role": "ATK",
             "driverCombos": {
-                "REX": null,
-                "NIA": null,
+                "REX": "",
+                "NIA": "BREAK",
                 "TORA": "N/A",
-                "MELEPH": null,
-                "ZEKE": null
+                "MELEPH": "BREAK",
+                "ZEKE": "BREAK"
             }
         },
         {
             "id": "WB_OOTSUCHI",
             "role": "TNK",
             "driverCombos": {
-                "REX": null,
-                "NIA": null,
+                "REX": "",
+                "NIA": "LAUNCH",
                 "TORA": "N/A",
-                "MELEPH": null,
-                "ZEKE": null
+                "MELEPH": "BREAK",
+                "ZEKE": "TOPPLE"
             }
         },
         {
@@ -265,14 +268,14 @@
             }
         },
         {
-            "id": "WB_KASUMI",
+            "id": "WB_YOSHITSUNE",
             "role": "HLR",
             "driverCombos": {
-                "REX": null,
-                "NIA": null,
-                "TORA": null,
-                "MELEPH": null,
-                "ZEKE": null
+                "REX": "LAUNCH",
+                "NIA": "TOPPLE",
+                "TORA": "N/A",
+                "MELEPH": "",
+                "ZEKE": "TOPPLE"
             }
         }
     ]

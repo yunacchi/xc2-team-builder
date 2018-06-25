@@ -43,6 +43,7 @@ This repository and its software use the following non-exhaustive list of open-s
 - [Bootstrap](https://github.com/twbs/bootstrap) (MIT license)
 - [Font Awesome](https://github.com/FortAwesome/Font-Awesome) (Icons: CC BY 4.0 License, Fonts: SIL OFL 1.1 License, Code: MIT License)
 - [valor-software/ngx-bootstrap](https://github.com/valor-software/ngx-bootstrap) (MIT license)
+- [ngx-translate](https://github.com/ngx-translate/core) (MIT license)
 
 ## Contact
 

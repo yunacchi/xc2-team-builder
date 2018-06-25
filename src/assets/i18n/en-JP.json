@@ -1,0 +1,90 @@
+{
+    "languages": {
+        "en": "English",
+        "en-JP": "English (Japanese names)"
+    },
+    "app": {
+        "title": "Xenoblade 2 Team Builder"
+    },
+    "my-game": {
+        "quest-blades": "Non-gacha Blades",
+        "gacha-blades": "Gacha Blades",
+        "bonded-blades-desc": "Pick the drivers of the gacha or quest blades you've found."
+    },
+    "drivers": {
+        "REX": "Rex",
+        "NIA": "Nia",
+        "TORA": "Tora",
+        "MELEPH": "Meleph",
+        "ZEKE": "Zeke"
+    },
+    "blade-types": {
+        "SEIHAI": "Holy Grail",
+        "HANA": "Hana",
+        "GACHA": "Gacha Blade",
+        "DLC1": "Iira Blade (NG+)"
+    },
+    "chapters": {
+        "4": "Holy Grail",
+        "8": "Yggdrasil"
+    },
+    "blades": {
+        "SEIHAI_HOMURA": "Homura",
+        "SEIHAI_HIKARI": "Hikari",
+        "BYAKKO": "Byakko",
+        "HANA_JS": "Hana JS",
+        "HANA_JK": "Hana JK",
+        "HANA_JD": "Hana JD",
+        "SUZAKU": "Suzaku",
+        "KAGUTSUCHI": "Kagutsuchi",
+        "SAIKA": "Saika",
+        "NIA": "Nia",
+        "WADATSUMI": "Wadatsumi",
+        "GUREN": "Guren",
+        "ZIKARAO": "Zikarao",
+        "VASARA": "Vasara",
+        "MEI": "Mei",
+        "MENOO": "Menō",
+        "YUUOU": "Yuuou",
+        "IDATEN": "Idaten",
+        "KUBIRA": "Kubira",
+        "KASANE": "Kasane",
+        "MIKUMARI": "Mikumari",
+        "SEORI": "Seori",
+        "TOKIHA": "Tokiha",
+        "ZAKURO": "Zakuro",
+        "AZAMI": "Azami",
+        "NANAKOORI": "Nanakoori",
+        "NYUUTSU": "Nyuutsu",
+        "UKA": "Uka",
+        "RINNE": "Rinne",
+        "MUSUBI": "Musubi",
+        "SHIKI": "Shiki",
+        "RAIKO": "Raiko",
+        "YAEGIRI": "Yaegiri",
+        "IBUKI": "Ibuki",
+        "HOTARU": "Hotaru",
+        "KOSMOS": "KOS-MOS Re:",
+        "TENNIN": "Ten'i",
+        "TSUKI": "Tsuki",
+        "YOSHITSUNE": "Yoshitsune",
+        "BENKEI": "Benkei",
+        "SATAHIKO": "Satahiko",
+        "KAMUI": "Kamui",
+        "RAGO": "Ragō",
+        "OOTSUCHI": "Ootsuchi",
+        "ZANTETSU": "Zantetsu",
+        "TELOS": "T-elos Re:",
+        "HANABUSTER": "Hanabuster",
+        "SHULK": "Shulk",
+        "FIORUN": "Fiorun",
+        "KASUMI": "Kasumi",
+        "KASUMI2": "Fan",
+        "SHIN": "Shin",
+        "METSU": "Metsu",
+        "LAURA": "Laura",
+        "ADEL": "Adel",
+        "MINOCHI": "Minochi",
+        "MALVENI": "Malveni"
+    }
+}

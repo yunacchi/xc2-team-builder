@@ -31,7 +31,7 @@
             "albumNumber": 4,
             "id": "HANA_JS",
             "exclusiveDriver": "TORA",
-            "type": "HANA",
+            "type": "CHARA",
             "chapter": 2,
             "weapon": "WB_HANA_JS",
             "element": "HANA"
@@ -40,8 +40,8 @@
             "albumNumber": 5,
             "id": "HANA_JK",
             "exclusiveDriver": "TORA",
-            "type": "HANA",
-            "chapter": 2,
+            "type": "CHARA",
+            "chapter": 5,
             "weapon": "WB_HANA_JK",
             "element": "HANA"
         },
@@ -49,8 +49,8 @@
             "albumNumber": 6,
             "id": "HANA_JD",
             "exclusiveDriver": "TORA",
-            "type": "HANA",
-            "chapter": 2,
+            "type": "QUEST",
+            "chapter": 8,
             "weapon": "WB_HANA_JD",
             "element": "HANA"
         },
@@ -86,10 +86,10 @@
             "id": "NIA",
             "exclusiveDriver": "REX",
             "type": "STORY",
-            "isBestGirl": true,
-            "chapter": 7,
+            "chapter": 8,
             "weapon": "WB_NIA",
-            "element": "WATER"
+            "element": "WATER",
+            "aliases": ["Catalyst", "Bladiest Blade", "Best girl"]
         },
         {
             "albumNumber": 11,
@@ -104,7 +104,8 @@
             "albumNumber": 12,
             "id": "GUREN",
             "weapon": "W_HAMMER",
-            "element": ""
+            "element": "ICE",
+            "type": "GACHA"
         },
         {
             "albumNumber": 13,
@@ -112,42 +113,51 @@
             "weapon": "W_LANCE",
             "type": "QUEST",
             "acquisition": "Special: Beastly Core Crystal",
+            "chapter": 3,
             "element": "EARTH"
         },
         {
             "albumNumber": 14,
             "id": "VASARA",
             "weapon": "W_KATANA",
-            "element": "DARK"
+            "element": "DARK",
+            "type": "GACHA"
         },
         {
             "albumNumber": 15,
             "id": "MEI",
             "weapon": "W_LANCE",
-            "element": "DARK"
+            "element": "DARK",
+            "type": "GACHA"
         },
         {
             "albumNumber": 16,
-            "id": "",
-            "weapon": "W_"
+            "id": "MENOO",
+            "weapon": "W_AXE",
+            "element": "EARTH",
+            "type": "GACHA",
+            "missingImg": true
         },
         {
             "albumNumber": 17,
             "id": "YUUOU",
             "weapon": "W_AXE",
-            "element": ""
+            "element": "WATER",
+            "type": "GACHA"
         },
         {
             "albumNumber": 18,
             "id": "IDATEN",
             "weapon": "W_BALL",
-            "element": "WIND"
+            "element": "WIND",
+            "type": "GACHA"
         },
         {
             "albumNumber": 19,
             "id": "KUBIRA",
             "weapon": "W_AXE",
-            "element": ""
+            "element": "FIRE",
+            "type": "GACHA"
         },
         {
             "albumNumber": 20,
@@ -155,6 +165,7 @@
             "weapon": "W_HAMMER",
             "type": "QUEST",
             "acquisition": "Special: Lucky Core Crystal",
+            "chapter": 4,
             "element": "DARK"
         },
         {
@@ -163,7 +174,8 @@
             "type": "QUEST",
             "weapon": "W_LANCE",
             "acquisition": "Quest: Crystal Clear",
-            "element": ""
+            "element": "WATER",
+            "chapter": 5
         },
         {
             "albumNumber": 22,
@@ -171,43 +183,50 @@
             "type": "QUEST",
             "weapon": "W_KATANA",
             "acquisition": "Quest: Blade-Sharp Memory",
-            "element": ""
+            "element": "ICE",
+            "chapter": 7
         },
         {
             "albumNumber": 23,
             "id": "TOKIHA",
             "weapon": "W_LANCE",
-            "element": ""
+            "element": "ICE",
+            "type": "GACHA"
         },
         {
             "albumNumber": 24,
             "id": "ZAKURO",
             "weapon": "W_CLAWS",
-            "element": ""
+            "element": "ELECTRIC",
+            "type": "GACHA"
         },
         {
             "albumNumber": 25,
             "id": "AZAMI",
             "weapon": "W_CANNON",
-            "element": "DARK"
+            "element": "DARK",
+            "type": "GACHA"
         },
         {
             "albumNumber": 26,
             "id": "NANAKOORI",
             "weapon": "W_CLAWS",
-            "element": "ICE"
+            "element": "ICE",
+            "type": "GACHA"
         },
         {
             "albumNumber": 27,
-            "id": "",
-            "weapon": "W_",
-            "element": ""
+            "id": "NYUUTSU",
+            "weapon": "W_KATANA",
+            "element": "FIRE",
+            "type": "GACHA"
         },
         {
             "albumNumber": 28,
             "id": "UKA",
             "weapon": "W_CLAWS",
-            "element": "EARTH"
+            "element": "EARTH",
+            "type": "GACHA"
         },
         {
             "albumNumber": 29,
@@ -215,7 +234,8 @@
             "weapon": "W_CANNON",
             "type": "QUEST",
             "acquisition": "Special: Inherited Core Crystal",
-            "element": "WATER"
+            "element": "WATER",
+            "chapter": 2
         },
         {
             "albumNumber": 30,
@@ -223,137 +243,171 @@
             "weapon": "W_BALL",
             "type": "QUEST",
             "acquisition": "Quest: Tranquility",
-            "element": ""
+            "element": "ELECTRIC",
+            "chapter": 4
         },
         {
             "albumNumber": 31,
             "id": "SHIKI",
             "weapon": "W_CLAWS",
-            "element": "WIND"
+            "element": "WIND",
+            "type": "GACHA"
         },
         {
             "albumNumber": 32,
             "id": "RAIKO",
             "weapon": "W_HAMMER",
-            "element": "ELECTRIC"
+            "element": "ELECTRIC",
+            "type": "GACHA"
         },
         {
             "albumNumber": 33,
             "id": "YAEGIRI",
             "weapon": "W_AXE",
-            "element": "WIND"
+            "element": "WIND",
+            "type": "GACHA"
         },
         {
             "albumNumber": 34,
             "id": "IBUKI",
             "weapon": "W_HAMMER",
-            "element": "WIND"
+            "element": "WIND",
+            "type": "GACHA"
         },
         {
             "albumNumber": 35,
             "id": "HOTARU",
             "weapon": "W_BALL",
-            "element": ""
+            "element": "EARTH",
+            "type": "GACHA"
         },
         {
             "albumNumber": 36,
             "id": "KOSMOS",
             "weapon": "W_CANNON",
-            "element": "LIGHT"
+            "element": "LIGHT",
+            "type": "GACHA"
         },
         {
             "albumNumber": 37,
-            "id": "",
-            "weapon": "W_",
-            "element": ""
+            "id": "TENNIN",
+            "weapon": "W_CANNON",
+            "element": "ELECTRIC",
+            "type": "QUEST",
+            "chapter": 6 
         },
         {
             "albumNumber": 38,
             "id": "TSUKI",
             "weapon": "W_BALL",
-            "element": "ICE"
+            "element": "ICE",
+            "type": "GACHA"
         },
         {
             "albumNumber": 39,
             "id": "YOSHITSUNE",
             "weapon": "WB_YOSHITSUNE",
-            "type": "DLC1",
-            "element": ""
+            "type": "GACHA",
+            "gameVersion": "1.3.0",
+            "element": "ELECTRIC",
+            "chapter": 12
         },
         {
             "albumNumber": 40,
             "id": "BENKEI",
             "weapon": "WB_BENKEI",
-            "type": "DLC1",
-            "element": ""
+            "type": "GACHA",
+            "gameVersion": "1.3.0",
+            "element": "EARTH",
+            "chapter": 12
         },
         {
             "albumNumber": 41,
-            "id": "",
-            "weapon": "W_",
-            "type": "DLC1",
-            "element": ""
+            "id": "SATAHIKO",
+            "weapon": "WB_SATAHIKO",
+            "type": "QUEST",
+            "gameVersion": "1.3.0",
+            "element": "DARK",
+            "missingImg": true,
+            "chapter": 12
         },
         {
             "albumNumber": 42,
             "id": "KAMUI",
             "weapon": "WB_KAMUI",
-            "type": "DLC1",
-            "element": ""
+            "type": "GACHA",
+            "gameVersion": "1.3.0",
+            "element": "ELECTRIC",
+            "chapter": 12
         },
         {
             "albumNumber": 43,
-            "id": "",
-            "weapon": "W_",
-            "type": "DLC1",
-            "element": ""
+            "id": "RAGO",
+            "weapon": "WB_RAGO",
+            "type": "GACHA",
+            "gameVersion": "1.3.0",
+            "element": "FIRE",
+            "missingImg": true,
+            "chapter": 12
         },
         {
             "albumNumber": 44,
             "id": "OOTSUCHI",
             "weapon": "WB_OOTSUCHI",
-            "type": "DLC1",
-            "element": ""
+            "type": "GACHA",
+            "gameVersion": "1.3.0",
+            "element": "EARTH",
+            "chapter": 12
         },
         {
             "albumNumber": 45,
             "id": "ZANTETSU",
             "weapon": "WB_ZANTETSU",
-            "type": "DLC1",
-            "element": ""
+            "type": "GACHA",
+            "gameVersion": "1.3.0",
+            "element": "WIND",
+            "chapter": 12
         },
         {
             "albumNumber": 46,
             "id": "TELOS",
             "weapon": "W_AXE",
-            "element": "DARK"
+            "type": "GACHA",
+            "gameVersion": "1.4.0",
+            "element": "DARK",
+            "chapter": 11
         },
         {
             "albumNumber": 47,
-            "id": "",
-            "weapon": "W_",
-            "element": ""
+            "id": "HANABUSTER",
+            "weapon": "W_HAMMER",
+            "element": "LIGHT",
+            "type": "QUEST",
+            "gameVersion": "1.4.0",
+            "chapter": 8,
+            "exclusiveDriver": "TORA",
+            "missingImg": true,
+            "requiresExpansionPass": true
         },
         {
             "albumNumber": 48,
             "id": "SHULK",
             "weapon": "WB_SHULK",
-            "type": "DLC2",
-            "element": "LIGHT"
+            "type": "QUEST",
+            "gameVersion": "1.5.0",
+            "chapter": 4,
+            "element": "LIGHT",
+            "requiresExpansionPass": true
         },
         {
             "albumNumber": 49,
             "id": "FIORUN",
             "weapon": "WB_FIORUN",
-            "type": "DLC2",
-            "element": "LIGHT"
-        },
-        {
-            "albumNumber": 999,
-            "id": "KASUMI",
-            "weapon": "WB_KASUMI",
-            "element": "",
-            "hidden": true
+            "type": "QUEST",
+            "gameVersion": "1.5.0",
+            "chapter": 4,
+            "element": "LIGHT",
+            "requiresExpansionPass": true
         }
     ]
 }

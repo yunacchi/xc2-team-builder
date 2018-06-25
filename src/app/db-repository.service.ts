@@ -1,37 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
-import { map, first } from 'rxjs/operators';
-
-export interface DbStore {
-  weapons: DbWeaponClass[];
-  blades: DbBlade[];
-}
-
-export type RoleId = 'ATK' | 'TNK' | 'HLR';
-export type BladeTypeId = 'SEIHAI' | 'CHARA' | 'HANA' | 'GACHA' | 'STORY' | 'QUEST' | 'DLC1' | 'DLC2';
-export type ElementId = 'LIGHT' | 'DARK' | 'WATER' | 'FIRE' | 'ELECTRIC' | 'EARTH' | 'ICE' | 'WIND';
-export type DriverComboId = 'UNKNOWN' | 'N/A' | 'BREAK' | 'TOPPLE' | 'LAUNCH' | 'SMASH';
-export type DriverCharaId = 'REX' | 'NIA' | 'TORA' | 'MELEPH' | 'ZEKE';
-
-export type DriverComboMap = {
-  [driver in DriverCharaId]: DriverComboId | DriverComboId[];
-};
-
-export interface DbWeaponClass {
-  id: string;
-  role: RoleId;
-  driverCombos: DriverComboMap;
-}
-
-export interface DbBlade {
-  albumNumber: number;
-  id: string;
-  weapon: string;
-  element: ElementId;
-  exclusiveDriver?: string;
-  type?: BladeTypeId;
-}
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { first, map } from 'rxjs/operators';
+import { DbBlade, DbStore, DbWeaponClass, driverCharacters } from './model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,10 +11,12 @@ export class DbRepositoryService {
 
   private bladesJsonUrl = 'assets/db/blades.json';
   private weaponClassesJsonUrl = 'assets/db/weapons.json';
+
   private _loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   private _dbStore$: BehaviorSubject<DbStore> = new BehaviorSubject<DbStore>({
     weapons: [],
     blades: [],
+    drivers: [],
   });
 
   public loading$: Observable<boolean> = this._loading$.asObservable();
@@ -80,7 +53,8 @@ export class DbRepositoryService {
       map(([weapons, blades]) => {
         return {
           weapons,
-          blades
+          blades,
+          drivers: driverCharacters,
         };
       })
     );

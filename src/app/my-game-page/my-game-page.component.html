@@ -1,0 +1,93 @@
+<div class="my-game-page container page-container">
+  <div class="chapter-selection">
+    <h3>{{'my-game.story-chapter'|translate}}</h3>
+    <div class="row">
+      <div class="col-md-4">
+        {{'my-game.story-chapter-desc'|translate}}
+      </div>
+      <div class="col-md-8">
+        <div class="btn-toolbar" role="group" aria-label="Chapter selection" btnRadioGroup [ngModel]="currentChapter">
+          <div class="btn-group mr-2" role="group">
+            <button type="button" role="button" class="btn btn-warning" [attr.title]="('chapters.desc'|translate:{c:chapter}) + ('chapters.'+chapter|translate)"
+              *ngFor="let chapter of earlyChapters" [btnRadio]="chapter" (click)="selectChapter(chapter)">{{chapter}}</button>
+          </div>
+          <div class="btn-group mr-2" role="group">
+            <button type="button" role="button" class="btn btn-info" [attr.title]="('chapters.desc'|translate:{c:chapter}) + ('chapters.'+chapter|translate)"
+              *ngFor="let chapter of lateChapters" [btnRadio]="chapter" (click)="selectChapter(chapter)">{{chapter}}</button>
+          </div>
+          <div class="btn-group" role="group">
+            <button type="button" role="button" class="btn btn-success" [attr.title]="'chapters.11'|translate" [btnRadio]="11" (click)="selectChapter(11)">{{'my-game.game-cleared-item'|translate}}</button>
+            <button type="button" role="button" class="btn btn-success" [attr.title]="'chapters.12'|translate" [btnRadio]="12" (click)="selectChapter(12)">{{'my-game.new-game-plus-item'|translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        {{'my-game.expansion-pass-desc'|translate}}
+      </div>
+      <div class="col-md-8">
+        <button type="button" class="btn" [ngModel]="expansionPass" btnCheckbox [ngClass]="{'btn-default': !expansionPass, 'btn-success': expansionPass}"
+          (click)="toggleExpansionPass()" [btnCheckboxTrue]="true" [btnCheckboxFalse]="false">
+          <span [hidden]="!expansionPass" class="fa fas fa-check"></span>
+          {{'my-game.enable-expansion-pass'|translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="blade-driver-selection">
+    <h3>{{'my-game.bonded-blades'|translate}}</h3>
+    <p>{{'my-game.bonded-blades-desc'|translate}}</p>
+
+    <div class="row">
+      <!-- Search toolbar-->
+      <div class="col">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" [formControl]="searchFilterControl" [attr.placeholder]="'app.filter-placeholder'|translate"
+            [attr.aria-label]="'app.filter-placeholder'|translate">
+        </div>
+
+      </div>
+    </div>
+
+    <h4 class="collapse-title" (click)="collapseQuestBlades = !collapseQuestBlades" [hidden]="questBlades.length < 1">
+      <span class="fas" [ngClass]="{'fa-caret-right': collapseQuestBlades,'fa-caret-down': !collapseQuestBlades}"></span>
+      {{'my-game.quest-blades'|translate}} ({{questBlades.length}})
+    </h4>
+    <div class="blade-driver-selection-rows" [collapse]="collapseQuestBlades" [hidden]="questBlades.length < 1">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-6 offset-lg-8 offset-md-8 offset-sm-6">
+          <strong>{{'my-game.select-blade-driver'|translate}}</strong>
+        </div>
+      </div>
+      <app-blade-driver-selection-row *ngFor="let b of questBlades" [blade]="b"></app-blade-driver-selection-row>
+    </div>
+
+    <h4 class="collapse-title" (click)="collapseGachaBlades = !collapseGachaBlades" [hidden]="gachaBlades.length < 1">
+      <span class="fas" [ngClass]="{'fa-caret-right': collapseGachaBlades,'fa-caret-down': !collapseGachaBlades}"></span>
+      {{'my-game.gacha-blades'|translate}} ({{gachaBlades.length}})
+    </h4>
+    <div class="blade-driver-selection-rows" [collapse]="collapseGachaBlades" [hidden]="gachaBlades.length < 1">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-6 offset-lg-8 offset-md-8 offset-sm-6">
+          <strong>{{'my-game.select-blade-driver'|translate}}</strong>
+        </div>
+      </div>
+      <app-blade-driver-selection-row *ngFor="let b of gachaBlades" [blade]="b"></app-blade-driver-selection-row>
+    </div>
+
+    <h4 class="collapse-title" (click)="collapseStoryBlades = !collapseStoryBlades" [hidden]="storyBlades.length < 1">
+      <span class="fas" [ngClass]="{'fa-caret-right': collapseStoryBlades,'fa-caret-down': !collapseStoryBlades}"></span>
+      {{'my-game.story-blades'|translate}} ({{storyBlades.length}})
+    </h4>
+    <div class="blade-driver-selection-rows" [collapse]="collapseStoryBlades" [hidden]="storyBlades.length < 1">
+      <app-blade-driver-selection-row *ngFor="let b of storyBlades" [blade]="b"></app-blade-driver-selection-row>
+    </div>
+  </div>
+
+  <h3>{{'my-game.import-export'|translate}}</h3>
+  <p>
+    <button class="btn btn-primary mr-2" (click)="importData()">{{'my-game.import-data'|translate}}</button>
+    <button class="btn btn-primary" (click)="exportData()">{{'my-game.export-data'|translate}}</button>
+  </p>
+</div>
