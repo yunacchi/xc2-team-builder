@@ -1,3 +1,21 @@
 .collapse-title {
+  cursor: pointer;
+}
+
+.filter-toolbar {
+  .filter-link {
     cursor: pointer;
+    &:hover,
+    &.active {
+      font-weight: bold;
+    }
+  }
+}
+
+.blade-driver-selection-rows {
+  .even ::ng-deep {
+    & > .row {
+      background-color: rgba(255,255,255,0.5);
+    }
+  }
 }

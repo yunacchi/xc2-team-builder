@@ -15,7 +15,27 @@
         "close-action": "Close",
         "game-copyright": "Xenoblade Chronicles 2 © 2017 Nintendo / MONOLITHSOFT",
         "assets-copyright": "All game assets and pictures © 2018 Nintendo / MONOLITHSOFT",
-        "discharge-disclaimer": "This site is not associated with or endorsed by Nintendo or MONOLITHSOFT."
+        "discharge-disclaimer": "This site is not associated with or endorsed by Nintendo or MONOLITHSOFT.",
+        "grouping": {
+            "label": "Group by:",
+            "NONE": "None",
+            "ACQUISITION": "Acquisition type",
+            "BLADETYPE": "Blade type",
+            "DRIVER": "Driver",
+            "ELEMENT": "Element",
+            "ROLE": "Role"
+        },
+        "ordering": {
+            "label": "Order by:",
+            "ALBUM": "Album number",
+            "NAME": "Blade name",
+            "DRIVER": "Driver",
+            "ELEMENT": "Element",
+            "ROLE": "Role",
+            "WEAPON": "Weapon"
+        },
+        "no-driver": "No bound driver",
+        "all-blades": "All blades"
     },
     "my-game": {
         "story-chapter": "Story chapter",

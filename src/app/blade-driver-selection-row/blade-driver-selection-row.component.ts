@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 import { DbRepositoryService } from '../db-repository.service';
 import { GameSettingsService } from '../game-settings.service';
-import { DriverCharaId, ElementId, elements, RoleId, roles, Blade } from '../model';
+import { DriverCharaId, ElementId, elements, RoleId, roles, Blade, Driver } from '../model';
+import { BladeManagerService } from '../blade-manager.service';
 
 @Component({
   selector: 'app-blade-driver-selection-row',
@@ -14,24 +15,28 @@ export class BladeDriverSelectionRowComponent implements OnInit {
 
   @Input() public blade: Blade;
 
-  public drivers$: Observable<DriverCharaId[]>;
+  public drivers$: Observable<Driver[]>;
+  public defaultDriver$: Observable<Driver>;
   public elements = elements;
   public roles = roles;
 
   constructor(
     private dbService: DbRepositoryService,
     private settingsService: GameSettingsService,
+    private bladeMgrService: BladeManagerService,
   ) {
     this.drivers$ = combineLatest(
-      dbService.dbStore$,
+      bladeMgrService.allDrivers$,
       settingsService.gameSettings$
     ).pipe(
-      map(([dbStore, gameSettings]) => {
-        return dbStore.drivers
-          .filter(d => d.chapter <= gameSettings.c
-            && this.canBind(this.blade, d.id))
-          .map(d => d.id);
+      map(([drivers, gameSettings]) => {
+        return drivers
+          .filter(d => d.db.chapter <= gameSettings.c
+            && this.canBind(this.blade, d.id));
       })
+    );
+    this.defaultDriver$ = bladeMgrService.allDrivers$.pipe(
+      map((drivers) => drivers.find(x => x.id === 'REX'))
     );
   }
 
@@ -39,7 +44,7 @@ export class BladeDriverSelectionRowComponent implements OnInit {
   }
 
   public setDriver(blade: Blade, driverId: DriverCharaId) {
-    if (driverId === blade.boundDriver) {
+    if (blade.boundDriver && driverId === blade.boundDriver.id) {
       // Toggle to unbound
       this.settingsService.removeBlade(blade.id);
     } else if (this.canBind(blade, driverId)) {
@@ -76,7 +81,7 @@ export class BladeDriverSelectionRowComponent implements OnInit {
   public setElement(blade: Blade, elementId: ElementId) {
     this.settingsService.addBlade(
       blade.id,
-      blade.boundDriver,
+      blade.boundDriver.id,
       elementId,
       blade.role
     );
@@ -85,7 +90,7 @@ export class BladeDriverSelectionRowComponent implements OnInit {
   public setRole(blade: Blade, roleId: RoleId) {
     this.settingsService.addBlade(
       blade.id,
-      blade.boundDriver,
+      blade.boundDriver.id,
       blade.element,
       roleId
     );

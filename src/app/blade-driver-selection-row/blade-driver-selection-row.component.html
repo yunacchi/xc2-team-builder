@@ -6,20 +6,27 @@
   </div>
 
   <div class="col-lg-4 col-md-4 col-sm-6">
-    <div class="btn-group" role="group" aria-label="Blade driver selection" btnRadioGroup [ngModel]="blade.boundDriver">
-      <button type="button" role="button" class="btn character-button" *ngFor="let driverId of drivers$ | async" [disabled]="!blade.canChangeBoundDriver"
-        [ngClass]="{'btn-success': blade.isFound, 'btn-info': !blade.isFound }" [attr.title]="'drivers.'+driverId|translate"
-        [btnRadio]="driverId" (click)="setDriver(blade, driverId)">
-        <div class="character-img" [ngStyle]="getButtonStyle(driverId)"></div>
+    <div *ngIf="!blade.db.unbound" class="btn-group" role="group" aria-label="Blade driver selection" btnRadioGroup [ngModel]="blade.boundDriver">
+      <button type="button" role="button" class="btn character-button" *ngFor="let driver of drivers$ | async" [disabled]="!blade.canChangeBoundDriver"
+        [ngClass]="{'btn-success': blade.isFound, 'btn-info': !blade.isFound }" [attr.title]="'drivers.'+driver.id|translate"
+        [btnRadio]="driver" (click)="setDriver(blade, driver.id)">
+        <div class="character-img" [ngStyle]="getButtonStyle(driver.id)"></div>
+      </button>
+    </div>
+    <div *ngIf="blade.db.unbound && (this.defaultDriver$ | async) as defaultDriver" class="btn-group all-drivers-group" role="group"
+        aria-label="Blade driver selection" btnRadioGroup [ngModel]="blade.boundDriver">
+      <button type="button" role="button" class="btn character-button"  *ngFor="let driver of drivers$ | async"
+        [ngClass]="{'btn-success': blade.isFound, 'btn-info': !blade.isFound }"
+        [btnRadio]="defaultDriver" (click)="setDriver(blade, defaultDriver.id)">
+        <div class="character-img" [attr.title]="'drivers.'+driver.id|translate" [ngStyle]="getButtonStyle(driver.id)"></div>
       </button>
     </div>
   </div>
 
   <div *ngIf="blade.db.element === 'HANA' && blade.isFound" class="col-md-6">
-      {{'my-game.hana-element'|translate}}
+    {{'my-game.hana-element'|translate}}
     <div class="btn-group" role="group" aria-label="Blade element selection" btnRadioGroup [ngModel]="blade.element">
-      <button type="button" role="button" class="btn element-button btn-default" *ngFor="let elementId of elements"
-        [attr.title]="'elements.'+elementId|translate"
+      <button type="button" role="button" class="btn element-button btn-default" *ngFor="let elementId of elements" [attr.title]="'elements.'+elementId|translate"
         [btnRadio]="elementId" (click)="setElement(blade, elementId)">
         <div class="element-img" [ngStyle]="getElementBgStyle(elementId)"></div>
       </button>
@@ -27,10 +34,9 @@
   </div>
 
   <div *ngIf="blade.weaponClass.role === 'HANA' && blade.isFound" class="col-md-6">
-      {{'my-game.hana-role'|translate}}
+    {{'my-game.hana-role'|translate}}
     <div class="btn-group" role="group" aria-label="Blade role selection" btnRadioGroup [ngModel]="blade.role">
-      <button type="button" role="button" class="btn role-button" *ngFor="let roleId of roles"
-        [attr.title]="'roles.'+roleId|translate"
+      <button type="button" role="button" class="btn role-button" *ngFor="let roleId of roles" [attr.title]="'roles.'+roleId|translate"
         [btnRadio]="roleId" (click)="setRole(blade, roleId)">
         <div class="role-img" [ngStyle]="getRoleBgStyle(roleId)">{{roleId}}</div>
       </button>

@@ -185,10 +185,10 @@ export class GameSettingsService {
 
   public setLang(newLang: string) {
     this.changeSettings(s => {
-      if(s.l !== newLang) {
-        const codeA = s.l.substr(0,2);
-        const codeB = s.l.substr(0,2);
-        if(codeA !== codeB) {
+      if (s.l !== newLang) {
+        const codeA = s.l.substr(0, 2);
+        const codeB = s.l.substr(0, 2);
+        if (codeA !== codeB) {
           // Reset spoiler warning
           s.s = false;
         }

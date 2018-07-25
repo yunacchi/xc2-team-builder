@@ -1,60 +1,128 @@
 import { Injectable } from '@angular/core';
-import { BladeManagerService } from './blade-manager.service';
-import { Blade, Driver, ElementId, DriverComboId, DriverCharaId } from './model';
-import { GameSettingsService, GameSettings } from './game-settings.service';
+import { Blade, Driver, ElementId, DriverComboId, DriverCharaId, DriverComboMap, RoleId } from './model';
+import { computeKCombinations } from './math.util';
 
-// Courtesy of https://gist.github.com/axelpale/3118596 .
-// MIT license. Adapted for TypeScript.
-function computeKCombinations<T>(set: T[], k: number): T[][] {
-  if (k > set.length || k <= 0) {
-    return []
-  }
-  if (k === set.length) {
-    return [set]
-  }
-  const combs: T[][] = [];
-  if (k === 1) {
-    for (let i = 0; i < set.length; i++) {
-      combs.push([set[i]])
+
+
+function testParty(
+  partyCombination: number[][], niaIdx: number, niaAlbumNumber: number,
+  byakkoAlbumNumber: number, chapter: number
+): boolean {
+
+  const allBladeNumbers: number[] = [];
+
+  for (let i = 0; i < partyCombination.length; i++) {
+    const driverBlades = partyCombination[i];
+    for (let j = 0; j < driverBlades.length; j++) {
+      const bladeAlbumNumber: number = driverBlades[j];
+      if (allBladeNumbers.indexOf(bladeAlbumNumber) >= 0) {
+        // Blade was already engaged!
+        return false;
+      } else if (niaIdx >= 0 && bladeAlbumNumber === niaAlbumNumber) {
+        // Trying to put Blade Nia in party when Driver Nia is in use!
+        return false;
+      } else if (
+        chapter < 12
+        && bladeAlbumNumber === byakkoAlbumNumber
+        && niaIdx >= 0
+        && i !== niaIdx
+      ) {
+        // Trying to put Dromarch on another character than Nia
+        // When Driver Nia is in the party!
+        // (Does not apply to NG+)
+        return false;
+      }
     }
-    return combs
   }
-  for (let i = 0; i < set.length - k + 1; i++) {
-    const head = set.slice(i, i + 1)
-    const tailcombs = computeKCombinations(set.slice(i + 1), k - 1)
-    for (let j = 0; j < tailcombs.length; j++) {
-      combs.push(head.concat(tailcombs[j]))
-    }
-  }
-  return combs
+  return true;
 }
 
-// Courtesy of https://gist.github.com/axelpale/3118596 .
-// MIT license. Adapted for TypeScript.
-function computeCombinations<T>(set: T[]): T[][] {
-  const combs: T[][] = [];
-  for (let k = 1; k <= set.length; k++) {
-    const k_combs = computeKCombinations(set, k)
-    for (let i = 0; i < k_combs.length; i++) {
-      combs.push(k_combs[i])
+function rateParty(
+  driverIds: DriverCharaId[],
+  engagedBladeSets: number[][],
+  bladeMap: { [albumNumber: number]: Blade }
+): boolean {
+  // Would you like some Blades with those numbers?
+  let b: Blade;
+  const partyBlades: Blade[][] = [];
+  const allBlades: Blade[] = [];
+  let driverRoles: RoleId[];
+  const partyRoles: RoleId[] = [];
+  const allElements: ElementId[] = [];
+  const allDriverCombos: DriverComboId[] = [];
+  // let score = 0;
+  let driverCombos: DriverComboId[];
+
+  for (let i = 0; i < engagedBladeSets.length; i++) {
+    partyBlades[i] = [];
+    driverRoles = [];
+    for (let j = 0; j < engagedBladeSets[i].length; j++) {
+      b = bladeMap[engagedBladeSets[i][j]];
+      allBlades.push(b);
+
+      if (allElements.indexOf(b.element) < 0) {
+        allElements.push(b.element);
+      }
+
+      if (driverRoles.indexOf(b.role) < 0) {
+        driverRoles.push(b.role);
+      }
+
+      driverCombos = b.weaponClass.driverCombos[driverIds[i]];
+      for (let k = 0; k < driverCombos.length; k++) {
+        if (allDriverCombos.indexOf(driverCombos[k]) < 0
+          && (
+            driverCombos[k] === 'BREAK'
+            || driverCombos[k] === 'TOPPLE'
+            || driverCombos[k] === 'LAUNCH'
+            || driverCombos[k] === 'SMASH'
+          )
+        ) {
+          allDriverCombos.push(driverCombos[k]);
+        }
+      }
+    }
+
+    if (driverRoles.length === 1) {
+      if (partyRoles.indexOf(driverRoles[0]) < 0) {
+        partyRoles.push(driverRoles[0]);
+      }
     }
   }
-  return combs
+
+  // All elements? 200 points!
+  // if (allElements.length >= 8) {
+  //   score += 200;
+  // } else {
+  //   score += 10 * allElements.length;
+  // }
+  // All driver combos? 100 points!
+  // if (allDriverCombos.length >= 4) {
+  //   score += 100;
+  // } else {
+  //   score += 5 * allElements.length;
+  // }
+
+  const hasAllElements = allElements.length >= 8;
+  if (hasAllElements) {
+    const hasAllDriverCombos = allDriverCombos.length >= 4;
+    if (hasAllDriverCombos) {
+      const hasAllRoles = partyRoles.length >= 3;
+
+      if (hasAllElements && hasAllDriverCombos && hasAllRoles) {
+        console.log('Score!');
+        return true;
+      }
+    }
+  }
+
+  return false;
+  // console.log(score);
 }
 
-function reorderAndDistinct<T>(sets: T[][]): T[][] {
-  const newSets: T[][] = [];
-  sets.forEach(s => {
-    s = s.sort();
-
-    if (!newSets.some(ns => {
-      return ns.length === s.length
-        && ns.every((v, i) => s[i] === v)
-    })) {
-      newSets.push(s);
-    }
-  })
-  return newSets;
+export interface TeamComputerOptions {
+  disableRexMasterDriver: boolean;
+  disableCharacterBladeReassignment: boolean;
 }
 
 @Injectable({
@@ -62,20 +130,12 @@ function reorderAndDistinct<T>(sets: T[][]): T[][] {
 })
 export class TeamComputerService {
 
-  private blades: Blade[] = [];
-  private drivers: Driver[] = [];
-  private gameSettings: GameSettings = undefined;
-
-  constructor(
-    private bladeManagerService: BladeManagerService,
-    private gameSettingsService: GameSettingsService
+  public computeTeams(
+    bladePool: Blade[],
+    driverPool: Driver[],
+    currentChapter: number,
+    options: TeamComputerOptions
   ) {
-    bladeManagerService.blades$.subscribe(b => this.blades = b);
-    bladeManagerService.drivers$.subscribe(d => this.drivers = d);
-    gameSettingsService.gameSettings$.subscribe(s => this.gameSettings = s)
-  }
-
-  public permuteStuff() {
     // Hold on! This is going to get a bit wild.
     // Also, this is brute-forcing.
     // We could be smarter! We're not.
@@ -84,15 +144,37 @@ export class TeamComputerService {
     // First off: create driver and blade arrays and maps!
     // Note that we're going to use blades by their album number
     // instead of their ID string like we do in the rest of the app.
-    const drivers = this.drivers.filter(x => !x.isHidden);
-    const blades = this.blades.filter(x => !x.isHidden);
     const bladeMap: { [albumNumber: number]: Blade } = {};
-    blades.forEach(b => bladeMap[b.db.albumNumber] = b);
+    const bladeIdMap: { [id: string]: Blade } = {};
+
+    // Memorize special IDs for later.
+    let niaAlbumNumber = 0;
+    let byakkoAlbumNumber = 0;
+    let homuraAlbumNumber = 0;
+    let hikariAlbumNumber = 0;
+    for (let i = 0; i < bladePool.length; i++) {
+      switch (bladePool[i].id) {
+        case 'NIA':
+          niaAlbumNumber = bladePool[i].db.albumNumber;
+          break;
+        case 'BYAKKO':
+          byakkoAlbumNumber = bladePool[i].db.albumNumber;
+          break;
+        case 'SEIHAI_HOMURA':
+          homuraAlbumNumber = bladePool[i].db.albumNumber;
+          break;
+        case 'SEIHAI_HIKARI':
+          hikariAlbumNumber = bladePool[i].db.albumNumber;
+          break;
+      }
+      bladeMap[bladePool[i].db.albumNumber] = bladePool[i];
+      bladeIdMap[bladePool[i].id] = bladePool[i];
+    }
 
     // This will contain the blade combinations per driver.
-    const bladeCombinations: { [driverId: string]: number[][] } = {};
+    const bladeNumberCombinations: { [driverId: string]: number[][] } = {};
     // And this will contain the combinations of drivers.
-    let driverCombinations: Driver[][];
+    let driverIdCombinations: DriverCharaId[][];
 
     // Compute all possible driver combinations.
     // You can do this in your head, but we can also ask your computer to do it for us!
@@ -107,18 +189,12 @@ export class TeamComputerService {
     // Nia/Tora/Zeke
     // Nia/Morag/Zeke
     // Tora/Morag/Zeke
-    if (drivers.length > 3) {
-      driverCombinations = computeKCombinations(drivers, 3);
+    if (driverPool.length > 3) {
+      driverIdCombinations = computeKCombinations(driverPool.map(x => x.id), 3);
     } else {
-      driverCombinations = [drivers];
+      driverIdCombinations = [driverPool.map(x => x.id)];
     }
-    console.log(driverCombinations);
-
-    // Memorize special IDs for later.
-    const niaAlbumNumber = blades.find(x => x.id === 'NIA').db.albumNumber;
-    const byakkoAlbumNumber = blades.find(x => x.id === 'BYAKKO').db.albumNumber;
-    const homuraAlbumNumber = blades.find(x => x.id === 'SEIHAI_HOMURA').db.albumNumber;
-    const hikariAlbumNumber = blades.find(x => x.id === 'SEIHAI_HIKARI').db.albumNumber;
+    console.log(`Using ${driverIdCombinations.length} driver combinations!`);
 
     // Now: Compute all possible combination of engaged blades
     // for all the drivers.
@@ -127,7 +203,7 @@ export class TeamComputerService {
     // one to three girls, plus possibly a catgirl, at any given time)
     // Order is not important here.
     // Rex's Master Driver mode will be taken care of later.
-    drivers.forEach(d => {
+    driverPool.forEach(d => {
       const bladeNumbers = d.boundBlades
         // Remove hidden blades
         // Remove Mythra from combinations: she always comes with Pyra anyway)
@@ -143,16 +219,16 @@ export class TeamComputerService {
       } else {
         combinations = computeKCombinations(bladeNumbers, 3);
       }
-      bladeCombinations[d.id] = combinations;
+      bladeNumberCombinations[d.id] = combinations;
       console.log(`${d.id}: ${combinations.length} possible blade combinations!`);
     });
 
     // Now - speaking about Rex' Master Driver mode:
     // Rex is Master Driver from chapter 8 onwards.
-    if (this.gameSettings.c >= 8) {
+    if (currentChapter >= 8 && !options.disableRexMasterDriver) {
       // And he can engage Nia. And all you guys!
       // But he still can't engage Poppi (she really, *really* wants that Nopon).
-      const bladeNumbers = this.blades
+      const bladeNumbers = bladePool
         // Remove hidden blades
         // Remove Mythra from combinations: she always comes with Pyra anyway)
         // Remove Poppi
@@ -175,7 +251,7 @@ export class TeamComputerService {
       } else {
         combinations = computeKCombinations(bladeNumbers, 3);
       }
-      bladeCombinations['REX'] = combinations;
+      bladeNumberCombinations['REX'] = combinations;
       console.log(`REX (Master Driver): ${combinations.length} possible blade combinations!`);
     }
 
@@ -185,23 +261,28 @@ export class TeamComputerService {
     // The lead Character Blade (Pyra/Mythra, Dromarch, Brighid, Pandoria)
     // cannot be disengaged UNLESS you're on New Game +.
     // We can remove all combinations that don't have them.
-    if (this.gameSettings.c < 12) {
-      for (let driverId in bladeCombinations) {
-        let bladeId: string = undefined;
-        // Tora is not affected (he can't be taken in battle without Poppi anyway)
-        switch (driverId) {
-          case 'REX': bladeId = 'SEIHAI_HOMURA'; break;
-          case 'NIA': bladeId = 'BYAKKO'; break;
-          case 'MELEPH': bladeId = 'KAGUTSUCHI'; break;
-          case 'ZEKE': bladeId = 'SAIKA'; break;
-        }
-        if (bladeId !== undefined) {
-          const bladeNumber: number = blades.find(b => b.id === bladeId).db.albumNumber;
-          bladeCombinations[driverId] = bladeCombinations[driverId]
-            .filter(combination => combination.indexOf(bladeNumber) >= 0);
+    if (currentChapter < 12 && !options.disableCharacterBladeReassignment) {
+      for (const driverId in bladeNumberCombinations) {
+        if (bladeNumberCombinations.hasOwnProperty(driverId)) {
+          let bladeId: string;
+          // Tora is not affected (he can't be taken in battle without Poppi anyway)
+          switch (driverId) {
+            case 'REX': bladeId = 'SEIHAI_HOMURA'; break;
+            case 'NIA': bladeId = 'BYAKKO'; break;
+            case 'MELEPH': bladeId = 'KAGUTSUCHI'; break;
+            case 'ZEKE': bladeId = 'SAIKA'; break;
+          }
+          if (bladeId !== undefined && bladeIdMap[bladeId]) {
+            const bladeNumber: number = bladeIdMap[bladeId].db.albumNumber;
+            bladeNumberCombinations[driverId] = bladeNumberCombinations[driverId]
+              .filter(combination => combination.indexOf(bladeNumber) >= 0);
+          }
         }
       }
     }
+
+    // Remap blade numbers to blades
+    const bladeCombinations: { [driverId: string]: number[][] } = {};
 
     // We can now compute entire party combinations!
     // With crazy constraints like:
@@ -212,141 +293,76 @@ export class TeamComputerService {
 
     // I mentioned brute forcing earlier? Here it is.
     // Complexity is O(d^b^n^Look! That bird lady again!)
-    const testParty: (partyCombination: number[][], niaIdx: number) => boolean = (partyCombination, niaIdx) => {
 
-      const allBladeNumbers: number[] = [];
+    // const partyCombinations: {
+    //   drivers: Driver[]
+    //   engagedBladeSets: number[][]
+    // }[] = [];
+    // let allParties = 0;
+    // let validParties = 0;
+    // let ratedParties = 0;
 
-      for (let i = 0; i < partyCombination.length; i++) {
-        const driverBlades = partyCombination[i];
-        for (let j = 0; j < driverBlades.length; j++) {
-          const bladeAlbumNumber: number = driverBlades[j];
-          if (allBladeNumbers.indexOf(bladeAlbumNumber) >= 0) {
-            // Blade was already engaged!
-            return false;
-          } else if (niaIdx >= 0 && bladeAlbumNumber === niaAlbumNumber) {
-            // Trying to put Blade Nia in party when Driver Nia is in use!
-            return false;
-          } else if (
-            this.gameSettings.c < 12
-            && bladeAlbumNumber === byakkoAlbumNumber
-            && niaIdx >= 0
-            && i !== niaIdx
-          ) {
-            // Trying to put Dromarch on another character than Nia
-            // When Driver Nia is in the party!
-            // (Does not apply to NG+)
-            return false;
-          }
-        }
-      }
-      return true;
-    };
-    const rateParty = (driverIds: DriverCharaId[], engagedBladeSets: number[][]) => {
-      // Would you like some Blades with those numbers?
-      let b: Blade;
-      let partyBlades: Blade[][] = [];
-      let allBlades: Blade[] = [];
-      let allElements: ElementId[] = [];
-      let allDriverCombos: DriverComboId[] = [];
-      let score: number = 0;
-      for (let i = 0; i < engagedBladeSets.length; i++) {
-        partyBlades[i] = [];
-        for (let j = 0; j < engagedBladeSets[i].length; j++) {
-          b = blades[engagedBladeSets[i][j]];
-          blades[i][j] = b;
-          allBlades.push(b);
-          if (allElements.indexOf(b.element) < 0) {
-            allElements.push(b.element);
-          }
-          let driverCombos = b.weaponClass.driverCombos[driverIds[i]];
-          if (Array.isArray(driverCombos)) {
-            for (let k = 0; k < driverCombos.length; k++) {
-              if (allDriverCombos.indexOf(driverCombos[k]) < 0
-                && (
-                  driverCombos[k] === 'BREAK'
-                  || driverCombos[k] === 'TOPPLE'
-                  || driverCombos[k] === 'LAUNCH'
-                  || driverCombos[k] === 'SMASH'
-                )
-              ) {
-                allDriverCombos.push(driverCombos[k]);
-              }
-            }
-          } else {
-            if (allDriverCombos.indexOf(driverCombos) < 0 && (
-              driverCombos === 'BREAK'
-              || driverCombos === 'TOPPLE'
-              || driverCombos === 'LAUNCH'
-              || driverCombos === 'SMASH'
-            )) {
-              allDriverCombos.push(driverCombos);
-            }
-          }
-        }
-      }
+    // let driverCombination: Driver[];
+    // let driverEngagedBladeSets: number[][][];
+    // let driverIds: DriverCharaId[];
+    // let niaIdx: number;
+    // let driverEngagedBladeNumbers: number[][];
 
-      if (allElements.length >= 8) {
-        score += 200;
-      } else {
-        score += 10 * allElements.length;
-      }
+    // for (let i = 0; i < driverIdCombinations.length; i++) {
+    //   driverCombination = driverIdCombinations[i];
+    //   driverIds = driverCombination.map(d => d.id);
+    //   console.log(`Testing driver combination ${driverIds.join(', ')}: ${i + 1}/${driverIdCombinations.length}`);
+    //   niaIdx = driverIds.indexOf('NIA');
+    //   driverEngagedBladeSets = driverCombination.map(d => [...bladeCombinations[d.id]]);
+    //   driverEngagedBladeNumbers = [];
 
-      if (allDriverCombos.length >= 4) {
-        score += 100;
-      } else {
-        score += 5 * allElements.length;
-      }
+    //   const totalCombinations = driverEngagedBladeSets[0].length
+    //     * driverEngagedBladeSets[1].length
+    //     * driverEngagedBladeSets[2].length;
+    //   console.log(`Checking ${totalCombinations} engaged blade combinations`);
 
-      console.log(score);
-    }
 
-    const partyCombinations: {
-      drivers: Driver[]
-      engagedBladeSets: number[][]
-    }[] = [];
-    let validParties: number = 0;
-    let allParties: number = 0;
+    //   for (let i0 = 0; i0 < driverEngagedBladeSets[0].length; i0++) {
+    //     for (let i1 = 0; i1 < driverEngagedBladeSets[1].length; i1++) {
+    //       for (let i2 = 0; i2 < driverEngagedBladeSets[2].length; i2++) {
+    //         driverEngagedBladeNumbers[0] = driverEngagedBladeSets[0][i0];
+    //         driverEngagedBladeNumbers[1] = driverEngagedBladeSets[1][i1];
+    //         driverEngagedBladeNumbers[2] = driverEngagedBladeSets[2][i2];
+    //         allParties++;
 
-    let driverCombination: Driver[];
-    let driverEngagedBladeSets: number[][][];
-    let driverIds: DriverCharaId[];
-    let niaIdx: number;
-    let driverEngagedBlades: number[][];
+    //         // Reinsert Mythra into the fray
+    //         if (
+    //           driverEngagedBladeNumbers[0].indexOf(homuraAlbumNumber) >= 0
+    //           && driverEngagedBladeNumbers[0].indexOf(hikariAlbumNumber) < 0
+    //         ) {
+    //           driverEngagedBladeNumbers[0].push(hikariAlbumNumber);
+    //         }
+    //         if (
+    //           driverEngagedBladeNumbers[1].indexOf(homuraAlbumNumber) >= 0
+    //           && driverEngagedBladeNumbers[1].indexOf(hikariAlbumNumber) < 0) {
+    //           driverEngagedBladeNumbers[1].push(hikariAlbumNumber);
+    //         }
+    //         if (
+    //           driverEngagedBladeNumbers[2].indexOf(homuraAlbumNumber) >= 0
+    //           && driverEngagedBladeNumbers[2].indexOf(hikariAlbumNumber) < 0
+    //         ) {
+    //           driverEngagedBladeNumbers[2].push(hikariAlbumNumber);
+    //         }
 
-    for (let i = 0; i < driverCombinations.length; i++) {
-      driverCombination = driverCombinations[i];
-      driverIds = drivers.map(d => d.id);
-      niaIdx = driverIds.indexOf('NIA');
-      driverEngagedBladeSets = drivers.map(d => [...bladeCombinations[d.id]]);
-      driverEngagedBlades = [];
-
-      for (let i0 = 0; i0 < driverEngagedBladeSets[0].length; i0++) {
-        for (let i1 = 0; i1 < driverEngagedBladeSets[1].length; i1++) {
-          for (let i2 = 0; i2 < driverEngagedBladeSets[2].length; i2++) {
-            driverEngagedBlades[0] = driverEngagedBladeSets[0][i0];
-            driverEngagedBlades[1] = driverEngagedBladeSets[1][i1];
-            driverEngagedBlades[2] = driverEngagedBladeSets[2][i2];
-            allParties++;
-
-            // Reinsert Mythra into the fray
-            if (driverEngagedBlades[0].indexOf(homuraAlbumNumber) >= 0) {
-              driverEngagedBlades[0].push(hikariAlbumNumber);
-            }
-            if (driverEngagedBlades[1].indexOf(homuraAlbumNumber) >= 0) {
-              driverEngagedBlades[1].push(hikariAlbumNumber);
-            }
-            if (driverEngagedBlades[2].indexOf(homuraAlbumNumber) >= 0) {
-              driverEngagedBlades[2].push(hikariAlbumNumber);
-            }
-
-            if (testParty(driverEngagedBlades, niaIdx)) {
-              validParties++;
-              rateParty(driverIds, driverEngagedBlades);
-            }
-          }
-        }
-      }
-    }
+    //         if (testParty(driverEngagedBladeNumbers, niaIdx, niaAlbumNumber, byakkoAlbumNumber, this.gameSettings.c)) {
+    //           validParties++;
+    //           if (rateParty(driverIds, driverEngagedBladeNumbers, bladeMap)) {
+    //             ratedParties++;
+    //             partyCombinations.push({
+    //               drivers: driverCombination,
+    //               engagedBladeSets: driverEngagedBladeNumbers
+    //             });
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
     // driverCombinations.forEach((drivers) => {
     //   const combinationSets = drivers.map(d => [...bladeCombinations[d.id]]);
     //   const driverIds = drivers.map(d => d.id);
@@ -365,8 +381,9 @@ export class TeamComputerService {
     //     });
     //   });
 
-    console.log(`${allParties} parties tested!`);
-    console.log(`${validParties} parties valid!`);
-    console.log(`${partyCombinations.length} party combinations!`);
+    // console.log(`${allParties} parties tested!`);
+    // console.log(`${validParties} parties valid!`);
+    // console.log(`${ratedParties} parties rated!`);
+    // console.log(`${partyCombinations.length} party combinations!`);
   }
 }

@@ -40,49 +40,50 @@
     <p>{{'my-game.bonded-blades-desc'|translate}}</p>
 
     <div class="row">
-      <!-- Search toolbar-->
       <div class="col">
         <div class="input-group mb-3">
           <input type="text" class="form-control" [formControl]="searchFilterControl" [attr.placeholder]="'app.filter-placeholder'|translate"
             [attr.aria-label]="'app.filter-placeholder'|translate">
         </div>
-
       </div>
     </div>
 
-    <h4 class="collapse-title" (click)="collapseQuestBlades = !collapseQuestBlades" [hidden]="questBlades.length < 1">
-      <span class="fas" [ngClass]="{'fa-caret-right': collapseQuestBlades,'fa-caret-down': !collapseQuestBlades}"></span>
-      {{'my-game.quest-blades'|translate}} ({{questBlades.length}})
-    </h4>
-    <div class="blade-driver-selection-rows" [collapse]="collapseQuestBlades" [hidden]="questBlades.length < 1">
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-6 offset-lg-8 offset-md-8 offset-sm-6">
-          <strong>{{'my-game.select-blade-driver'|translate}}</strong>
+    <div class="row">
+      <div class="col">
+        <div class="filter-toolbar">
+          {{'app.grouping.label'|translate}}
+          <span *ngFor="let g of bladeGroupingTypes; let l=last">
+            <span class="filter-link" (click)="groupBy(g)" [ngClass]="{active:g===currentGrouping}">{{'app.grouping.'+g|translate}}</span>
+            <span *ngIf="!l">/</span>
+          </span>
         </div>
       </div>
-      <app-blade-driver-selection-row *ngFor="let b of questBlades" [blade]="b"></app-blade-driver-selection-row>
-    </div>
-
-    <h4 class="collapse-title" (click)="collapseGachaBlades = !collapseGachaBlades" [hidden]="gachaBlades.length < 1">
-      <span class="fas" [ngClass]="{'fa-caret-right': collapseGachaBlades,'fa-caret-down': !collapseGachaBlades}"></span>
-      {{'my-game.gacha-blades'|translate}} ({{gachaBlades.length}})
-    </h4>
-    <div class="blade-driver-selection-rows" [collapse]="collapseGachaBlades" [hidden]="gachaBlades.length < 1">
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-6 offset-lg-8 offset-md-8 offset-sm-6">
-          <strong>{{'my-game.select-blade-driver'|translate}}</strong>
+      <div class="col">
+        <div class="filter-toolbar">
+          {{'app.ordering.label'|translate}}
+          <span *ngFor="let o of bladeOrderingTypes; let l=last">
+            <span class="filter-link" (click)="orderBy(o)" [ngClass]="{active:o===currentOrder}">{{'app.ordering.'+o|translate}}</span>
+            <span *ngIf="!l">/</span>
+          </span>
         </div>
       </div>
-      <app-blade-driver-selection-row *ngFor="let b of gachaBlades" [blade]="b"></app-blade-driver-selection-row>
     </div>
 
-    <h4 class="collapse-title" (click)="collapseStoryBlades = !collapseStoryBlades" [hidden]="storyBlades.length < 1">
-      <span class="fas" [ngClass]="{'fa-caret-right': collapseStoryBlades,'fa-caret-down': !collapseStoryBlades}"></span>
-      {{'my-game.story-blades'|translate}} ({{storyBlades.length}})
-    </h4>
-    <div class="blade-driver-selection-rows" [collapse]="collapseStoryBlades" [hidden]="storyBlades.length < 1">
-      <app-blade-driver-selection-row *ngFor="let b of storyBlades" [blade]="b"></app-blade-driver-selection-row>
+    <div *ngFor="let bg of bladeGroups; index as idx">
+      <h4 class="collapse-title" (click)="collapsedGroups[idx] = !collapsedGroups[idx]" [hidden]="bg.blades.length < 1">
+        <span class="fas" [ngClass]="{'fa-caret-right': collapsedGroups[idx],'fa-caret-down': !collapsedGroups[idx]}"></span>
+        {{bg.labelKey|translate}} ({{bg.blades.length}})
+      </h4>
+      <div class="blade-driver-selection-rows" [collapse]="collapsedGroups[idx]" [hidden]="bg.blades.length < 1">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-6 offset-lg-8 offset-md-8 offset-sm-6">
+            <strong>{{'my-game.select-blade-driver'|translate}}</strong>
+          </div>
+        </div>
+        <app-blade-driver-selection-row *ngFor="let b of bg.blades; let idx=index" [blade]="b" [ngClass]="{even: (idx % 2) == 0}"></app-blade-driver-selection-row>
+      </div>
     </div>
+
   </div>
 
   <h3>{{'my-game.import-export'|translate}}</h3>

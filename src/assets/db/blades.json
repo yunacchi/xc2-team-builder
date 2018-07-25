@@ -7,7 +7,8 @@
             "type": "SEIHAI",
             "chapter": 1,
             "weapon": "WB_SEIHAI",
-            "element": "FIRE"
+            "element": "FIRE",
+            "gender": "F"
         },
         {
             "albumNumber": 2,
@@ -16,7 +17,8 @@
             "type": "SEIHAI",
             "chapter": 4,
             "weapon": "WB_SEIHAI",
-            "element": "LIGHT"
+            "element": "LIGHT",
+            "gender": "F"
         },
         {
             "albumNumber": 3,
@@ -25,7 +27,8 @@
             "type": "CHARA",
             "chapter": 2,
             "weapon": "W_RINGS",
-            "element": "WATER"
+            "element": "WATER",
+            "gender": "M"
         },
         {
             "albumNumber": 4,
@@ -34,7 +37,8 @@
             "type": "CHARA",
             "chapter": 2,
             "weapon": "WB_HANA_JS",
-            "element": "HANA"
+            "element": "HANA",
+            "gender": "F"
         },
         {
             "albumNumber": 5,
@@ -43,7 +47,8 @@
             "type": "CHARA",
             "chapter": 5,
             "weapon": "WB_HANA_JK",
-            "element": "HANA"
+            "element": "HANA",
+            "gender": "F"
         },
         {
             "albumNumber": 6,
@@ -52,7 +57,8 @@
             "type": "QUEST",
             "chapter": 8,
             "weapon": "WB_HANA_JD",
-            "element": "HANA"
+            "element": "HANA",
+            "gender": "F"
         },
         {
             "albumNumber": 7,
@@ -61,7 +67,8 @@
             "type": "STORY",
             "chapter": 4,
             "weapon": "WB_SUZAKU",
-            "element": "WIND"
+            "element": "WIND",
+            "gender": "N/A"
         },
         {
             "albumNumber": 8,
@@ -70,7 +77,8 @@
             "type": "CHARA",
             "chapter": 5,
             "weapon": "WB_KAGUTSUCHI",
-            "element": "FIRE"
+            "element": "FIRE",
+            "gender": "F"
         },
         {
             "albumNumber": 9,
@@ -79,7 +87,8 @@
             "type": "CHARA",
             "chapter": 6,
             "weapon": "WB_SAIKA",
-            "element": "ELECTRIC"
+            "element": "ELECTRIC",
+            "gender": "F"
         },
         {
             "albumNumber": 10,
@@ -89,7 +98,8 @@
             "chapter": 8,
             "weapon": "WB_NIA",
             "element": "WATER",
-            "aliases": ["Catalyst", "Bladiest Blade", "Best girl"]
+            "aliases": ["Catalyst", "Bladiest Blade", "Best girl"],
+            "gender": "F"
         },
         {
             "albumNumber": 11,
@@ -98,14 +108,16 @@
             "type": "STORY",
             "chapter": 6,
             "weapon": "W_KATANA",
-            "element": "WATER"
+            "element": "WATER",
+            "gender": "M"
         },
         {
             "albumNumber": 12,
             "id": "GUREN",
             "weapon": "W_HAMMER",
             "element": "ICE",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "M"
         },
         {
             "albumNumber": 13,
@@ -114,21 +126,24 @@
             "type": "QUEST",
             "acquisition": "Special: Beastly Core Crystal",
             "chapter": 3,
-            "element": "EARTH"
+            "element": "EARTH",
+            "gender": "M"
         },
         {
             "albumNumber": 14,
             "id": "VASARA",
             "weapon": "W_KATANA",
             "element": "DARK",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "M"
         },
         {
             "albumNumber": 15,
             "id": "MEI",
             "weapon": "W_LANCE",
             "element": "DARK",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "F"
         },
         {
             "albumNumber": 16,
@@ -136,28 +151,32 @@
             "weapon": "W_AXE",
             "element": "EARTH",
             "type": "GACHA",
-            "missingImg": true
+            "missingImg": true,
+            "gender": "F"
         },
         {
             "albumNumber": 17,
             "id": "YUUOU",
             "weapon": "W_AXE",
             "element": "WATER",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "M"
         },
         {
             "albumNumber": 18,
             "id": "IDATEN",
             "weapon": "W_BALL",
             "element": "WIND",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "M"
         },
         {
             "albumNumber": 19,
             "id": "KUBIRA",
             "weapon": "W_AXE",
             "element": "FIRE",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "M"
         },
         {
             "albumNumber": 20,
@@ -166,7 +185,8 @@
             "type": "QUEST",
             "acquisition": "Special: Lucky Core Crystal",
             "chapter": 4,
-            "element": "DARK"
+            "element": "DARK",
+            "gender": "F"
         },
         {
             "albumNumber": 21,
@@ -175,7 +195,8 @@
             "weapon": "W_LANCE",
             "acquisition": "Quest: Crystal Clear",
             "element": "WATER",
-            "chapter": 5
+            "chapter": 5,
+            "gender": "F"
         },
         {
             "albumNumber": 22,
@@ -184,49 +205,56 @@
             "weapon": "W_KATANA",
             "acquisition": "Quest: Blade-Sharp Memory",
             "element": "ICE",
-            "chapter": 7
+            "chapter": 7,
+            "gender": "F"
         },
         {
             "albumNumber": 23,
             "id": "TOKIHA",
             "weapon": "W_LANCE",
             "element": "ICE",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "F"
         },
         {
             "albumNumber": 24,
             "id": "ZAKURO",
             "weapon": "W_CLAWS",
             "element": "ELECTRIC",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "F"
         },
         {
             "albumNumber": 25,
             "id": "AZAMI",
             "weapon": "W_CANNON",
             "element": "DARK",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "F"
         },
         {
             "albumNumber": 26,
             "id": "NANAKOORI",
             "weapon": "W_CLAWS",
             "element": "ICE",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "F"
         },
         {
             "albumNumber": 27,
             "id": "NYUUTSU",
             "weapon": "W_KATANA",
             "element": "FIRE",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "F"
         },
         {
             "albumNumber": 28,
             "id": "UKA",
             "weapon": "W_CLAWS",
             "element": "EARTH",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "F"
         },
         {
             "albumNumber": 29,
@@ -235,7 +263,8 @@
             "type": "QUEST",
             "acquisition": "Special: Inherited Core Crystal",
             "element": "WATER",
-            "chapter": 2
+            "chapter": 2,
+            "gender": "F"
         },
         {
             "albumNumber": 30,
@@ -244,49 +273,56 @@
             "type": "QUEST",
             "acquisition": "Quest: Tranquility",
             "element": "ELECTRIC",
-            "chapter": 4
+            "chapter": 4,
+            "gender": "F"
         },
         {
             "albumNumber": 31,
             "id": "SHIKI",
             "weapon": "W_CLAWS",
             "element": "WIND",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "F"
         },
         {
             "albumNumber": 32,
             "id": "RAIKO",
             "weapon": "W_HAMMER",
             "element": "ELECTRIC",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "F"
         },
         {
             "albumNumber": 33,
             "id": "YAEGIRI",
             "weapon": "W_AXE",
             "element": "WIND",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "F"
         },
         {
             "albumNumber": 34,
             "id": "IBUKI",
             "weapon": "W_HAMMER",
             "element": "WIND",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "F"
         },
         {
             "albumNumber": 35,
             "id": "HOTARU",
             "weapon": "W_BALL",
             "element": "EARTH",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "M"
         },
         {
             "albumNumber": 36,
             "id": "KOSMOS",
             "weapon": "W_CANNON",
             "element": "LIGHT",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "F"
         },
         {
             "albumNumber": 37,
@@ -294,14 +330,16 @@
             "weapon": "W_CANNON",
             "element": "ELECTRIC",
             "type": "QUEST",
-            "chapter": 6 
+            "chapter": 6 ,
+            "gender": "F"
         },
         {
             "albumNumber": 38,
             "id": "TSUKI",
             "weapon": "W_BALL",
             "element": "ICE",
-            "type": "GACHA"
+            "type": "GACHA",
+            "gender": "F"
         },
         {
             "albumNumber": 39,
@@ -310,7 +348,8 @@
             "type": "GACHA",
             "gameVersion": "1.3.0",
             "element": "ELECTRIC",
-            "chapter": 12
+            "chapter": 12,
+            "gender": "M"
         },
         {
             "albumNumber": 40,
@@ -319,7 +358,8 @@
             "type": "GACHA",
             "gameVersion": "1.3.0",
             "element": "EARTH",
-            "chapter": 12
+            "chapter": 12,
+            "gender": "F"
         },
         {
             "albumNumber": 41,
@@ -329,7 +369,8 @@
             "gameVersion": "1.3.0",
             "element": "DARK",
             "missingImg": true,
-            "chapter": 12
+            "chapter": 12,
+            "gender": "M"
         },
         {
             "albumNumber": 42,
@@ -338,7 +379,8 @@
             "type": "GACHA",
             "gameVersion": "1.3.0",
             "element": "ELECTRIC",
-            "chapter": 12
+            "chapter": 12,
+            "gender": "F"
         },
         {
             "albumNumber": 43,
@@ -348,7 +390,8 @@
             "gameVersion": "1.3.0",
             "element": "FIRE",
             "missingImg": true,
-            "chapter": 12
+            "chapter": 12,
+            "gender": "M"
         },
         {
             "albumNumber": 44,
@@ -357,7 +400,8 @@
             "type": "GACHA",
             "gameVersion": "1.3.0",
             "element": "EARTH",
-            "chapter": 12
+            "chapter": 12,
+            "gender": "M"
         },
         {
             "albumNumber": 45,
@@ -366,7 +410,8 @@
             "type": "GACHA",
             "gameVersion": "1.3.0",
             "element": "WIND",
-            "chapter": 12
+            "chapter": 12,
+            "gender": "M"
         },
         {
             "albumNumber": 46,
@@ -375,7 +420,8 @@
             "type": "GACHA",
             "gameVersion": "1.4.0",
             "element": "DARK",
-            "chapter": 11
+            "chapter": 11,
+            "gender": "F"
         },
         {
             "albumNumber": 47,
@@ -385,9 +431,10 @@
             "type": "QUEST",
             "gameVersion": "1.4.0",
             "chapter": 8,
-            "exclusiveDriver": "TORA",
             "missingImg": true,
-            "requiresExpansionPass": true
+            "requiresExpansionPass": true,
+            "unbound": true,
+            "gender": "N/A"
         },
         {
             "albumNumber": 48,
@@ -397,7 +444,9 @@
             "gameVersion": "1.5.0",
             "chapter": 4,
             "element": "LIGHT",
-            "requiresExpansionPass": true
+            "requiresExpansionPass": true,
+            "unbound": true,
+            "gender": "M"
         },
         {
             "albumNumber": 49,
@@ -406,8 +455,10 @@
             "type": "QUEST",
             "gameVersion": "1.5.0",
             "chapter": 4,
-            "element": "LIGHT",
-            "requiresExpansionPass": true
+            "element": "WIND",
+            "requiresExpansionPass": true,
+            "unbound": true,
+            "gender": "F"
         }
     ]
 }

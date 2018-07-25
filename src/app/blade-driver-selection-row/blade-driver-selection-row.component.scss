@@ -1,5 +1,17 @@
 @import '../../_variables';
 
+.btn-group.all-drivers-group {
+    &.active, &:hover {
+        & .character-img, & .role-img, & .element-img {
+            opacity: 1;
+        }
+    }
+}
+
+.character-button {
+    height: $blade-row-height;
+}
+
 .character-button, .element-button, .role-button {
     padding: 0;
     .character-img, .element-img, .role-img {
@@ -7,6 +19,7 @@
         background-size: contain;
     }
     .character-img {
+        display: inline-block;
         height: $blade-row-height;
         width: $blade-row-height;
     }

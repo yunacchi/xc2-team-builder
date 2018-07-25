@@ -3,25 +3,45 @@ export type BladeTypeId = 'SEIHAI' | 'CHARA' | 'GACHA' | 'STORY' | 'QUEST';
 export type ElementId = 'LIGHT' | 'DARK' | 'WATER' | 'FIRE' | 'ELECTRIC' | 'EARTH' | 'ICE' | 'WIND' | 'HANA';
 export type DriverComboId = 'UNKNOWN' | 'N/A' | 'BREAK' | 'TOPPLE' | 'LAUNCH' | 'SMASH';
 export type DriverCharaId = 'REX' | 'NIA' | 'TORA' | 'MELEPH' | 'ZEKE';
+export type BladeGenderId = 'M' | 'F' | 'N/A';
 
 export type DriverComboMap = {
-    [driver in DriverCharaId]: DriverComboId | DriverComboId[];
+    [driver in DriverCharaId]: DriverComboId[];
 };
 
-
+// 'HANA' is just a temporary role for Poppi
+// while game setings are not applied, so it's not here.
 export const roles: RoleId[] = [
     'ATK', 'HLR', 'TNK'
 ];
 
+// Uses the order from the game's Blade Manager.
+// 'HANA' is just a temporary element for Poppi
+// while game setings are not applied, so it's not here.
 export const elements: ElementId[] = [
     'FIRE',
     'WATER',
-    'ELECTRIC',
-    'EARTH',
     'WIND',
+    'EARTH',
+    'ELECTRIC',
     'ICE',
     'LIGHT',
-    'DARK'
+    'DARK',
+];
+
+// Uses the order from the game's Blade Manager.
+export const genders: BladeGenderId[] = [
+    'M',
+    'F',
+    'N/A',
+];
+
+export const bladeTypes: BladeTypeId[] = [
+    'SEIHAI',
+    'CHARA',
+    'GACHA',
+    'STORY',
+    'QUEST',
 ];
 
 /**
@@ -88,6 +108,14 @@ export interface DbWeaponClass {
      * @memberof DbWeaponClass
      */
     driverCombos: DriverComboMap;
+
+    /**
+     * The sort index, using the sorting of the game's Blade Manager.
+     *
+     * @type {number}
+     * @memberof DbWeaponClass
+     */
+    sortIdx: number;
 }
 
 
@@ -99,7 +127,8 @@ export interface DbWeaponClass {
  */
 export interface DbBlade {
     /**
-     * The in-game album number (5*(row number-1)+column number)
+     * The in-game album number from the game's Blade Manager
+     * (5*(row number-1)+column number)
      *
      * @type {number}
      * @memberof DbBlade
@@ -111,7 +140,6 @@ export interface DbBlade {
      * Romanization of the Japanese name, simple uppercase ASCII letters and underscores only,
      * no accents.
      * Homura and Hikari have a SEIHAI_ prefix, because they're the goddamn Aegis.
-     * Nia doesn't have a BESTGIRL prefix, but I guess she could!
      *
      * @type {string}
      * @memberof DbBlade
@@ -139,8 +167,9 @@ export interface DbBlade {
     element: ElementId;
 
     /**
-     * The excluside Driver character identifier of this blade.
-     * If present, then this blade cannot be reallocated using Override Protocols.
+     * The exclusive Driver character identifier of this blade.
+     * If present, then this blade cannot be reallocated using Override Protocols
+     * or otherwise.
      *
      * @type {string}
      * @memberof DbBlade
@@ -150,7 +179,7 @@ export interface DbBlade {
     /**
      * The Type of this blade.
      * If not present, assumed to be GACHA.
-     * 
+     *
      * @example
      * SEIHAI: Aegis! (Pyra, Mythra)
      * CHARA: Character blade! (Dromarch, Poppi alpha/QT, Brighid, Pandoria)
@@ -196,6 +225,28 @@ export interface DbBlade {
      * @memberof DbBlade
      */
     requiresExpansionPass?: boolean;
+
+    /**
+     * Blade gender, as registered in the game's Blade Manager.
+     * Wait. Did you just assume Floren's gender?
+     *
+     * @type {BladeGenderId}
+     * @memberof DbBlade
+     */
+    gender: BladeGenderId;
+
+    /**
+     * If true, indicates this blade's bound driver can change
+     * all the time without an Overdrive protocol, and without
+     * releasing it (eg. Mikhail).
+     * Note that these blades can still not be equipped by Tora.
+     *
+     * Used notably for expansion blades like Poppibuster, Shulk and Fiora.
+     *
+     * @type {boolean}
+     * @memberof DbBlade
+     */
+    unbound?: boolean;
 }
 
 /**
@@ -222,36 +273,50 @@ export interface DbDriverChara {
      * @memberof DbDriverChara
      */
     chapter: number;
+
+    /**
+     * The sort index, using the sorting of the game's Blade Manager.
+     *
+     * @type {number}
+     * @memberof DbDriverChara
+     */
+    sortIdx: number;
 }
 
 // Playable drivers are probably not going to change any time soon. They're hardcoded here.
 export const driverCharacters: DbDriverChara[] = [
     {
         id: 'REX',
-        chapter: 1
+        chapter: 1,
+        sortIdx: 0,
     },
     {
-        id: 'NIA',
-        chapter: 2
+        id: 'NIA', // <- This is best girl, by the way.
+        chapter: 2,
+        sortIdx: 1,
     },
     {
         id: 'TORA',
-        chapter: 2
+        chapter: 2,
+        sortIdx: 2,
     },
     {
         id: 'MELEPH',
-        chapter: 5
+        chapter: 5,
+        sortIdx: 3,
     },
     {
         id: 'ZEKE',
-        chapter: 6
+        chapter: 6,
+        sortIdx: 4,
     },
 ];
 
 
 /**
  * Processed Blade, with regards to what blades have been found,
- * who they belong to, and whether they can be shown considering chapter settings.
+ * who they belong to, and whether they can be shown considering
+ * stored game/chapter settings.
  *
  * @export
  * @interface Blade
@@ -383,7 +448,7 @@ export interface Blade {
      * @type {DriverCharaId}
      * @memberof Blade
      */
-    boundDriver?: DriverCharaId;
+    boundDriver?: Driver;
 
     /**
      * The available driver combos of this blade, for its bound Driver.
@@ -409,6 +474,14 @@ export interface Driver {
      * @memberof Driver
      */
     id: DriverCharaId;
+
+    /**
+     * The static {@link DbDriverChara} object relevant to this Driver.
+     *
+     * @type {DbDriverChara}
+     * @memberof Driver
+     */
+    db: DbDriverChara;
 
     /**
      * True if this Driver is hidden from lists due to chapter constraints.
