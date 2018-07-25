@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { combineLatest, concat, Subject, BehaviorSubject } from 'rxjs';
@@ -36,6 +36,8 @@ export class MyGamePageComponent implements OnInit, OnDestroy {
   constructor(
     private gameSettingsService: GameSettingsService,
     private bladeManagerService: BladeManagerService,
+    private tlService: TranslateService,
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
   }
 
@@ -100,8 +102,32 @@ export class MyGamePageComponent implements OnInit, OnDestroy {
     this.bladeManagerService.setOrdering(o);
   }
 
-  public selectChapter(newChapter: number) {
-    this.gameSettingsService.setChapter(newChapter);
+  public selectChapter($event: KeyboardEvent | MouseEvent, newChapter: number) {
+    // Always set site chapter
+    this.gameSettingsService.setSiteChapter(newChapter);
+
+    if($event.ctrlKey) {
+      // With Ctrl: Don't change the game chapter, only the background
+      // Unfortunately, we need to do a few things to ensure the new chapter is not selected
+      // in the html radio input buttons:
+
+      // Store the currently selected chapter
+      const previousChapter = this.currentChapter;
+
+      // Set the variable and force-refresh Angular before the end of the method,
+      // to select the new chapter in the html inputs
+      this.currentChapter = newChapter;
+      this.changeDetectorRef.detectChanges();
+
+      // Reset the previous chapter
+      this.currentChapter = previousChapter;
+      // Angular will be refreshed after this method
+      // and re-select the previous chapter in the html inputs
+    } else {
+      // Without Ctrl: Also change the game chapter.
+      // No need to tinker with the inputs here: they change as expected.
+      this.gameSettingsService.setGameChapter(newChapter);
+    }
   }
 
   public toggleExpansionPass() {
@@ -109,13 +135,22 @@ export class MyGamePageComponent implements OnInit, OnDestroy {
   }
 
   public importData() {
-    const p = window.prompt('Paste your data:');
+    const msg = this.tlService.instant('my-game.import-data-paste');
+    const p = window.prompt(msg);
     if (p) {
       this.gameSettingsService.importJson(p);
     }
   }
 
   public exportData() {
-    const p = window.prompt('Copy your data:', this.gameSettingsService.exportJson());
+    const msg = this.tlService.instant('my-game.export-data-copy');
+    const p = window.prompt(msg, this.gameSettingsService.exportJson());
+  }
+
+  public resetData() {
+    const msg = this.tlService.instant('my-game.reset-data-confirm');
+    if(window.confirm(msg)) {
+      this.gameSettingsService.resetSettings();
+    }
   }
 }

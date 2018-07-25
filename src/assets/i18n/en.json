@@ -54,7 +54,11 @@
         "hana-element": "Elemental Core:",
         "import-export": "Import/Export",
         "import-data": "Import my data",
-        "export-data": "Export my data"
+        "import-data-paste": "Paste your data:",
+        "export-data": "Export my data",
+        "export-data-copy": "Copy your data:",
+        "reset-data": "Reset my data",
+        "reset-data-confirm": "Do you really want to reset? You'll have to set all of your Blades again!"
     },
     "drivers": {
         "REX": "Rex",
@@ -183,7 +187,7 @@
         "SHULK": "Shulk",
         "FIORUN": "Fiora",
         "KASUMI": "Haze",
-        "KASUMI2": "Fan",
+        "FAN": "Fan",
         "SHIN": "Jin",
         "METSU": "Malos",
         "LAURA": "Lora",

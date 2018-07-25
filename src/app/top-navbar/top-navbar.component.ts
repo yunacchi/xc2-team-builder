@@ -33,10 +33,10 @@ export class TopNavbarComponent implements OnInit, OnDestroy {
       this.currentLanguage = lang;
     });
 
-    this.gameSettingsService.gameSettings$
+    this.gameSettingsService.siteSettings$
       .pipe(
         takeUntil(this.unsubscribe),
-        map(gs => gs.l),
+        map(siteSettings => siteSettings.lang),
         distinctUntilChanged(),
     ).subscribe((lang) => {
       this.translateService.use(lang);

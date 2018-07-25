@@ -26,10 +26,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
-    this.gameSettingsService.gameSettings$
+    this.gameSettingsService.siteSettings$
       .pipe(
         takeUntil(this.unsubscribe),
-        map(s => s.c),
+        map(s => s.bgChapter),
         distinctUntilChanged()
       ).subscribe(c => {
         this.appStyle['background-image'] = `url('assets/xc2/chapter-bg/${c}.jpg')`

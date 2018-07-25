@@ -45,12 +45,16 @@ interface ObtainedBlade {
   r?: RoleId;
 }
 
-const defaultSettings: GameSettings = {
+const defaultGameSettings: GameSettings = {
   c: 1,
-  s: false,
   b: [],
   e: false,
-  l: 'en',
+};
+
+const defaultSiteSettings: SiteSettings = {
+  lang: 'en',
+  disclaimerClosed: false,
+  bgChapter: 1,
 };
 
 /**
@@ -63,7 +67,7 @@ const defaultSettings: GameSettings = {
  */
 export interface GameSettings {
   /**
-   * The current chapter of the game.
+   * The current chapter of the game. Defines which blades can be displayed.
    * 1 to 10,
    * 11 is Cleared,
    * 12 is NG+.
@@ -84,50 +88,73 @@ export interface GameSettings {
   b: ObtainedBlade[];
 
   /**
-   * True if the spoiler warning was shown - and closed.
-   *
-   * @type {boolean}
-   * @memberof GameSettings
-   */
-  s: boolean;
-
-  /**
    * True if the expansion pass blades should be shown.
    *
    * @type {boolean}
    * @memberof GameSettings
    */
   e: boolean;
+}
 
+export interface SiteSettings {
   /**
    * Current language.
    *
    * @type {string}
-   * @memberof GameSettings
+   * @memberof SiteSettings
    */
-  l: string;
+  lang: string;
+
+  /**
+   * True if the spoiler warning was shown - and closed.
+   *
+   * @type {boolean}
+   * @memberof SiteSettings
+   */
+  disclaimerClosed: boolean;
+
+  /**
+   * Defines which picture to show as site background.
+   * 1 to 10,
+   * 11 is Cleared,
+   * 12 is NG+.
+   *
+   * @type {number}
+   * @memberof SiteSettings
+   */
+  bgChapter: number;
 }
+
+const XC2_GAME_SETTINGS_KEY = 'xc2_game_settings';
+const XC2_SITE_SETTINGS_KEY = 'xc2_site_settings';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameSettingsService {
-
-  private _gameSettings$: BehaviorSubject<GameSettings> = new BehaviorSubject(defaultSettings);
+  private _gameSettings$: BehaviorSubject<GameSettings> = new BehaviorSubject(defaultGameSettings);
+  private _siteSettings$: BehaviorSubject<SiteSettings> = new BehaviorSubject(defaultSiteSettings);
 
   public gameSettings$: Observable<GameSettings> = this._gameSettings$.asObservable();
+  public siteSettings$: Observable<SiteSettings> = this._siteSettings$.asObservable();
 
   constructor() {
-    this.loadSettings();
+    this.loadGameSettings();
+    this.loadSiteSettings();
   }
 
-  private saveSettings(newSettings: GameSettings): void {
+  private saveGameSettings(newSettings: GameSettings): void {
     this._gameSettings$.next(newSettings);
-    window.localStorage.setItem('xc2_game_settings', JSON.stringify(newSettings));
+    window.localStorage.setItem(XC2_GAME_SETTINGS_KEY, JSON.stringify(newSettings));
   }
 
-  private loadSettings(): void {
-    const settingsStr: string = window.localStorage.getItem('xc2_game_settings');
+  private saveSiteSettings(newSettings: SiteSettings): void {
+    this._siteSettings$.next(newSettings);
+    window.localStorage.setItem(XC2_SITE_SETTINGS_KEY, JSON.stringify(newSettings));
+  }
+
+  private loadGameSettings(): void {
+    const settingsStr: string = window.localStorage.getItem(XC2_GAME_SETTINGS_KEY);
     if (settingsStr) {
       const settingsObj: any = JSON.parse(settingsStr);
       if (settingsObj) {
@@ -136,24 +163,52 @@ export class GameSettingsService {
     }
   }
 
-  private clearSettings(): void {
-    window.localStorage.removeItem('xc2_game_settings');
+  private loadSiteSettings(): void {
+    const settingsStr: string = window.localStorage.getItem(XC2_SITE_SETTINGS_KEY);
+    if (settingsStr) {
+      const settingsObj: any = JSON.parse(settingsStr);
+      if (settingsObj) {
+        this._siteSettings$.next(settingsObj);
+      }
+    }
   }
 
-  private changeSettings(action: (s: GameSettings) => void) {
+  private clearGameSettings(): void {
+    window.localStorage.removeItem(XC2_GAME_SETTINGS_KEY);
+    this._gameSettings$.next(cloneDeep(defaultGameSettings));
+  }
+
+  private clearSiteSettings(): void {
+    window.localStorage.removeItem(XC2_SITE_SETTINGS_KEY);
+    this._siteSettings$.next(cloneDeep(defaultSiteSettings));
+  }
+
+  private changeGameSettings(action: (s: GameSettings) => void) {
     const settings = cloneDeep(this._gameSettings$.value);
     action(settings);
-    this.saveSettings(settings);
+    this.saveGameSettings(settings);
   }
 
-  public setChapter(newChapter: number): void {
-    this.changeSettings(s => {
+  private changeSiteSettings(action: (s: SiteSettings) => void) {
+    const settings = cloneDeep(this._siteSettings$.value);
+    action(settings);
+    this.saveSiteSettings(settings);
+  }
+
+  public setGameChapter(newChapter: number): void {
+    this.changeGameSettings(s => {
       s.c = newChapter;
     });
   }
 
+  public setSiteChapter(newChapter: number): void {
+    this.changeSiteSettings(s => {
+      s.bgChapter = newChapter;
+    });
+  }
+
   public addBlade(bladeId: string, driverId: DriverCharaId, overrideElement?: ElementId, overrideRole?: RoleId): void {
-    this.changeSettings(s => {
+    this.changeGameSettings(s => {
       let blade = s.b.find(x => x.b === bladeId);
       if (!blade) {
         blade = {
@@ -169,7 +224,7 @@ export class GameSettingsService {
   }
 
   public removeBlade(bladeId: string) {
-    this.changeSettings(s => {
+    this.changeGameSettings(s => {
       const idx = s.b.findIndex(x => x.b === bladeId);
       if (idx >= 0) {
         s.b.splice(idx, 1);
@@ -178,28 +233,29 @@ export class GameSettingsService {
   }
 
   public setExpansionPass(hasExpansionPass: boolean) {
-    this.changeSettings(s => {
+    this.changeGameSettings(s => {
       s.e = hasExpansionPass;
     });
   }
 
   public setLang(newLang: string) {
-    this.changeSettings(s => {
-      if (s.l !== newLang) {
-        const codeA = s.l.substr(0, 2);
-        const codeB = s.l.substr(0, 2);
+    this.changeSiteSettings(s => {
+      if (s.lang !== newLang) {
+        const codeA = s.lang.substr(0, 2);
+        const codeB = s.lang.substr(0, 2);
         if (codeA !== codeB) {
-          // Reset spoiler warning
-          s.s = false;
+          // Reset spoiler warning.
+          // This will trigger the warning to be displayed again.
+          s.disclaimerClosed = false;
         }
       }
-      s.l = newLang;
+      s.lang = newLang;
     });
   }
 
   public setSpoiler(spoilerWarningShown: boolean) {
-    this.changeSettings(s => {
-      s.s = spoilerWarningShown;
+    this.changeSiteSettings(s => {
+      s.disclaimerClosed = spoilerWarningShown;
     });
   }
 
@@ -210,12 +266,16 @@ export class GameSettingsService {
   public importJson(json: string): void {
     try {
       const d = JSON.parse(json);
-      const s = cloneDeep(defaultSettings);
+      const s = cloneDeep(defaultGameSettings);
       merge(s, d);
-      this.saveSettings(s);
+      this.saveGameSettings(s);
     } catch (err) {
       console.error(err);
       alert(err);
     }
+  }
+
+  public resetSettings(): void {
+    this.clearGameSettings();
   }
 }

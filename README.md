@@ -16,6 +16,7 @@ This project uses the [Angular CLI](https://github.com/angular/angular-cli), wit
 
 Short version:
 
+- `npm install` to install node packages.
 - `ng serve` for a dev server on `http://localhost:4200/`.
 - `ng generate component|directive|pipe|service|class|guard|interface|enum|module <name>` to generate files
 - `ng build` to build the project

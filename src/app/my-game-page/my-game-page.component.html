@@ -9,15 +9,15 @@
         <div class="btn-toolbar" role="group" aria-label="Chapter selection" btnRadioGroup [ngModel]="currentChapter">
           <div class="btn-group mr-2" role="group">
             <button type="button" role="button" class="btn btn-warning" [attr.title]="('chapters.desc'|translate:{c:chapter}) + ('chapters.'+chapter|translate)"
-              *ngFor="let chapter of earlyChapters" [btnRadio]="chapter" (click)="selectChapter(chapter)">{{chapter}}</button>
+              *ngFor="let chapter of earlyChapters" [btnRadio]="chapter" (click)="selectChapter($event, chapter)">{{chapter}}</button>
           </div>
           <div class="btn-group mr-2" role="group">
             <button type="button" role="button" class="btn btn-info" [attr.title]="('chapters.desc'|translate:{c:chapter}) + ('chapters.'+chapter|translate)"
-              *ngFor="let chapter of lateChapters" [btnRadio]="chapter" (click)="selectChapter(chapter)">{{chapter}}</button>
+              *ngFor="let chapter of lateChapters" [btnRadio]="chapter" (click)="selectChapter($event, chapter)">{{chapter}}</button>
           </div>
           <div class="btn-group" role="group">
-            <button type="button" role="button" class="btn btn-success" [attr.title]="'chapters.11'|translate" [btnRadio]="11" (click)="selectChapter(11)">{{'my-game.game-cleared-item'|translate}}</button>
-            <button type="button" role="button" class="btn btn-success" [attr.title]="'chapters.12'|translate" [btnRadio]="12" (click)="selectChapter(12)">{{'my-game.new-game-plus-item'|translate}}</button>
+            <button type="button" role="button" class="btn btn-success" [attr.title]="'chapters.11'|translate" [btnRadio]="11" (click)="selectChapter($event, 11)">{{'my-game.game-cleared-item'|translate}}</button>
+            <button type="button" role="button" class="btn btn-success" [attr.title]="'chapters.12'|translate" [btnRadio]="12" (click)="selectChapter($event, 12)">{{'my-game.new-game-plus-item'|translate}}</button>
           </div>
         </div>
       </div>
@@ -90,5 +90,6 @@
   <p>
     <button class="btn btn-primary mr-2" (click)="importData()">{{'my-game.import-data'|translate}}</button>
     <button class="btn btn-primary" (click)="exportData()">{{'my-game.export-data'|translate}}</button>
+    <button class="btn btn-default" (click)="resetData()">{{'my-game.reset-data'|translate}}</button>
   </p>
 </div>
