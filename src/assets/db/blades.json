@@ -8,7 +8,8 @@
             "chapter": 1,
             "weapon": "WB_SEIHAI",
             "element": "FIRE",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "STRENGTH:10"
         },
         {
             "albumNumber": 2,
@@ -18,7 +19,8 @@
             "chapter": 4,
             "weapon": "WB_SEIHAI",
             "element": "LIGHT",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "ETHER:10"
         },
         {
             "albumNumber": 3,
@@ -28,7 +30,8 @@
             "chapter": 2,
             "weapon": "W_RINGS",
             "element": "WATER",
-            "gender": "M"
+            "gender": "M",
+            "modifier": "ETHER:10"
         },
         {
             "albumNumber": 4,
@@ -68,7 +71,8 @@
             "chapter": 4,
             "weapon": "WB_SUZAKU",
             "element": "WIND",
-            "gender": "N/A"
+            "gender": "N/A",
+            "modifier": "DEXTERITY:15"
         },
         {
             "albumNumber": 8,
@@ -78,7 +82,8 @@
             "chapter": 5,
             "weapon": "WB_KAGUTSUCHI",
             "element": "FIRE",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "AGILITY:15"
         },
         {
             "albumNumber": 9,
@@ -88,7 +93,8 @@
             "chapter": 6,
             "weapon": "WB_SAIKA",
             "element": "ELECTRIC",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "STRENGTH:10"
         },
         {
             "albumNumber": 10,
@@ -98,8 +104,13 @@
             "chapter": 8,
             "weapon": "WB_NIA",
             "element": "WATER",
-            "aliases": ["Catalyst", "Bladiest Blade", "Best girl"],
-            "gender": "F"
+            "aliases": [
+                "Catalyst",
+                "Bladiest Blade",
+                "Best girl"
+            ],
+            "gender": "F",
+            "modifier": "MAXHP:15"
         },
         {
             "albumNumber": 11,
@@ -109,7 +120,8 @@
             "chapter": 6,
             "weapon": "W_KATANA",
             "element": "WATER",
-            "gender": "M"
+            "gender": "M",
+            "modifier": "AGILITY:15"
         },
         {
             "albumNumber": 12,
@@ -117,7 +129,8 @@
             "weapon": "W_HAMMER",
             "element": "ICE",
             "type": "GACHA",
-            "gender": "M"
+            "gender": "M",
+            "modifier": "MAXHP:15"
         },
         {
             "albumNumber": 13,
@@ -127,7 +140,8 @@
             "acquisition": "Special: Beastly Core Crystal",
             "chapter": 3,
             "element": "EARTH",
-            "gender": "M"
+            "gender": "M",
+            "modifier": "STRENGTH:15"
         },
         {
             "albumNumber": 14,
@@ -135,7 +149,8 @@
             "weapon": "W_KATANA",
             "element": "DARK",
             "type": "GACHA",
-            "gender": "M"
+            "gender": "M",
+            "modifier": "AGILITY:10"
         },
         {
             "albumNumber": 15,
@@ -143,7 +158,8 @@
             "weapon": "W_LANCE",
             "element": "DARK",
             "type": "GACHA",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "ETHER:15"
         },
         {
             "albumNumber": 16,
@@ -160,7 +176,8 @@
             "weapon": "W_AXE",
             "element": "WATER",
             "type": "GACHA",
-            "gender": "M"
+            "gender": "M",
+            "modifier": "MAXHP:15"
         },
         {
             "albumNumber": 18,
@@ -168,7 +185,8 @@
             "weapon": "W_BALL",
             "element": "WIND",
             "type": "GACHA",
-            "gender": "M"
+            "gender": "M",
+            "modifier": "MAXHP:15"
         },
         {
             "albumNumber": 19,
@@ -176,7 +194,8 @@
             "weapon": "W_AXE",
             "element": "FIRE",
             "type": "GACHA",
-            "gender": "M"
+            "gender": "M",
+            "modifier": "STRENGTH:5"
         },
         {
             "albumNumber": 20,
@@ -186,7 +205,8 @@
             "acquisition": "Special: Lucky Core Crystal",
             "chapter": 4,
             "element": "DARK",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "MAXHP:15"
         },
         {
             "albumNumber": 21,
@@ -196,7 +216,8 @@
             "acquisition": "Quest: Crystal Clear",
             "element": "WATER",
             "chapter": 5,
-            "gender": "F"
+            "gender": "F",
+            "modifier": "DEXTERITY:10"
         },
         {
             "albumNumber": 22,
@@ -206,7 +227,8 @@
             "acquisition": "Quest: Blade-Sharp Memory",
             "element": "ICE",
             "chapter": 7,
-            "gender": "F"
+            "gender": "F",
+            "modifier": "AGILITY:15"
         },
         {
             "albumNumber": 23,
@@ -214,7 +236,8 @@
             "weapon": "W_LANCE",
             "element": "ICE",
             "type": "GACHA",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "DEXTERITY:10"
         },
         {
             "albumNumber": 24,
@@ -222,7 +245,8 @@
             "weapon": "W_CLAWS",
             "element": "ELECTRIC",
             "type": "GACHA",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "ETHER:10"
         },
         {
             "albumNumber": 25,
@@ -230,7 +254,8 @@
             "weapon": "W_CANNON",
             "element": "DARK",
             "type": "GACHA",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "ETHER:15"
         },
         {
             "albumNumber": 26,
@@ -238,7 +263,8 @@
             "weapon": "W_CLAWS",
             "element": "ICE",
             "type": "GACHA",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "AGILITY:10"
         },
         {
             "albumNumber": 27,
@@ -246,7 +272,8 @@
             "weapon": "W_KATANA",
             "element": "FIRE",
             "type": "GACHA",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "MAXHP:20"
         },
         {
             "albumNumber": 28,
@@ -254,7 +281,8 @@
             "weapon": "W_CLAWS",
             "element": "EARTH",
             "type": "GACHA",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "DEXTERITY:10"
         },
         {
             "albumNumber": 29,
@@ -264,7 +292,8 @@
             "acquisition": "Special: Inherited Core Crystal",
             "element": "WATER",
             "chapter": 2,
-            "gender": "F"
+            "gender": "F",
+            "modifier": "ETHER:15"
         },
         {
             "albumNumber": 30,
@@ -274,7 +303,8 @@
             "acquisition": "Quest: Tranquility",
             "element": "ELECTRIC",
             "chapter": 4,
-            "gender": "F"
+            "gender": "F",
+            "modifier": "MAXHP:10"
         },
         {
             "albumNumber": 31,
@@ -282,7 +312,8 @@
             "weapon": "W_CLAWS",
             "element": "WIND",
             "type": "GACHA",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "DEXTERITY:15"
         },
         {
             "albumNumber": 32,
@@ -290,7 +321,8 @@
             "weapon": "W_HAMMER",
             "element": "ELECTRIC",
             "type": "GACHA",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "MAXHP:15"
         },
         {
             "albumNumber": 33,
@@ -298,7 +330,8 @@
             "weapon": "W_AXE",
             "element": "WIND",
             "type": "GACHA",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "STRENGTH:15"
         },
         {
             "albumNumber": 34,
@@ -306,7 +339,8 @@
             "weapon": "W_HAMMER",
             "element": "WIND",
             "type": "GACHA",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "AGILITY:15"
         },
         {
             "albumNumber": 35,
@@ -314,7 +348,8 @@
             "weapon": "W_BALL",
             "element": "EARTH",
             "type": "GACHA",
-            "gender": "M"
+            "gender": "M",
+            "modifier": "ETHER:10"
         },
         {
             "albumNumber": 36,
@@ -322,7 +357,8 @@
             "weapon": "W_CANNON",
             "element": "LIGHT",
             "type": "GACHA",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "ETHER:20"
         },
         {
             "albumNumber": 37,
@@ -330,8 +366,9 @@
             "weapon": "W_CANNON",
             "element": "ELECTRIC",
             "type": "QUEST",
-            "chapter": 6 ,
-            "gender": "F"
+            "chapter": 6,
+            "gender": "F",
+            "modifier": "STRENGTH:15"
         },
         {
             "albumNumber": 38,
@@ -339,7 +376,8 @@
             "weapon": "W_BALL",
             "element": "ICE",
             "type": "GACHA",
-            "gender": "F"
+            "gender": "F",
+            "modifier": "DEXTERITY:10"
         },
         {
             "albumNumber": 39,
@@ -349,7 +387,8 @@
             "gameVersion": "1.3.0",
             "element": "ELECTRIC",
             "chapter": 12,
-            "gender": "M"
+            "gender": "M",
+            "modifier": "ETHER:15"
         },
         {
             "albumNumber": 40,
@@ -359,7 +398,8 @@
             "gameVersion": "1.3.0",
             "element": "EARTH",
             "chapter": 12,
-            "gender": "F"
+            "gender": "F",
+            "modifier": "STRENGTH:15"
         },
         {
             "albumNumber": 41,
@@ -370,7 +410,8 @@
             "element": "DARK",
             "missingImg": true,
             "chapter": 12,
-            "gender": "M"
+            "gender": "M",
+            "modifier": "AGILITY:15"
         },
         {
             "albumNumber": 42,
@@ -380,7 +421,8 @@
             "gameVersion": "1.3.0",
             "element": "ELECTRIC",
             "chapter": 12,
-            "gender": "F"
+            "gender": "F",
+            "modifier":"AGILITY:20"
         },
         {
             "albumNumber": 43,
@@ -391,7 +433,8 @@
             "element": "FIRE",
             "missingImg": true,
             "chapter": 12,
-            "gender": "M"
+            "gender": "M",
+            "modifier":"STRENGTH:10"
         },
         {
             "albumNumber": 44,
@@ -401,7 +444,8 @@
             "gameVersion": "1.3.0",
             "element": "EARTH",
             "chapter": 12,
-            "gender": "M"
+            "gender": "M",
+            "modifier":"MAXHP:20"
         },
         {
             "albumNumber": 45,
@@ -411,7 +455,8 @@
             "gameVersion": "1.3.0",
             "element": "WIND",
             "chapter": 12,
-            "gender": "M"
+            "gender": "M",
+            "modifier":"STRENGTH:15"
         },
         {
             "albumNumber": 46,
@@ -421,7 +466,8 @@
             "gameVersion": "1.4.0",
             "element": "DARK",
             "chapter": 11,
-            "gender": "F"
+            "gender": "F",
+            "modifier":"STRENGTH:15"
         },
         {
             "albumNumber": 47,
@@ -434,7 +480,8 @@
             "missingImg": true,
             "requiresExpansionPass": true,
             "unbound": true,
-            "gender": "N/A"
+            "gender": "N/A",
+            "modifier":"AGILITY:15"
         },
         {
             "albumNumber": 48,
@@ -446,7 +493,8 @@
             "element": "LIGHT",
             "requiresExpansionPass": true,
             "unbound": true,
-            "gender": "M"
+            "gender": "M",
+            "modifier":"ETHER:20"
         },
         {
             "albumNumber": 49,
@@ -458,7 +506,8 @@
             "element": "WIND",
             "requiresExpansionPass": true,
             "unbound": true,
-            "gender": "F"
+            "gender": "F",
+            "modifier":"STRENGTH:15"
         }
     ]
 }
