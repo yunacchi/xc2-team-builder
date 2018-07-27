@@ -106,7 +106,7 @@ export class MyGamePageComponent implements OnInit, OnDestroy {
     // Always set site chapter
     this.gameSettingsService.setSiteChapter(newChapter);
 
-    if($event.ctrlKey) {
+    if ($event.ctrlKey) {
       // With Ctrl: Don't change the game chapter, only the background
       // Unfortunately, we need to do a few things to ensure the new chapter is not selected
       // in the html radio input buttons:
@@ -149,7 +149,7 @@ export class MyGamePageComponent implements OnInit, OnDestroy {
 
   public resetData() {
     const msg = this.tlService.instant('my-game.reset-data-confirm');
-    if(window.confirm(msg)) {
+    if (window.confirm(msg)) {
       this.gameSettingsService.resetSettings();
     }
   }

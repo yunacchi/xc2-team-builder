@@ -63,8 +63,8 @@ export class PartyManagerService {
 
   private buildDefaultParty(): PartyMemberDescriptor[] {
     const partyMembers: PartyMemberDescriptor[] = [];
-    let i: number = 0;
-    for (let d of this.drivers) {
+    let i = 0;
+    for (const d of this.drivers) {
       if (!d.isHidden) {
         const pm: PartyMemberDescriptor = {
           driverId: d.id,
@@ -74,16 +74,16 @@ export class PartyManagerService {
         ++i;
         partyMembers.push(pm);
         switch (d.id) {
-          case "REX":
-            pm.bladeIds.push("SEIHAI_HOMURA");
+          case 'REX':
+            pm.bladeIds.push('SEIHAI_HOMURA');
             break;
-          case "NIA":
-            pm.bladeIds.push("BYAKKO");
+          case 'NIA':
+            pm.bladeIds.push('BYAKKO');
             break;
-          case "TORA":
-            const hanaJk = this.blades.find(b => b.id === "HANA_JK");
-            const hanaJd = this.blades.find(b => b.id === "HANA_JD");
-            pm.bladeIds.push("HANA_JS");
+          case 'TORA':
+            const hanaJk = this.blades.find(b => b.id === 'HANA_JK');
+            const hanaJd = this.blades.find(b => b.id === 'HANA_JD');
+            pm.bladeIds.push('HANA_JS');
             if (hanaJk && !hanaJk.isHidden && hanaJk.isFound) {
               pm.bladeIds.push(hanaJk.id);
             }
@@ -91,11 +91,11 @@ export class PartyManagerService {
               pm.bladeIds.push(hanaJd.id);
             }
             break;
-          case "MELEPH":
-            pm.bladeIds.push("KAGUTSUCHI");
+          case 'MELEPH':
+            pm.bladeIds.push('KAGUTSUCHI');
             break;
-          case "ZEKE":
-            pm.bladeIds.push("SAIKA");
+          case 'ZEKE':
+            pm.bladeIds.push('SAIKA');
             break;
         }
       }
@@ -110,10 +110,10 @@ export class PartyManagerService {
       elements: [],
       errors: [],
       partyMembers: [],
-    }
+    };
 
     if (partyMembers && partyMembers.length) {
-      for (let pm of partyMembers) {
+      for (const pm of partyMembers) {
       }
     } else {
       const msg = this.translateService.instant('party-is-empty');

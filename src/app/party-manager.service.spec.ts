@@ -47,50 +47,48 @@ describe('PartyManagerService', () => {
         expect(dp).toBeDefined();
         expect(dp.length).toBe(5);
 
-        expect(dp[0].driverId).toBe("REX");
+        expect(dp[0].driverId).toBe('REX');
         expect(dp[0].inBattle).toBe(true);
         expect(dp[0].bladeIds.length).toBe(1);
-        expect(dp[0].bladeIds[0]).toBe("SEIHAI_HOMURA");
+        expect(dp[0].bladeIds[0]).toBe('SEIHAI_HOMURA');
 
-        expect(dp[1].driverId).toBe("NIA");
+        expect(dp[1].driverId).toBe('NIA');
         expect(dp[1].inBattle).toBe(true);
         expect(dp[1].bladeIds.length).toBe(1);
-        expect(dp[1].bladeIds[0]).toBe("BYAKKO");
+        expect(dp[1].bladeIds[0]).toBe('BYAKKO');
 
-        expect(dp[2].driverId).toBe("TORA");
+        expect(dp[2].driverId).toBe('TORA');
         expect(dp[2].inBattle).toBe(true);
         expect(dp[2].bladeIds.length).toBe(2);
-        expect(dp[2].bladeIds[0]).toBe("HANA_JS");
-        expect(dp[2].bladeIds[1]).toBe("HANA_JK");
+        expect(dp[2].bladeIds[0]).toBe('HANA_JS');
+        expect(dp[2].bladeIds[1]).toBe('HANA_JK');
         // Hana JD (Poppi QT Pi) needs to be found, and does not
         // appear in default blades unless her Blade.isFound is true
 
-        expect(dp[3].driverId).toBe("MELEPH");
+        expect(dp[3].driverId).toBe('MELEPH');
         expect(dp[3].inBattle).toBe(false);
         expect(dp[3].bladeIds.length).toBe(1);
-        expect(dp[3].bladeIds[0]).toBe("KAGUTSUCHI");
+        expect(dp[3].bladeIds[0]).toBe('KAGUTSUCHI');
 
-        expect(dp[4].driverId).toBe("ZEKE");
+        expect(dp[4].driverId).toBe('ZEKE');
         expect(dp[4].inBattle).toBe(false);
         expect(dp[4].bladeIds.length).toBe(1);
-        expect(dp[4].bladeIds[0]).toBe("SAIKA");
-
-      })
+        expect(dp[4].bladeIds[0]).toBe('SAIKA');
+      });
     })));
 
     it('should add Poppi QT Pi on Tora to the default party when found',
       async(inject([PartyManagerService, GameSettingsService],
         (service: PartyManagerService, gss: GameSettingsService) => {
-          gss.addBlade("HANA_JD", "TORA", "ICE", "TNK");
+          gss.addBlade('HANA_JD', 'TORA', 'ICE', 'TNK');
 
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            expect(dp[2].driverId).toBe("TORA");
+            expect(dp[2].driverId).toBe('TORA');
             expect(dp[2].bladeIds.length).toBe(3);
-            expect(dp[2].bladeIds[0]).toBe("HANA_JS");
-            expect(dp[2].bladeIds[1]).toBe("HANA_JK");
-            expect(dp[2].bladeIds[2]).toBe("HANA_JD");
-
-          })
+            expect(dp[2].bladeIds[0]).toBe('HANA_JS');
+            expect(dp[2].bladeIds[1]).toBe('HANA_JK');
+            expect(dp[2].bladeIds[2]).toBe('HANA_JD');
+          });
         })));
 
 
@@ -101,10 +99,10 @@ describe('PartyManagerService', () => {
 
           service.defaultParty$.pipe(first()).subscribe(dp => {
             expect(dp.length).toBe(1);
-            expect(dp[0].driverId).toBe("REX");
+            expect(dp[0].driverId).toBe('REX');
             expect(dp[0].bladeIds.length).toBe(1);
-            expect(dp[0].bladeIds[0]).toBe("SEIHAI_HOMURA");
-          })
+            expect(dp[0].bladeIds[0]).toBe('SEIHAI_HOMURA');
+          });
         })));
 
 
@@ -116,14 +114,14 @@ describe('PartyManagerService', () => {
           service.defaultParty$.pipe(first()).subscribe(dp => {
             expect(dp.length).toBe(3);
 
-            expect(dp[1].driverId).toBe("NIA");
+            expect(dp[1].driverId).toBe('NIA');
             expect(dp[1].bladeIds.length).toBe(1);
-            expect(dp[1].bladeIds[0]).toBe("BYAKKO");
+            expect(dp[1].bladeIds[0]).toBe('BYAKKO');
 
-            expect(dp[2].driverId).toBe("TORA");
+            expect(dp[2].driverId).toBe('TORA');
             expect(dp[2].bladeIds.length).toBe(1);
-            expect(dp[2].bladeIds[0]).toBe("HANA_JS");
-          })
+            expect(dp[2].bladeIds[0]).toBe('HANA_JS');
+          });
         })));
 
 
@@ -135,15 +133,15 @@ describe('PartyManagerService', () => {
           service.defaultParty$.pipe(first()).subscribe(dp => {
             expect(dp.length).toBe(4);
 
-            expect(dp[2].driverId).toBe("TORA");
+            expect(dp[2].driverId).toBe('TORA');
             expect(dp[2].bladeIds.length).toBe(2);
-            expect(dp[2].bladeIds[0]).toBe("HANA_JS");
-            expect(dp[2].bladeIds[1]).toBe("HANA_JK");
+            expect(dp[2].bladeIds[0]).toBe('HANA_JS');
+            expect(dp[2].bladeIds[1]).toBe('HANA_JK');
 
-            expect(dp[3].driverId).toBe("MELEPH");
+            expect(dp[3].driverId).toBe('MELEPH');
             expect(dp[3].bladeIds.length).toBe(1);
-            expect(dp[3].bladeIds[0]).toBe("KAGUTSUCHI");
-          })
+            expect(dp[3].bladeIds[0]).toBe('KAGUTSUCHI');
+          });
         })));
 
     it('should add Zeke with Pandoria to the default party in chapter 6',
@@ -154,10 +152,10 @@ describe('PartyManagerService', () => {
           service.defaultParty$.pipe(first()).subscribe(dp => {
             expect(dp.length).toBe(5);
 
-            expect(dp[4].driverId).toBe("ZEKE");
+            expect(dp[4].driverId).toBe('ZEKE');
             expect(dp[4].bladeIds.length).toBe(1);
-            expect(dp[4].bladeIds[0]).toBe("SAIKA");
-          })
+            expect(dp[4].bladeIds[0]).toBe('SAIKA');
+          });
         })));
-  })
+  });
 });

@@ -11,7 +11,7 @@ describe('DbRepositoryService', () => {
                 HttpClientModule,
             ],
             providers: [
-                DbRepositoryService 
+                DbRepositoryService
             ]
         });
     });
@@ -31,6 +31,6 @@ describe('DbRepositoryService', () => {
             expect(s.blades.length).toBeGreaterThan(0);
             expect(s.drivers.length).toBe(5);
             expect(s.weapons.length).toBeGreaterThan(0);
-        })
+        });
     })));
 });

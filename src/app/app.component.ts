@@ -32,7 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
         map(s => s.bgChapter),
         distinctUntilChanged()
       ).subscribe(c => {
-        this.appStyle['background-image'] = `url('assets/xc2/chapter-bg/${c}.jpg')`
+        this.appStyle['background-image'] = `url('assets/xc2/chapter-bg/${c}.jpg')`;
       });
 
     combineLatest(
@@ -66,7 +66,7 @@ export class AppComponent implements OnInit, OnDestroy {
             this.gameSettingsService.setSpoiler(true);
           });
         }
-      })
+      });
   }
 
   public ngOnDestroy() {
