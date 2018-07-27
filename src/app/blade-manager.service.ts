@@ -385,10 +385,10 @@ export class BladeManagerService {
           if (b.role === 'HANA' && !overrideElement) {
             switch (b.id) {
               case 'HANA_JS':
-                overrideElement = 'FIRE';
+                overrideElement = 'EARTH';
                 break;
               case 'HANA_JK':
-                overrideElement = 'EARTH';
+                overrideElement = 'FIRE';
                 break;
               case 'HANA_JD':
                 overrideElement = 'ICE';
