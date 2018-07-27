@@ -430,7 +430,7 @@
             "element": "LIGHT",
             "type": "QUEST",
             "gameVersion": "1.4.0",
-            "chapter": 8,
+            "chapter": 6,
             "missingImg": true,
             "requiresExpansionPass": true,
             "unbound": true,
