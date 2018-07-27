@@ -1,0 +1,106 @@
+@import '../../_variables';
+
+.my-party-page {
+  .container {
+    background: transparent;
+  }
+  .party-member {
+    .character-img {
+      display: inline-block;
+      height: $driver-img-size;
+      width: $driver-img-size;
+      background-size: contain;
+    }
+    .character-name {
+      margin: 0 0 0 5px;
+      font-size: 16pt;
+      height: $driver-img-size;
+      line-height: $driver-img-size;
+      vertical-align: baseline;
+    }
+    .character-img, .character-name, .blade-diamond {
+      opacity: 0.5;
+    }
+    &.in-battle {
+      .character-img, .character-name, .blade-diamond {
+        opacity: 1;
+      }
+    }
+    .blade-diamond {
+      position: relative;
+      height: $blade-row-height * 3;
+      .party-member-blade {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 15;
+        &:nth-child(2) {
+          top: $blade-row-height / 2 + $blade-diamond-margin;
+          left: $blade-row-height / 2 + $blade-diamond-margin;
+        }
+        &:nth-child(3) {
+          top: $blade-row-height + 2 * $blade-diamond-margin;
+          left: 0;
+        }
+        &.hidden-slot {
+          /* Hidden slot */
+          top: 0;
+          left: -($blade-row-height / 2.5);
+          opacity: 0.5;
+          z-index: 14;
+        }
+      }
+      .blade {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          .blade-name {
+              margin-left: 5px;
+              > .element-img {
+                height: 20px;
+                width: 20px;
+              }
+          }
+          &.free-slot {
+            opacity: 0.5;
+          }
+      }
+    }
+  }
+
+  .blade-selection {
+    .blade-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .blade-name {
+          margin-left: 5px;
+      }
+    }
+  }
+
+  .stat-title {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .element-img {
+    opacity: 0.2;
+    height: 32px;
+    width: 32px;
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .driver-combo {
+    font-variant: small-caps;
+    color: grey;
+    &.active {
+      color: black;
+      font-weight: bold;
+    }
+  }
+}

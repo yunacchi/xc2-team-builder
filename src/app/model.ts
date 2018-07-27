@@ -4,6 +4,7 @@ export type ElementId = 'LIGHT' | 'DARK' | 'WATER' | 'FIRE' | 'ELECTRIC' | 'EART
 export type DriverComboId = 'UNKNOWN' | 'N/A' | 'BREAK' | 'TOPPLE' | 'LAUNCH' | 'SMASH';
 export type DriverCharaId = 'REX' | 'NIA' | 'TORA' | 'MELEPH' | 'ZEKE';
 export type BladeGenderId = 'M' | 'F' | 'N/A';
+export type StatModifierId = 'MAXHP' | 'DEXTERITY' | 'AGILITY' | 'ETHER' | 'STRENGTH' | 'LUCK';
 
 export type DriverComboMap = {
     [driver in DriverCharaId]: DriverComboId[];
@@ -42,6 +43,13 @@ export const bladeTypes: BladeTypeId[] = [
     'GACHA',
     'STORY',
     'QUEST',
+];
+
+export const driverCombos: DriverComboId[] = [
+    'BREAK',
+    'TOPPLE',
+    'LAUNCH',
+    'SMASH',
 ];
 
 /**
@@ -118,6 +126,28 @@ export interface DbWeaponClass {
     sortIdx: number;
 }
 
+/**
+ * Stat modifier attributed to Blade.
+ *
+ * @export
+ * @interface DbStatModifier
+ */
+export interface DbStatModifier {
+    /**
+     * The identifier of the stat modifier (the stat to change).
+     *
+     * @type {StatModifierId}
+     * @memberof DbStatModifier
+     */
+    id: StatModifierId;
+
+    /**
+     * The added percentage of the stat modifier.
+     *
+     * @example For +10%, the value is 10.
+     */
+    value: number;
+}
 
 /**
  * A static Blade, as contained in the database.
@@ -247,6 +277,14 @@ export interface DbBlade {
      * @memberof DbBlade
      */
     unbound?: boolean;
+
+    /**
+     * The stat modifier of this Blade applied to the engaged Driver.
+     *
+     * @type {DbStatModifier}
+     * @memberof DbBlade
+     */
+    modifier?: DbStatModifier;
 }
 
 /**

@@ -1,7 +1,7 @@
 <div class="row">
 
   <div class="col-lg-8 col-md-8 col-sm-6 blade-col">
-    <app-blade-thumbnail [blade]="blade"></app-blade-thumbnail>
+    <app-blade-thumbnail [blade]="blade" [showRole]="true" [showDriver]="true" [showElement]="true"></app-blade-thumbnail>
     <span class="blade-name">{{'blades.'+blade.id|translate}}</span>
   </div>
 
@@ -14,9 +14,8 @@
       </button>
     </div>
     <div *ngIf="blade.db.unbound && (this.defaultDriver$ | async) as defaultDriver" class="btn-group all-drivers-group" role="group"
-        aria-label="Blade driver selection" btnRadioGroup [ngModel]="blade.boundDriver">
-      <button type="button" role="button" class="btn character-button"  *ngFor="let driver of drivers$ | async"
-        [ngClass]="{'btn-success': blade.isFound, 'btn-info': !blade.isFound }"
+      aria-label="Blade driver selection" btnRadioGroup [ngModel]="blade.boundDriver">
+      <button type="button" role="button" class="btn character-button" *ngFor="let driver of drivers$ | async" [ngClass]="{'btn-success': blade.isFound, 'btn-info': !blade.isFound }"
         [btnRadio]="defaultDriver" (click)="setDriver(blade, defaultDriver.id)">
         <div class="character-img" [attr.title]="'drivers.'+driver.id|translate" [ngStyle]="getButtonStyle(driver.id)"></div>
       </button>

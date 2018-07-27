@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BladeManagerService } from './blade-manager.service';
-import { GameSettingsService } from './game-settings.service';
-import { Driver, Blade, DriverCharaId, ElementId, DriverComboId } from './model';
-import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { BladeManagerService } from './blade-manager.service';
+import { Blade, Driver, DriverComboId, driverCombos, ElementId, elements } from './model';
+import { uniqWith, isEqual } from 'lodash';
 
 export interface PartyMemberDescriptor {
   driverId: string;
@@ -15,7 +15,7 @@ export interface PartyMemberDescriptor {
 export interface EffectivePartyMember {
   elements: ElementId[];
   driverCombos: DriverComboId[];
-  modifiers: string[];
+  modifiers: { [modifierId: string]: number };
   classId: string;
   driver: Driver;
   blades: Blade[];
@@ -27,7 +27,49 @@ export interface EffectiveParty {
   partyMembers: EffectivePartyMember[];
   elements: ElementId[];
   driverCombos: DriverComboId[];
-  errors: string[];
+  errors: PartyError[];
+}
+
+export interface PartyError {
+  key: string;
+  params?: any;
+}
+
+function addBladeToParty(ep: EffectiveParty, epm: EffectivePartyMember, blade: Blade, isHidden: boolean) {
+  if (isHidden) {
+    epm.hiddenBlade = blade;
+  } else {
+    epm.blades.push(blade);
+  }
+  // Add driver combos
+  const equippedDriverCombos = blade.weaponClass.driverCombos[epm.driver.id];
+  if (equippedDriverCombos !== undefined) {
+    for (const dc of equippedDriverCombos) {
+      if (epm.driverCombos.indexOf(dc) < 0) {
+        epm.driverCombos.push(dc);
+      }
+      if (epm.inBattle && ep.driverCombos.indexOf(dc) < 0) {
+        ep.driverCombos.push(dc);
+      }
+    }
+  }
+
+  // Add Element
+  if (epm.elements.indexOf(blade.element) < 0) {
+    epm.elements.push(blade.element);
+  }
+  if (epm.inBattle && ep.elements.indexOf(blade.element) < 0) {
+    ep.elements.push(blade.element);
+  }
+
+  // Add modifier
+  if (blade.db.modifier !== undefined) {
+    if (epm.modifiers[blade.db.modifier.id]) {
+      epm.modifiers[blade.db.modifier.id] += blade.db.modifier.value;
+    } else {
+      epm.modifiers[blade.db.modifier.id] = blade.db.modifier.value;
+    }
+  }
 }
 
 @Injectable({
@@ -43,7 +85,6 @@ export class PartyManagerService {
 
   constructor(
     private bladeManagerService: BladeManagerService,
-    private translateService: TranslateService,
   ) {
     combineLatest(
       this.bladeManagerService.allDrivers$,
@@ -104,7 +145,7 @@ export class PartyManagerService {
     return partyMembers;
   }
 
-  public buildEffectiveParty(partyMembers: PartyMemberDescriptor[]): EffectiveParty {
+  public buildEffectiveParty(partyMembers: PartyMemberDescriptor[], gameChapter: number): EffectiveParty {
     const ep: EffectiveParty = {
       driverCombos: [],
       elements: [],
@@ -112,13 +153,124 @@ export class PartyManagerService {
       partyMembers: [],
     };
 
+    let driversInBattle = 0;
+    let hasNia = false;
+    const matchedBlades: string[] = [];
+
     if (partyMembers && partyMembers.length) {
       for (const pm of partyMembers) {
+        const driver = this.drivers.find(d => d.id === pm.driverId);
+        // Skip unknown Drivers
+        if (driver === undefined) {
+          ep.errors.push({ key: 'errors.unknown-driver-id', params: { driverId: pm.driverId } });
+          continue;
+        }
+        // Warn for Drivers in active party beyond maximum party size
+        if (pm.inBattle) {
+          if (driversInBattle >= 3) {
+            ep.errors.push({ key: 'errors.too-many-drivers-in-battle', params: { driverId: pm.driverId } });
+          }
+          ++driversInBattle;
+        }
+        // Warn for Drivers used before their appointed time
+        if (gameChapter < driver.db.chapter) {
+          ep.errors.push({ key: 'errors.driver-time-paradox', params: { driverId: pm.driverId } });
+        }
+        // Special catgirl management - Driver edition
+        if (pm.driverId === 'NIA') {
+          if (hasNia) {
+            ep.errors.push({ key: 'errors.critical-welsh-catgirl-overflow' });
+          }
+          hasNia = true;
+        }
+
+        const epm: EffectivePartyMember = {
+          driver: driver,
+          blades: [], // Engaged Blades
+          classId: undefined,
+          driverCombos: [],
+          modifiers: {},
+          elements: [],
+          hiddenBlade: undefined, // Implicit Blade (For the Mythra-Pyra problem)
+          inBattle: pm.inBattle,
+        };
+        const roles: string[] = [];
+        let bladeCount = 0;
+
+        // Only add battle members to the partyMembers.
+        ep.partyMembers.push(epm);
+
+        // Add Blades
+        for (const bladeId of pm.bladeIds) {
+          const blade = this.blades.find(b => b.id === bladeId);
+          // Skip unknown Blades
+          if (blade === undefined) {
+            ep.errors.push({ key: 'errors.unknown-blade-id', params: { bladeId } });
+            continue;
+          }
+          // Skip blades beyond 3
+          if (bladeCount >= 3) {
+            ep.errors.push({ key: 'errors.too-many-blades-engaged-on-character', params: { bladeId } });
+            continue;
+          }
+          ++bladeCount;
+          // Special catgirl management - Blade edition
+          if (bladeId === 'NIA') {
+            if (hasNia) {
+              ep.errors.push({ key: 'errors.critical-welsh-catgirl-overflow' });
+            }
+            hasNia = true;
+          }
+          // Warn for Blades used before their appointed time
+          if (gameChapter < (blade.db.chapter || 2)) {
+            ep.errors.push({ key: 'errors.blade-time-paradox', params: { bladeId } });
+          }
+          if (matchedBlades.indexOf(bladeId) >= 0) {
+            // Blade is engaged multiple times
+            ep.errors.push({ key: 'errors.blade-engaged-multiple-times', params: { bladeId } });
+          } else {
+            matchedBlades.push(bladeId);
+          }
+
+          // Add role for class calculation
+          roles.push(blade.role);
+
+          addBladeToParty(ep, epm, blade, false);
+
+          // The Mythra-Pyra problem
+          if (gameChapter >= 4) {
+            let hiddenBlade: Blade;
+            if (blade.id === 'SEIHAI_HOMURA') {
+              hiddenBlade = this.blades.find(b => b.id === 'SEIHAI_HIKARI');
+            } else if (blade.id === 'SEIHAI_HIKARI') {
+              hiddenBlade = this.blades.find(b => b.id === 'SEIHAI_HOMURA');
+            }
+            if (hiddenBlade !== undefined) {
+              if (matchedBlades.indexOf(hiddenBlade.id) >= 0) {
+                // Blade is engaged multiple times
+                ep.errors.push({ key: 'errors.blade-engaged-multiple-times', params: { bladeId } });
+              } else {
+                matchedBlades.push(hiddenBlade.id);
+              }
+              addBladeToParty(ep, epm, hiddenBlade, true);
+            }
+          }
+        }
+
+        // Guess Class, which is the concatenated, ordered list of roles (eg. ATK-ATK-HLR or ATK-HLR-TNK)
+        epm.classId = roles.sort().join('-');
+        // Re-order elements and driver combos by their idx
+        epm.elements = epm.elements.sort((a, b) => elements.indexOf(a) - elements.indexOf(b));
+        epm.driverCombos = epm.driverCombos.sort((a, b) => driverCombos.indexOf(a) - driverCombos.indexOf(b));
       }
     } else {
-      const msg = this.translateService.instant('party-is-empty');
-      ep.errors.push(msg);
+      ep.errors.push({ key: 'errors.party-is-empty' });
     }
+    // Re-order elements and driver combos by their idx
+    ep.elements = ep.elements.sort((a, b) => elements.indexOf(a) - elements.indexOf(b));
+    ep.driverCombos = ep.driverCombos.sort((a, b) => driverCombos.indexOf(a) - driverCombos.indexOf(b));
+
+    ep.errors = uniqWith(ep.errors, isEqual);
     return ep;
   }
 }

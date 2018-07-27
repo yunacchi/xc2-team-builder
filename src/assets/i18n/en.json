@@ -263,5 +263,11 @@
         "ETHER": "Ether Mod.",
         "STRENGTH": "Strength Mod.",
         "LUCK": "Luck Mod."
+    },
+    "driverCombos": {
+        "BREAK": "Break",
+        "TOPPLE": "Topple",
+        "LAUNCH": "Launch",
+        "SMASH": "Smash"
     }
 }

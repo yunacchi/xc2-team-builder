@@ -1,8 +1,14 @@
-<div class="blade-thumbnail">
-  <div [hidden]="!blade.isFound" class="role" [attr.title]="('roles.'+blade.role|translate) + ' (' + ('weapons.'+blade.weaponClass.id|translate)  + ')'"
-    [ngClass]="blade.role">{{blade.role.substring(0,1)}}</div>
-  <img [hidden]="!blade.isFound" class="element" [attr.title]="'elements.'+blade.element|translate" [src]="'assets/xc2/elements/'+blade.element+'.png'">
-  <img class="portrait" [attr.title]="'#'+ blade.db.albumNumber + ': ' +('blades.'+blade.id|translate)" [src]="blade.thumbUrl">
-  <div class="role-bg"></div>
-  <img *ngIf="blade.boundDriver && !blade.db.unbound" class="driver-portrait" [attr.title]="'drivers.'+blade.boundDriver.id|translate" [src]="'assets/xc2/driver_icons/'+blade.boundDriver.id+'.png'">
+<div class="blade-thumbnail" [ngClass]="{'no-role': !showRole, 'no-element': !showElement, 'no-driver': !showDriver}">
+  <ng-container *ngIf="blade">
+    <div [hidden]="!blade.isFound || !showRole" class="role" [attr.title]="('roles.'+blade.role|translate) + ' (' + ('weapons.'+blade.weaponClass.id|translate)  + ')'"
+      [ngClass]="blade.role">{{blade.role.substring(0,1)}}</div>
+    <img [hidden]="!blade.isFound || !showElement" class="element" [attr.title]="'elements.'+blade.element|translate" [src]="'assets/xc2/elements/'+blade.element+'.png'">
+    <img class="portrait" [attr.title]="'#'+ blade.db.albumNumber + ': ' +('blades.'+blade.id|translate)" [src]="blade.thumbUrl">
+    <div class="role-bg"></div>
+    <img *ngIf="blade.boundDriver && !blade.db.unbound && showDriver" class="driver-portrait" [attr.title]="'drivers.'+blade.boundDriver.id|translate"
+      [src]="'assets/xc2/driver_icons/'+blade.boundDriver.id+'.png'">
+  </ng-container>
+  <ng-container *ngIf="!blade">
+    <img class="portrait" src="assets/xc2/diamond_portraits/NOTHING-TO-SEE-HERE.png">
+  </ng-container>
 </div>

@@ -12,6 +12,10 @@
     height: $blade-row-height;
 }
 
+.blade-name {
+    margin-left: 10px;
+}
+
 .character-button, .element-button, .role-button {
     padding: 0;
     .character-img, .element-img, .role-img {

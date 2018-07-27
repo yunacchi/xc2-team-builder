@@ -1,13 +1,21 @@
 @import '../../_variables';
 
-.blade-thumbnail, :host {
+:host, .blade-thumbnail {
     display: inline-block;
     height: $blade-row-height;
+}
+.blade-thumbnail {
     width: $blade-row-height * 1.5;
+
+    &.no-role.no-element, .no-driver {
+        width: $blade-row-height * 1.25;
+    }
+    &.no-role.no-element.no-driver {
+        width: $blade-row-height;
+    }
 }
 
 .blade-thumbnail {
-    margin-right: 10px;
     position: relative;
     z-index: 10;
     .portrait {
@@ -16,6 +24,11 @@
         height: $blade-row-height;
         width: $blade-row-height;
         z-index: 11;
+    }
+    &.no-role.no-element {
+        .portrait {
+            left: 0;
+        }
     }
     .element {
         position: absolute;

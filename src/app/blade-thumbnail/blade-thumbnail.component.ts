@@ -9,6 +9,9 @@ import { Blade } from '../model';
 export class BladeThumbnailComponent implements OnInit {
 
   @Input() public blade: Blade;
+  @Input() public showDriver: boolean;
+  @Input() public showElement: boolean;
+  @Input() public showRole: boolean;
 
   constructor() { }
 
