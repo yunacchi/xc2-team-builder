@@ -36,7 +36,24 @@
             "WEAPON": "Weapon"
         },
         "no-driver": "No bound driver",
-        "all-blades": "All blades"
+        "all-blades": "All blades",
+        "drivers": "Drivers",
+        "blades": "Blades",
+        "engaged-blades": "Engaged Blades",
+        "stats": "Stats",
+        "driver-class": "Class",
+        "stat-modifiers": "Modifiers",
+        "elements": "Elements",
+        "driver-combos": "Driver combos",
+        "availability-chapter": "Available starting at chapter {{c}}.",
+        "availability-chapter-11": "Available after clearing the game.",
+        "availability-chapter-12": "Available in New Game+ only.",
+        "switch-nia-to-blade": "Make Nia a Blade?",
+        "switch-nia-to-driver": "Make Nia a Driver?",
+        "switch-to-homura": "Switch to Pyra? Mythra will still be engaged to Rex.",
+        "switch-to-hikari": "Switch to Mythra? Pyra will still be engaged to Rex.",
+        "unbound-blade": "This Blade can be engaged to any Driver.",
+        "locked-blade": "This Blade cannot be rebound to another Driver."
     },
     "my-game": {
         "story-chapter": "Story chapter",
@@ -195,5 +212,56 @@
         "ADEL": "Addam",
         "MINOCHI": "Minoth",
         "MALVENI": "Amalthus"
+    },
+    "bladeAcquisition": {
+        "ZIKARAO": "Awakened with the Beastly Core Crystal, dropped by a chapter 3 story boss.",
+        "KASANE": "Awakened with the Lucky Core Crystal, dropped by a mob during a special event in Mor Ardain.",
+        "MIKUMARI": "Awakened with her own Core Crystal, obtained at the end of the side quest \"Crystal Clear\".",
+        "SEORI": "Awakened with her own Core Crystal, obtained at the end of the side quest \"Blade-Sharp Memory\".",
+        "RINNE": "Awakened with the Inherited Core Crystal, from a shop in Torigoth, Gormott.",
+        "MUSUBI": "Awakened with her own Core Crystal, obtained at the end of the side quest \"Tranquility\".",
+        "HANABUSTER": "Obtained at the end of the DLC quest \"Shiny New Power\".",
+        "SHULK": "Available during Challenge Battles, and can be brought to Alrest after finishing the Challenge Battle \"Dino Drama\".",
+        "FIORUN": "Available during Challenge Battles, and can be brought to Alrest after finishing the Challenge Battle \"Dino Drama\".",
+        "TENNIN": "Awakened with the Sealed Core Crystal, from the Altar of Sealing in Theosoir, Tantal.",
+        "HANA_JD": "Obtained at the end of the quest \"Powered-Up Poppi\".",
+        "SATAHIKO": "Obtained at the Megaflote Base in the Land of Morytha, after the relevant events in the World Tree."
+    },
+    "classes": {
+        "ATK": "Fighter",
+        "HLR": "Healer",
+        "TNK": "Defender",
+        "ATK-ATK": "Elite Fighter",
+        "ATK-HLR": "Cavalier",
+        "ATK-TNK": "Warrior",
+        "HLR-HLR": "Elite Healer",
+        "HLR-TNK": "Knight",
+        "TNK-TNK": "Elite Defender",
+        "ATK-ATK-ATK": "Master Fighter",
+        "ATK-ATK-HLR": "Wild Cavalier",
+        "ATK-ATK-TNK": "Wild Warrior",
+        "ATK-HLR-HLR": "Holy Cavalier",
+        "ATK-HLR-TNK": "Jack-of-all-trades",
+        "ATK-TNK-TNK": "Royal Warrior",
+        "HLR-HLR-HLR": "Master Healer",
+        "HLR-HLR-TNK": "Holy Knight",
+        "HLR-TNK-TNK": "Royal Knight",
+        "TNK-TNK-TNK": "Master Defender"
+    },
+    "classAttributes": {
+        "DAMAGE": "Boosts damage dealt",
+        "POTION": "HP Potion effect up",
+        "STEALTH": "Lower Arts/Spec. aggro",
+        "DEFENSE": "Reduces damage taken",
+        "ARTSAGGRO": "Boosts Arts/Spec. aggro",
+        "ATKAGGRO": "Boosts auto-atk aggro"
+    },
+    "modifiers": {
+        "MAXHP": "Max HP Mod.",
+        "DEXTERITY": "Dexterity Mod.",
+        "AGILITY": "Agility Mod.",
+        "ETHER": "Ether Mod.",
+        "STRENGTH": "Strength Mod.",
+        "LUCK": "Luck Mod."
     }
 }
