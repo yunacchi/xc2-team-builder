@@ -10,7 +10,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AppComponent } from './app.component';
 import { BladeDriverSelectionRowComponent } from './blade-driver-selection-row/blade-driver-selection-row.component';
 import { BladeThumbnailComponent } from './blade-thumbnail/blade-thumbnail.component';
-import { MyBladesPageComponent } from './my-blades-page/my-blades-page.component';
+import { MyPartyPageComponent } from './my-party-page/my-party-page.component';
 import { MyGamePageComponent } from './my-game-page/my-game-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { TopNavbarComponent } from './top-navbar/top-navbar.component';
@@ -24,7 +24,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 const appRoutes: Routes = [
   { path: 'my-game', component: MyGamePageComponent },
-  { path: 'my-blades', component: MyBladesPageComponent },
+  { path: 'my-party', component: MyPartyPageComponent },
   { path: 'my-team', component: MyTeamPageComponent },
   {
     path: '',
@@ -38,7 +38,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     TopNavbarComponent,
-    MyBladesPageComponent,
+    MyPartyPageComponent,
     NotFoundPageComponent,
     MyGamePageComponent,
     BladeThumbnailComponent,
