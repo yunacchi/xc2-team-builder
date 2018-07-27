@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
-import { map, share, distinctUntilChanged } from 'rxjs/operators';
+import { map, share, distinctUntilChanged, filter } from 'rxjs/operators';
 import { DbRepositoryService } from './db-repository.service';
 import { GameSettingsService } from './game-settings.service';
 import { Blade, Driver, DriverCharaId, elements, roles, bladeTypes } from './model';
@@ -116,8 +116,8 @@ export class BladeManagerService {
   private bladeMapSubscription: Subscription;
   private searchIndexSubscription: Subscription;
 
-  public allBlades$: Observable<Blade[]> = this._blades$.asObservable();
-  public allDrivers$: Observable<Driver[]> = this._drivers$.asObservable();
+  public allBlades$: Observable<Blade[]> = this._blades$.pipe(filter((a) => a.length > 0));
+  public allDrivers$: Observable<Driver[]> = this._drivers$.pipe(filter((a) => a.length > 0));
   public sortOrder$: Observable<BladeOrderingType> = this._sortOrder$.asObservable();
   public grouping$: Observable<BladeGroupingType> = this._grouping$.asObservable();
   public searchFilter$: Observable<string> = this._searchFilter$.asObservable();

@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BladeThumbnailComponent } from './blade-thumbnail.component';
+// import { BladeThumbnailComponent } from './blade-thumbnail.component';
 
-describe('BladeThumbnailComponent', () => {
-  let component: BladeThumbnailComponent;
-  let fixture: ComponentFixture<BladeThumbnailComponent>;
+// describe('BladeThumbnailComponent', () => {
+//   let component: BladeThumbnailComponent;
+//   let fixture: ComponentFixture<BladeThumbnailComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ BladeThumbnailComponent ]
-    })
-    .compileComponents();
-  }));
+//   beforeEach(async(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [ BladeThumbnailComponent ]
+//     })
+//     .compileComponents();
+//   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(BladeThumbnailComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(BladeThumbnailComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

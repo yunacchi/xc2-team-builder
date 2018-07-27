@@ -173,12 +173,12 @@ export class GameSettingsService {
     }
   }
 
-  private clearGameSettings(): void {
+  public clearGameSettings(): void {
     window.localStorage.removeItem(XC2_GAME_SETTINGS_KEY);
     this._gameSettings$.next(cloneDeep(defaultGameSettings));
   }
 
-  private clearSiteSettings(): void {
+  public clearSiteSettings(): void {
     window.localStorage.removeItem(XC2_SITE_SETTINGS_KEY);
     this._siteSettings$.next(cloneDeep(defaultSiteSettings));
   }

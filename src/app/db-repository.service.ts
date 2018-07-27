@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { first, map } from 'rxjs/operators';
+import { first, map, withLatestFrom, filter } from 'rxjs/operators';
 import { DbBlade, DbStore, DbWeaponClass, driverCharacters } from './model';
 
 @Injectable({
@@ -20,7 +20,13 @@ export class DbRepositoryService {
   });
 
   public loading$: Observable<boolean> = this._loading$.asObservable();
-  public dbStore$: Observable<DbStore> = this._dbStore$.asObservable();
+  public dbStore$: Observable<DbStore> = combineLatest(
+    this._dbStore$,
+    this._loading$
+  ).pipe(
+    filter(([_, loading]) => !loading),
+    map(([store, _]) => store),
+  );
 
   constructor(
     private http: HttpClient
