@@ -43,7 +43,6 @@ export class PartyManagerService {
 
   constructor(
     private bladeManagerService: BladeManagerService,
-    private gameSettingsService: GameSettingsService,
     private translateService: TranslateService,
   ) {
     combineLatest(
