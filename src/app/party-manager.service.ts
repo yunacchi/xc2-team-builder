@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { BladeManagerService } from './blade-manager.service';
-import { Blade, Driver, DriverComboId, driverCombos, ElementId, elements } from './model';
+import { Blade, Driver, DriverComboId, driverCombos, ElementId, elements, RoleId } from './model';
 import { uniqWith, isEqual } from 'lodash';
 import { GameSettingsService } from './game-settings.service';
 
@@ -24,6 +24,7 @@ export interface EffectivePartyMember {
   driverCombos: DriverComboId[];
   modifiers: { [modifierId: string]: number };
   classId: string;
+  roles: RoleId[];
   driver: Driver;
   blades: Blade[];
   inBattle: boolean;
@@ -211,8 +212,9 @@ export class PartyManagerService {
           elements: [],
           hiddenBlade: undefined, // Implicit Blade (For the Mythra-Pyra problem)
           inBattle: pm.inBattle,
+          roles: []
         };
-        const roles: string[] = [];
+        // const roles: RoleId[] = [];
         let bladeCount = 0;
 
         // Only add battle members to the partyMembers.
@@ -251,7 +253,7 @@ export class PartyManagerService {
           }
 
           // Add role for class calculation
-          roles.push(blade.role);
+          epm.roles.push(blade.role);
 
           addBladeToParty(ep, epm, blade, false);
 
@@ -276,7 +278,7 @@ export class PartyManagerService {
         }
 
         // Guess Class, which is the concatenated, ordered list of roles (eg. ATK-ATK-HLR or ATK-HLR-TNK)
-        epm.classId = roles.sort().join('-');
+        epm.classId = epm.roles.sort().join('-');
         // Re-order elements and driver combos by their idx
         epm.elements = epm.elements.sort((a, b) => elements.indexOf(a) - elements.indexOf(b));
         epm.driverCombos = epm.driverCombos.sort((a, b) => driverCombos.indexOf(a) - driverCombos.indexOf(b));

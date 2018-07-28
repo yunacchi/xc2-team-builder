@@ -236,6 +236,7 @@
     "SATAHIKO": "Obtained at the Megaflote Base in the Land of Morytha, after the relevant events in the World Tree."
   },
   "classes": {
+    "": "No class",
     "ATK": "Fighter",
     "HLR": "Healer",
     "TNK": "Defender",

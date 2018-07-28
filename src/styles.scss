@@ -7,10 +7,15 @@
 // Vendors!
 
 // Font Awesome!
+// Custom $fa-font-path set in _variables.scss for Webpack.
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~@fortawesome/fontawesome-free/scss/fa-solid";
 @import "~@fortawesome/fontawesome-free/scss/fa-brands";
 @import "~@fortawesome/fontawesome-free/scss/fa-regular";
+
+// RPG-Awesome!
+// Custom $ra-font-path set in _variables.scss for Webpack.
+@import "~rpg-awesome/scss/rpg-awesome";
 
 // Bootstrap!
 @import "~bootstrap/scss/bootstrap";

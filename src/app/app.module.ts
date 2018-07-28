@@ -17,6 +17,9 @@ import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MyTeamPageComponent } from './my-team-page/my-team-page.component';
 import { DndModule } from 'ngx-drag-drop';
+import { Xc2ElementIconComponent } from './xc2-element-icon/xc2-element-icon.component';
+import { Xc2RoleIconComponent } from './xc2-role-icon/xc2-role-icon.component';
+import { Xc2DriverComboIconComponent } from './xc2-driver-combo-icon/xc2-driver-combo-icon.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -46,6 +49,9 @@ const appRoutes: Routes = [
     BladeDriverSelectionRowComponent,
     FooterComponent,
     MyTeamPageComponent,
+    Xc2ElementIconComponent,
+    Xc2RoleIconComponent,
+    Xc2DriverComboIconComponent,
   ],
   imports: [
     BrowserModule,

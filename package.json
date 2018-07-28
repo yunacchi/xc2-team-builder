@@ -29,6 +29,8 @@
     "lodash": "^4.17.10",
     "ngx-bootstrap": "^3.0.1",
     "ngx-drag-drop": "^1.0.3",
+    "npm": "^6.2.0",
+    "rpg-awesome": "^0.2.0",
     "rxjs": "^6.0.0",
     "sweetalert2": "^7.24.1",
     "zone.js": "^0.8.26"

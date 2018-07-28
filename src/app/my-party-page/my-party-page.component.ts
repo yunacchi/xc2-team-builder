@@ -252,4 +252,7 @@ export class MyPartyPageComponent implements OnInit, OnDestroy {
   public filterDriver(d?: Driver) {
     this.driverFilter$.next(d);
   }
+  public getDriverCombos(b: Blade, driverId: string): DriverComboId[] {
+    return b.weaponClass.driverCombos[driverId] || [];
+  }
 }
