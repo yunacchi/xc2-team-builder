@@ -1,5 +1,4 @@
 @import '../../_variables';
-
 .my-party-page {
   .container {
     background: transparent;
@@ -18,11 +17,15 @@
       line-height: $driver-img-size;
       vertical-align: baseline;
     }
-    .character-img, .character-name, .blade-diamond {
+    .character-img,
+    .character-name,
+    .blade-diamond {
       opacity: 0.5;
     }
     &.in-battle {
-      .character-img, .character-name, .blade-diamond {
+      .character-img,
+      .character-name,
+      .blade-diamond {
         opacity: 1;
       }
     }
@@ -44,48 +47,43 @@
         }
         &.hidden-slot {
           /* Hidden slot */
-          top: 0;
-          left: -($blade-row-height / 2.5);
+          top: $blade-row-height / 2 + $blade-diamond-margin;
+          left: -($blade-row-height / 2);
           opacity: 0.5;
           z-index: 14;
         }
       }
       .blade {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-
-          .blade-name {
-              margin-left: 5px;
-              > .element-img {
-                height: 20px;
-                width: 20px;
-              }
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .blade-name {
+          margin-left: 5px;
+          >.element-img {
+            height: 20px;
+            width: 20px;
           }
-          &.free-slot {
-            opacity: 0.5;
-          }
+        }
+        &.free-slot {
+          opacity: 0.5;
+        }
       }
     }
   }
-
   .blade-selection {
     .blade-item {
       display: flex;
       flex-direction: row;
       align-items: center;
-
       .blade-name {
-          margin-left: 5px;
+        margin-left: 5px;
       }
     }
   }
-
   .stat-title {
     font-weight: bold;
     margin-right: 10px;
   }
-
   .element-img {
     opacity: 0.2;
     height: 32px;
@@ -94,7 +92,6 @@
       opacity: 1;
     }
   }
-
   .driver-combo {
     font-variant: small-caps;
     color: grey;
@@ -102,5 +99,12 @@
       color: black;
       font-weight: bold;
     }
+  }
+  .driver-title,
+  .active-blade {
+    cursor: pointer;
+  }
+  .blade-item {
+    cursor: grab;
   }
 }

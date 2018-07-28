@@ -5,6 +5,13 @@ import { filter } from 'rxjs/operators';
 import { BladeManagerService } from './blade-manager.service';
 import { Blade, Driver, DriverComboId, driverCombos, ElementId, elements } from './model';
 import { uniqWith, isEqual } from 'lodash';
+import { GameSettingsService } from './game-settings.service';
+
+
+export interface PartyDescription {
+  partyMembers: PartyMemberDescriptor[];
+  gameChapter: number;
+}
 
 export interface PartyMemberDescriptor {
   driverId: string;
@@ -28,6 +35,7 @@ export interface EffectiveParty {
   elements: ElementId[];
   driverCombos: DriverComboId[];
   errors: PartyError[];
+  gameChapter: number;
 }
 
 export interface PartyError {
@@ -45,11 +53,14 @@ function addBladeToParty(ep: EffectiveParty, epm: EffectivePartyMember, blade: B
   const equippedDriverCombos = blade.weaponClass.driverCombos[epm.driver.id];
   if (equippedDriverCombos !== undefined) {
     for (const dc of equippedDriverCombos) {
-      if (epm.driverCombos.indexOf(dc) < 0) {
-        epm.driverCombos.push(dc);
-      }
-      if (epm.inBattle && ep.driverCombos.indexOf(dc) < 0) {
-        ep.driverCombos.push(dc);
+      // Remove N/A
+      if (driverCombos.indexOf(dc) >= 0) {
+        if (epm.driverCombos.indexOf(dc) < 0) {
+          epm.driverCombos.push(dc);
+        }
+        if (epm.inBattle && ep.driverCombos.indexOf(dc) < 0) {
+          ep.driverCombos.push(dc);
+        }
       }
     }
   }
@@ -78,32 +89,38 @@ function addBladeToParty(ep: EffectiveParty, epm: EffectivePartyMember, blade: B
 export class PartyManagerService {
   private drivers: Driver[] = undefined;
   private blades: Blade[] = undefined;
-  private _defaultParty$: BehaviorSubject<PartyMemberDescriptor[]> = new BehaviorSubject(undefined);
-  public defaultParty$: Observable<PartyMemberDescriptor[]> = this._defaultParty$.pipe(
+  private _defaultParty$: BehaviorSubject<PartyDescription> = new BehaviorSubject(undefined);
+  public defaultParty$: Observable<PartyDescription> = this._defaultParty$.pipe(
     filter((p) => p !== undefined)
   );
 
   constructor(
     private bladeManagerService: BladeManagerService,
+    private gameSettings: GameSettingsService,
   ) {
     combineLatest(
       this.bladeManagerService.allDrivers$,
       this.bladeManagerService.allBlades$,
+      this.gameSettings.gameSettings$,
     ).pipe(
       filter(([d, b]) => d.length > 0 && b.length > 0)
-    ).subscribe(([d, b]) => {
+    ).subscribe(([d, b, s]) => {
       this.drivers = d;
       this.blades = b;
-      this.updateDefaults();
+      this.updateDefaults(s.c);
     });
   }
 
-  private updateDefaults() {
-    this._defaultParty$.next(this.buildDefaultParty());
+  private updateDefaults(gameChapter: number) {
+    this._defaultParty$.next(this.buildDefaultParty(gameChapter));
   }
 
-  private buildDefaultParty(): PartyMemberDescriptor[] {
+  private buildDefaultParty(gameChapter: number): PartyDescription {
     const partyMembers: PartyMemberDescriptor[] = [];
+    const desc: PartyDescription = {
+      partyMembers,
+      gameChapter
+    };
     let i = 0;
     for (const d of this.drivers) {
       if (!d.isHidden) {
@@ -142,23 +159,24 @@ export class PartyManagerService {
       }
     }
 
-    return partyMembers;
+    return desc;
   }
 
-  public buildEffectiveParty(partyMembers: PartyMemberDescriptor[], gameChapter: number): EffectiveParty {
+  public buildEffectiveParty(partyDesc: PartyDescription): EffectiveParty {
     const ep: EffectiveParty = {
       driverCombos: [],
       elements: [],
       errors: [],
       partyMembers: [],
+      gameChapter: partyDesc.gameChapter,
     };
 
     let driversInBattle = 0;
     let hasNia = false;
     const matchedBlades: string[] = [];
 
-    if (partyMembers && partyMembers.length) {
-      for (const pm of partyMembers) {
+    if (partyDesc.partyMembers && partyDesc.partyMembers.length) {
+      for (const pm of partyDesc.partyMembers) {
         const driver = this.drivers.find(d => d.id === pm.driverId);
         // Skip unknown Drivers
         if (driver === undefined) {
@@ -173,11 +191,11 @@ export class PartyManagerService {
           ++driversInBattle;
         }
         // Warn for Drivers used before their appointed time
-        if (gameChapter < driver.db.chapter) {
+        if (partyDesc.gameChapter < driver.db.chapter) {
           ep.errors.push({ key: 'errors.driver-time-paradox', params: { driverId: pm.driverId } });
         }
         // Special catgirl management - Driver edition
-        if (pm.driverId === 'NIA') {
+        if (pm.driverId === 'NIA' && pm.inBattle) {
           if (hasNia) {
             ep.errors.push({ key: 'errors.critical-welsh-catgirl-overflow' });
           }
@@ -222,7 +240,7 @@ export class PartyManagerService {
             hasNia = true;
           }
           // Warn for Blades used before their appointed time
-          if (gameChapter < (blade.db.chapter || 2)) {
+          if (partyDesc.gameChapter < (blade.db.chapter || 2)) {
             ep.errors.push({ key: 'errors.blade-time-paradox', params: { bladeId } });
           }
           if (matchedBlades.indexOf(bladeId) >= 0) {
@@ -237,8 +255,8 @@ export class PartyManagerService {
 
           addBladeToParty(ep, epm, blade, false);
 
-          // The Mythra-Pyra problem
-          if (gameChapter >= 4) {
+          // The Mythra-Pyra problem (Rex-only)
+          if (partyDesc.gameChapter >= 4 && driver.id === 'REX') {
             let hiddenBlade: Blade;
             if (blade.id === 'SEIHAI_HOMURA') {
               hiddenBlade = this.blades.find(b => b.id === 'SEIHAI_HIKARI');

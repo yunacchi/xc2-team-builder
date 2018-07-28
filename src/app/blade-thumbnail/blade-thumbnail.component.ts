@@ -18,4 +18,7 @@ export class BladeThumbnailComponent implements OnInit {
   ngOnInit() {
   }
 
+  public onDragStart() {
+    return false;
+  }
 }

@@ -5,7 +5,7 @@
     <div class="party-selector row">
 
       <div class="party-member col-sm" *ngFor="let partyIdx of partyCnt" [ngClass]="{'in-battle': isInBattle(partyIdx)}">
-        <div class="driver-title row" *ngIf="this.currentParty && this.currentParty.partyMembers[partyIdx] as partyMember">
+        <div class="driver-title row" *ngIf="this.currentParty && this.currentParty.partyMembers[partyIdx] as partyMember" (click)="onPartyMemberClick(partyMember)">
           <div class="character-img" [attr.title]="'drivers.'+partyMember.driver.id|translate" [ngStyle]="getDriverImgStyle(partyMember)"></div>
           <h3 class="character-name">{{'drivers.'+partyMember.driver.id|translate}}</h3>
         </div>
@@ -13,13 +13,14 @@
           <div class="blade-diamond">
             <div class="blade-diamond-visible">
               <div class="party-member-blade" *ngFor="let bladeIdx of bladeCnt">
-                <div class="blade" *ngIf="partyMember.blades[bladeIdx] as blade">
+                <div class="blade active-blade" *ngIf="partyMember.blades[bladeIdx] as blade" dndDropzone (dndDrop)="onBladeDropOnCharacterBladeSlot($event, partyMember, blade)"
+                  (click)="onCharacterSlotBladeClick($event, partyMember, blade)" [dndDraggable]="blade.id" (dndStart)="onBladeDragStart($event, blade.id, partyMember.driver.id)">
                   <app-blade-thumbnail [blade]="blade" [showElement]="false"></app-blade-thumbnail>
                   <span class="blade-name">
                     <img class="element-img active" [src]="'assets/xc2/elements/'+blade.element+'.png'" [attr.title]="'elements.'+blade.element|translate"> {{'blades.'+blade.id|translate}}
                   </span>
                 </div>
-                <div class="blade free-slot" *ngIf="!partyMember.blades[bladeIdx]">
+                <div class="blade free-slot" *ngIf="!partyMember.blades[bladeIdx]" dndDropzone (dndDrop)="onBladeDropOnCharacterEmptySlot($event, partyMember)">
                   <app-blade-thumbnail [blade]="undefined"></app-blade-thumbnail>
                 </div>
               </div>
@@ -41,7 +42,7 @@
         <h3>Party issues:</h3>
         <ul>
           <li *ngFor="let e of this.currentParty.errors">
-            {{e.key}}
+            {{e.key|translate:translateParams(e.params)}}
           </li>
         </ul>
       </div>
@@ -64,7 +65,7 @@
   <div class="blade-selection container">
     <h3>My blades</h3>
     <div class="row">
-      <div class="col-sm-3 blade-item" *ngFor="let blade of usableBlades">
+      <div class="col-sm-3 blade-item" *ngFor="let blade of usableBlades" [dndDraggable]="blade.id" (dndStart)="onBladeDragStart($event, blade.id)">
         <app-blade-thumbnail [blade]="blade" [showElement]="true" [showDriver]="true" [showRole]="true"></app-blade-thumbnail>
         <span class="blade-name">{{'blades.'+blade.id|translate}}</span>
       </div>

@@ -16,6 +16,7 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
 import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MyTeamPageComponent } from './my-team-page/my-team-page.component';
+import { DndModule } from 'ngx-drag-drop';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       // { enableTracing: true } // <-- debugging purposes only
-    )
+    ),
+    DndModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'en-US' },

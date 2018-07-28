@@ -1,6 +1,6 @@
 import { TestBed, inject, async } from '@angular/core/testing';
 
-import { PartyManagerService, PartyMemberDescriptor } from './party-manager.service';
+import { PartyManagerService, PartyMemberDescriptor, PartyDescription } from './party-manager.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from './app.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -45,35 +45,35 @@ describe('PartyManagerService', () => {
     it('should create a default party with all members during NG+', async(inject([PartyManagerService], (service: PartyManagerService) => {
       service.defaultParty$.pipe(first()).subscribe(dp => {
         expect(dp).toBeDefined();
-        expect(dp.length).toBe(5);
+        expect(dp.partyMembers.length).toBe(5);
 
-        expect(dp[0].driverId).toBe('REX');
-        expect(dp[0].inBattle).toBe(true);
-        expect(dp[0].bladeIds.length).toBe(1);
-        expect(dp[0].bladeIds[0]).toBe('SEIHAI_HOMURA');
+        expect(dp.partyMembers[0].driverId).toBe('REX');
+        expect(dp.partyMembers[0].inBattle).toBe(true);
+        expect(dp.partyMembers[0].bladeIds.length).toBe(1);
+        expect(dp.partyMembers[0].bladeIds[0]).toBe('SEIHAI_HOMURA');
 
-        expect(dp[1].driverId).toBe('NIA');
-        expect(dp[1].inBattle).toBe(true);
-        expect(dp[1].bladeIds.length).toBe(1);
-        expect(dp[1].bladeIds[0]).toBe('BYAKKO');
+        expect(dp.partyMembers[1].driverId).toBe('NIA');
+        expect(dp.partyMembers[1].inBattle).toBe(true);
+        expect(dp.partyMembers[1].bladeIds.length).toBe(1);
+        expect(dp.partyMembers[1].bladeIds[0]).toBe('BYAKKO');
 
-        expect(dp[2].driverId).toBe('TORA');
-        expect(dp[2].inBattle).toBe(true);
-        expect(dp[2].bladeIds.length).toBe(2);
-        expect(dp[2].bladeIds[0]).toBe('HANA_JS');
-        expect(dp[2].bladeIds[1]).toBe('HANA_JK');
+        expect(dp.partyMembers[2].driverId).toBe('TORA');
+        expect(dp.partyMembers[2].inBattle).toBe(true);
+        expect(dp.partyMembers[2].bladeIds.length).toBe(2);
+        expect(dp.partyMembers[2].bladeIds[0]).toBe('HANA_JS');
+        expect(dp.partyMembers[2].bladeIds[1]).toBe('HANA_JK');
         // Hana JD (Poppi QT Pi) needs to be found, and does not
         // appear in default blades unless her Blade.isFound is true
 
-        expect(dp[3].driverId).toBe('MELEPH');
-        expect(dp[3].inBattle).toBe(false);
-        expect(dp[3].bladeIds.length).toBe(1);
-        expect(dp[3].bladeIds[0]).toBe('KAGUTSUCHI');
+        expect(dp.partyMembers[3].driverId).toBe('MELEPH');
+        expect(dp.partyMembers[3].inBattle).toBe(false);
+        expect(dp.partyMembers[3].bladeIds.length).toBe(1);
+        expect(dp.partyMembers[3].bladeIds[0]).toBe('KAGUTSUCHI');
 
-        expect(dp[4].driverId).toBe('ZEKE');
-        expect(dp[4].inBattle).toBe(false);
-        expect(dp[4].bladeIds.length).toBe(1);
-        expect(dp[4].bladeIds[0]).toBe('SAIKA');
+        expect(dp.partyMembers[4].driverId).toBe('ZEKE');
+        expect(dp.partyMembers[4].inBattle).toBe(false);
+        expect(dp.partyMembers[4].bladeIds.length).toBe(1);
+        expect(dp.partyMembers[4].bladeIds[0]).toBe('SAIKA');
       });
     })));
 
@@ -83,11 +83,11 @@ describe('PartyManagerService', () => {
           gss.addBlade('HANA_JD', 'TORA', 'ICE', 'TNK');
 
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            expect(dp[2].driverId).toBe('TORA');
-            expect(dp[2].bladeIds.length).toBe(3);
-            expect(dp[2].bladeIds[0]).toBe('HANA_JS');
-            expect(dp[2].bladeIds[1]).toBe('HANA_JK');
-            expect(dp[2].bladeIds[2]).toBe('HANA_JD');
+            expect(dp.partyMembers[2].driverId).toBe('TORA');
+            expect(dp.partyMembers[2].bladeIds.length).toBe(3);
+            expect(dp.partyMembers[2].bladeIds[0]).toBe('HANA_JS');
+            expect(dp.partyMembers[2].bladeIds[1]).toBe('HANA_JK');
+            expect(dp.partyMembers[2].bladeIds[2]).toBe('HANA_JD');
           });
         })));
 
@@ -98,10 +98,10 @@ describe('PartyManagerService', () => {
           gss.setGameChapter(1);
 
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            expect(dp.length).toBe(1);
-            expect(dp[0].driverId).toBe('REX');
-            expect(dp[0].bladeIds.length).toBe(1);
-            expect(dp[0].bladeIds[0]).toBe('SEIHAI_HOMURA');
+            expect(dp.partyMembers.length).toBe(1);
+            expect(dp.partyMembers[0].driverId).toBe('REX');
+            expect(dp.partyMembers[0].bladeIds.length).toBe(1);
+            expect(dp.partyMembers[0].bladeIds[0]).toBe('SEIHAI_HOMURA');
           });
         })));
 
@@ -112,15 +112,15 @@ describe('PartyManagerService', () => {
           gss.setGameChapter(2);
 
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            expect(dp.length).toBe(3);
+            expect(dp.partyMembers.length).toBe(3);
 
-            expect(dp[1].driverId).toBe('NIA');
-            expect(dp[1].bladeIds.length).toBe(1);
-            expect(dp[1].bladeIds[0]).toBe('BYAKKO');
+            expect(dp.partyMembers[1].driverId).toBe('NIA');
+            expect(dp.partyMembers[1].bladeIds.length).toBe(1);
+            expect(dp.partyMembers[1].bladeIds[0]).toBe('BYAKKO');
 
-            expect(dp[2].driverId).toBe('TORA');
-            expect(dp[2].bladeIds.length).toBe(1);
-            expect(dp[2].bladeIds[0]).toBe('HANA_JS');
+            expect(dp.partyMembers[2].driverId).toBe('TORA');
+            expect(dp.partyMembers[2].bladeIds.length).toBe(1);
+            expect(dp.partyMembers[2].bladeIds[0]).toBe('HANA_JS');
           });
         })));
 
@@ -131,16 +131,16 @@ describe('PartyManagerService', () => {
           gss.setGameChapter(5);
 
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            expect(dp.length).toBe(4);
+            expect(dp.partyMembers.length).toBe(4);
 
-            expect(dp[2].driverId).toBe('TORA');
-            expect(dp[2].bladeIds.length).toBe(2);
-            expect(dp[2].bladeIds[0]).toBe('HANA_JS');
-            expect(dp[2].bladeIds[1]).toBe('HANA_JK');
+            expect(dp.partyMembers[2].driverId).toBe('TORA');
+            expect(dp.partyMembers[2].bladeIds.length).toBe(2);
+            expect(dp.partyMembers[2].bladeIds[0]).toBe('HANA_JS');
+            expect(dp.partyMembers[2].bladeIds[1]).toBe('HANA_JK');
 
-            expect(dp[3].driverId).toBe('MELEPH');
-            expect(dp[3].bladeIds.length).toBe(1);
-            expect(dp[3].bladeIds[0]).toBe('KAGUTSUCHI');
+            expect(dp.partyMembers[3].driverId).toBe('MELEPH');
+            expect(dp.partyMembers[3].bladeIds.length).toBe(1);
+            expect(dp.partyMembers[3].bladeIds[0]).toBe('KAGUTSUCHI');
           });
         })));
 
@@ -150,11 +150,11 @@ describe('PartyManagerService', () => {
           gss.setGameChapter(6);
 
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            expect(dp.length).toBe(5);
+            expect(dp.partyMembers.length).toBe(5);
 
-            expect(dp[4].driverId).toBe('ZEKE');
-            expect(dp[4].bladeIds.length).toBe(1);
-            expect(dp[4].bladeIds[0]).toBe('SAIKA');
+            expect(dp.partyMembers[4].driverId).toBe('ZEKE');
+            expect(dp.partyMembers[4].bladeIds.length).toBe(1);
+            expect(dp.partyMembers[4].bladeIds[0]).toBe('SAIKA');
           });
         })));
   });
@@ -170,7 +170,7 @@ describe('PartyManagerService', () => {
             - Nia, with Dromarch (HLR, Water, Break)
             - Tora, with Poppi Alpha and Poppi QT in their default settings (TNK, Earth, Fire, Topple, Smash)
             */
-            const ep = service.buildEffectiveParty(dp, 12);
+            const ep = service.buildEffectiveParty(dp);
             expect(ep).toBeDefined();
 
             expect(ep.partyMembers.length).toBe(5);
@@ -231,14 +231,17 @@ describe('PartyManagerService', () => {
         (service: PartyManagerService, gss: GameSettingsService) => {
           gss.setGameChapter(3);
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['SEIHAI_HOMURA']
-              }
-            ];
-            const ep = service.buildEffectiveParty(pmda, 3);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['SEIHAI_HOMURA']
+                }
+              ],
+              gameChapter: 3,
+            };
+            const ep = service.buildEffectiveParty(pmda);
 
             expect(ep.partyMembers.length).toBe(1);
             expect(ep.partyMembers[0].driver.id).toBe('REX');
@@ -259,14 +262,17 @@ describe('PartyManagerService', () => {
         (service: PartyManagerService, gss: GameSettingsService) => {
           gss.setGameChapter(4);
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['SEIHAI_HIKARI']
-              }
-            ];
-            const ep = service.buildEffectiveParty(pmda, 4);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['SEIHAI_HIKARI']
+                }
+              ],
+              gameChapter: 4,
+            };
+            const ep = service.buildEffectiveParty(pmda);
 
             expect(ep.partyMembers.length).toBe(1);
             expect(ep.partyMembers[0].driver.id).toBe('REX');
@@ -289,14 +295,17 @@ describe('PartyManagerService', () => {
         (service: PartyManagerService, gss: GameSettingsService) => {
           gss.setGameChapter(4);
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['SEIHAI_HOMURA']
-              }
-            ];
-            const ep = service.buildEffectiveParty(pmda, 4);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['SEIHAI_HOMURA']
+                }
+              ],
+              gameChapter: 4,
+            };
+            const ep = service.buildEffectiveParty(pmda);
 
             expect(ep.partyMembers.length).toBe(1);
             expect(ep.partyMembers[0].driver.id).toBe('REX');
@@ -318,19 +327,22 @@ describe('PartyManagerService', () => {
       async(inject([PartyManagerService, GameSettingsService],
         (service: PartyManagerService, gss: GameSettingsService) => {
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['SEIHAI_HIKARI', 'NIA']
-              },
-              {
-                driverId: 'NIA',
-                inBattle: true,
-                bladeIds: ['BYAKKO']
-              },
-            ];
-            const ep = service.buildEffectiveParty(pmda, 12);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['SEIHAI_HIKARI', 'NIA']
+                },
+                {
+                  driverId: 'NIA',
+                  inBattle: true,
+                  bladeIds: ['BYAKKO']
+                },
+              ],
+              gameChapter: 12,
+            };
+            const ep = service.buildEffectiveParty(pmda);
 
             expect(ep.partyMembers.length).toBe(2);
             expect(ep.errors.length).toBe(1);
@@ -342,19 +354,22 @@ describe('PartyManagerService', () => {
       async(inject([PartyManagerService, GameSettingsService],
         (service: PartyManagerService, gss: GameSettingsService) => {
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['BYAKKO']
-              },
-              {
-                driverId: 'NIA',
-                inBattle: true,
-                bladeIds: ['BYAKKO']
-              },
-            ];
-            const ep = service.buildEffectiveParty(pmda, 12);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['BYAKKO']
+                },
+                {
+                  driverId: 'NIA',
+                  inBattle: true,
+                  bladeIds: ['BYAKKO']
+                },
+              ],
+              gameChapter: 12,
+            };
+            const ep = service.buildEffectiveParty(pmda);
 
             expect(ep.partyMembers.length).toBe(2);
             expect(ep.errors.length).toBe(1);
@@ -368,14 +383,17 @@ describe('PartyManagerService', () => {
       async(inject([PartyManagerService, GameSettingsService],
         (service: PartyManagerService, gss: GameSettingsService) => {
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['BYAKKO', 'BYAKKO']
-              },
-            ];
-            const ep = service.buildEffectiveParty(pmda, 12);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['BYAKKO', 'BYAKKO']
+                },
+              ],
+              gameChapter: 12,
+            };
+            const ep = service.buildEffectiveParty(pmda);
 
             expect(ep.errors.length).toBe(1);
             expect(ep.errors[0].key).toBe('errors.blade-engaged-multiple-times');
@@ -388,14 +406,17 @@ describe('PartyManagerService', () => {
       async(inject([PartyManagerService, GameSettingsService],
         (service: PartyManagerService, gss: GameSettingsService) => {
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['SEIHAI_HOMURA', 'SEIHAI_HIKARI']
-              },
-            ];
-            const ep = service.buildEffectiveParty(pmda, 12);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['SEIHAI_HOMURA', 'SEIHAI_HIKARI']
+                },
+              ],
+              gameChapter: 12,
+            };
+            const ep = service.buildEffectiveParty(pmda);
 
             expect(ep.errors.length).toBe(1);
             expect(ep.errors[0].key).toBe('errors.blade-engaged-multiple-times');
@@ -409,14 +430,17 @@ describe('PartyManagerService', () => {
         (service: PartyManagerService, gss: GameSettingsService) => {
           gss.setGameChapter(3);
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['SEIHAI_HOMURA', 'SEIHAI_HIKARI']
-              },
-            ];
-            const ep = service.buildEffectiveParty(pmda, 12);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['SEIHAI_HOMURA', 'SEIHAI_HIKARI']
+                },
+              ],
+              gameChapter: 12,
+            };
+            const ep = service.buildEffectiveParty(pmda);
 
             expect(ep.errors.length).toBe(1);
             expect(ep.errors[0].key).toBe('errors.blade-engaged-multiple-times');
@@ -429,14 +453,17 @@ describe('PartyManagerService', () => {
       async(inject([PartyManagerService, GameSettingsService],
         (service: PartyManagerService, gss: GameSettingsService) => {
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['KASUMI'] // She's dead, Jin
-              },
-            ];
-            const ep = service.buildEffectiveParty(pmda, 12);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['KASUMI'] // She's dead, Jin
+                },
+              ],
+              gameChapter: 12,
+            };
+            const ep = service.buildEffectiveParty(pmda);
             expect(ep.errors.length).toBe(1);
             expect(ep.errors[0].key).toBe('errors.unknown-blade-id');
             expect(ep.errors[0].params).toBeDefined();
@@ -448,14 +475,17 @@ describe('PartyManagerService', () => {
       async(inject([PartyManagerService, GameSettingsService],
         (service: PartyManagerService, gss: GameSettingsService) => {
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'LAURA', // She's dead, Jin
-                inBattle: true,
-                bladeIds: ['SHIN']
-              },
-            ];
-            const ep = service.buildEffectiveParty(pmda, 12);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'LAURA', // She's dead, Jin
+                  inBattle: true,
+                  bladeIds: ['SHIN']
+                },
+              ],
+              gameChapter: 12,
+            };
+            const ep = service.buildEffectiveParty(pmda);
             expect(ep.errors.length).toBe(1);
             expect(ep.errors[0].key).toBe('errors.unknown-driver-id');
             expect(ep.errors[0].params).toBeDefined();
@@ -467,29 +497,32 @@ describe('PartyManagerService', () => {
       async(inject([PartyManagerService, GameSettingsService],
         (service: PartyManagerService, gss: GameSettingsService) => {
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['SEIHAI_HOMURA']
-              },
-              {
-                driverId: 'NIA',
-                inBattle: true,
-                bladeIds: ['BYAKKO']
-              },
-              {
-                driverId: 'TORA',
-                inBattle: true,
-                bladeIds: ['HANA_JS']
-              },
-              {
-                driverId: 'MELEPH',
-                inBattle: true,
-                bladeIds: ['KAGUTSUCHI']
-              },
-            ];
-            const ep = service.buildEffectiveParty(pmda, 12);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['SEIHAI_HOMURA']
+                },
+                {
+                  driverId: 'NIA',
+                  inBattle: true,
+                  bladeIds: ['BYAKKO']
+                },
+                {
+                  driverId: 'TORA',
+                  inBattle: true,
+                  bladeIds: ['HANA_JS']
+                },
+                {
+                  driverId: 'MELEPH',
+                  inBattle: true,
+                  bladeIds: ['KAGUTSUCHI']
+                },
+              ],
+              gameChapter: 12,
+            };
+            const ep = service.buildEffectiveParty(pmda);
             expect(ep.errors.length).toBe(1);
             expect(ep.errors[0].key).toBe('errors.too-many-drivers-in-battle');
             expect(ep.errors[0].params).toBeDefined();
@@ -501,14 +534,17 @@ describe('PartyManagerService', () => {
       async(inject([PartyManagerService, GameSettingsService],
         (service: PartyManagerService, gss: GameSettingsService) => {
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['SEIHAI_HOMURA', 'SUZAKU', 'NIA', 'KAGUTSUCHI']
-              },
-            ];
-            const ep = service.buildEffectiveParty(pmda, 12);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['SEIHAI_HOMURA', 'SUZAKU', 'NIA', 'KAGUTSUCHI']
+                },
+              ],
+              gameChapter: 12,
+            };
+            const ep = service.buildEffectiveParty(pmda);
             expect(ep.errors.length).toBe(1);
             expect(ep.errors[0].key).toBe('errors.too-many-blades-engaged-on-character');
             expect(ep.errors[0].params).toBeDefined();
@@ -520,9 +556,12 @@ describe('PartyManagerService', () => {
       async(inject([PartyManagerService, GameSettingsService],
         (service: PartyManagerService, gss: GameSettingsService) => {
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-            ];
-            const ep = service.buildEffectiveParty(pmda, 12);
+            const pmda: PartyDescription = {
+              partyMembers: [
+              ],
+              gameChapter: 12,
+            };
+            const ep = service.buildEffectiveParty(pmda);
             expect(ep.errors.length).toBe(1);
             expect(ep.errors[0].key).toBe('errors.party-is-empty');
           });
@@ -533,14 +572,17 @@ describe('PartyManagerService', () => {
         (service: PartyManagerService, gss: GameSettingsService) => {
           gss.setGameChapter(3);
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['SEIHAI_HIKARI']
-              }
-            ];
-            const ep = service.buildEffectiveParty(pmda, 3);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['SEIHAI_HIKARI']
+                }
+              ],
+              gameChapter: 3,
+            };
+            const ep = service.buildEffectiveParty(pmda);
             expect(ep.errors.length).toBe(1);
             expect(ep.errors[0].key).toBe('errors.blade-time-paradox');
             expect(ep.errors[0].params).toBeDefined();
@@ -553,14 +595,17 @@ describe('PartyManagerService', () => {
         (service: PartyManagerService, gss: GameSettingsService) => {
           gss.setGameChapter(3);
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['NIA']
-              }
-            ];
-            const ep = service.buildEffectiveParty(pmda, 4);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['NIA']
+                }
+              ],
+              gameChapter: 4,
+            };
+            const ep = service.buildEffectiveParty(pmda);
             expect(ep.errors.length).toBe(1);
             expect(ep.errors[0].key).toBe('errors.blade-time-paradox');
             expect(ep.errors[0].params).toBeDefined();
@@ -573,19 +618,22 @@ describe('PartyManagerService', () => {
         (service: PartyManagerService, gss: GameSettingsService) => {
           gss.setGameChapter(3);
           service.defaultParty$.pipe(first()).subscribe(dp => {
-            const pmda: PartyMemberDescriptor[] = [
-              {
-                driverId: 'REX',
-                inBattle: true,
-                bladeIds: ['SEIHAI_HOMURA']
-              },
-              {
-                driverId: 'MELEPH',
-                inBattle: true,
-                bladeIds: ['KAGUTSUCHI']
-              }
-            ];
-            const ep = service.buildEffectiveParty(pmda, 4);
+            const pmda: PartyDescription = {
+              partyMembers: [
+                {
+                  driverId: 'REX',
+                  inBattle: true,
+                  bladeIds: ['SEIHAI_HOMURA']
+                },
+                {
+                  driverId: 'MELEPH',
+                  inBattle: true,
+                  bladeIds: ['KAGUTSUCHI']
+                }
+              ],
+              gameChapter: 4,
+            };
+            const ep = service.buildEffectiveParty(pmda);
 
             expect(ep.errors).toEqual([
               {
