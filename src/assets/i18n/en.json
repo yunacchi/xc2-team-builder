@@ -78,6 +78,14 @@
     "reset-data": "Reset my data",
     "reset-data-confirm": "Do you really want to reset? You'll have to set all of your Blades again!"
   },
+  "my-party": {
+    "party-issues": "Party issues",
+    "elements": "Elements:",
+    "driver-combos": "Driver combos",
+    "blades": "Blades",
+    "filter-driver": "Filter Driver:",
+    "filter-driver-all": "All Drivers"
+  },
   "drivers": {
     "REX": "Rex",
     "NIA": "Nia",

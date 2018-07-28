@@ -3,13 +3,14 @@ import {
   PartyManagerService, EffectivePartyMember, EffectiveParty,
   PartyDescription, PartyMemberDescriptor
 } from '../party-manager.service';
-import { BladeManagerService } from '../blade-manager.service';
-import { Subject, combineLatest } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { BladeManagerService, BladeOrderingType, bladeOrderingTypes } from '../blade-manager.service';
+import { Subject, combineLatest, BehaviorSubject } from 'rxjs';
+import { takeUntil, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Blade, Driver, ElementId, elements, driverCombos, DriverComboId } from '../model';
 import { GameSettingsService } from '../game-settings.service';
 import { DragDropData } from 'ngx-drag-drop/dnd-utils';
 import { TranslateService } from '@ngx-translate/core';
+import { FormControl } from '@angular/forms';
 
 export function createDescriptionFromEffectiveParty(ep: EffectiveParty): PartyDescription {
   const pd: PartyDescription = {
@@ -95,35 +96,55 @@ export class MyPartyPageComponent implements OnInit, OnDestroy {
   private unsubscribe = new Subject<void>();
   private defaultPartyDesc: PartyDescription = undefined;
   private defaultParty: EffectiveParty = undefined;
-  private drivers: Driver[] = [];
   private blades: Blade[] = [];
 
+  public searchFilterControl = new FormControl();
   public partyCnt = Array.from({ length: 5 }, (_, i) => i); // [0, 1, 2, 3, 4]
   public bladeCnt = Array.from({ length: 3 }, (_, i) => i); // [0, 1, 2]
 
   public currentPartyDesc: PartyDescription = undefined;
   public currentParty: EffectiveParty = undefined;
+  public drivers: Driver[] = [];
+  public driverFilter$: BehaviorSubject<Driver> = new BehaviorSubject(undefined);
+  public driverFilter: Driver = undefined;
+
   public usableBlades: Blade[] = [];
+  public currentOrder: BladeOrderingType = 'ALBUM';
+  public bladeOrderingTypes = bladeOrderingTypes;
 
   public elements: ElementId[] = elements;
   public driverCombos: DriverComboId[] = driverCombos;
 
   constructor(
-    private partyManager: PartyManagerService,
-    private bladeManager: BladeManagerService,
-    private settings: GameSettingsService,
+    private partyManagerService: PartyManagerService,
+    private bladeManagerService: BladeManagerService,
+    private gameSettingsService: GameSettingsService,
     private translateService: TranslateService,
   ) { }
 
   public ngOnInit() {
+    this.searchFilterControl.valueChanges.pipe(
+      takeUntil(this.unsubscribe),
+      debounceTime(500),
+      distinctUntilChanged(),
+    ).subscribe((f) => {
+      this.bladeManagerService.setSearchFilter(f);
+    });
+
+    this.bladeManagerService.searchFilter$.pipe(
+      takeUntil(this.unsubscribe),
+    ).subscribe((f) => {
+      this.searchFilterControl.setValue(f);
+    });
+
     combineLatest(
-      this.partyManager.defaultParty$,
-      this.settings.gameSettings$,
+      this.partyManagerService.defaultParty$,
+      this.gameSettingsService.gameSettings$,
     ).pipe(
       takeUntil(this.unsubscribe),
     ).subscribe(([p, s]) => {
       this.defaultPartyDesc = p;
-      this.defaultParty = this.partyManager.buildEffectiveParty(p);
+      this.defaultParty = this.partyManagerService.buildEffectiveParty(p);
 
       if (!this.currentParty) {
         this.currentPartyDesc = this.defaultPartyDesc;
@@ -131,14 +152,22 @@ export class MyPartyPageComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.bladeManager.allBlades$.pipe(
+    combineLatest(
+      this.bladeManagerService.ungroupedBlades$,
+      this.driverFilter$,
+    ).pipe(
       takeUntil(this.unsubscribe),
-    ).subscribe((blades) => {
+    ).subscribe(([blades, driverFilter]) => {
+      this.driverFilter = driverFilter;
       this.blades = blades;
-      this.usableBlades = blades.filter(b => !b.isHidden && b.isFound);
+      if (driverFilter) {
+        this.usableBlades = blades.filter(b => !b.isHidden && b.isFound && canEngageBladeOn(b, driverFilter));
+      } else {
+        this.usableBlades = blades.filter(b => !b.isHidden && b.isFound);
+      }
     });
 
-    this.bladeManager.allDrivers$.pipe(
+    this.bladeManagerService.allDrivers$.pipe(
       takeUntil(this.unsubscribe),
     ).subscribe((drivers) => {
       this.drivers = drivers;
@@ -147,7 +176,7 @@ export class MyPartyPageComponent implements OnInit, OnDestroy {
 
   public applyPartyDesc(partyDesc: PartyDescription) {
     this.currentPartyDesc = partyDesc;
-    this.currentParty = this.partyManager.buildEffectiveParty(partyDesc);
+    this.currentParty = this.partyManagerService.buildEffectiveParty(partyDesc);
   }
 
   public ngOnDestroy() {
@@ -214,5 +243,13 @@ export class MyPartyPageComponent implements OnInit, OnDestroy {
     const driver = newDesc.partyMembers.find(x => x.driverId === partyMember.driver.id);
     driver.inBattle = !driver.inBattle;
     this.applyPartyDesc(newDesc);
+  }
+
+  public orderBy(o: BladeOrderingType) {
+    this.bladeManagerService.setOrdering(o);
+  }
+
+  public filterDriver(d?: Driver) {
+    this.driverFilter$.next(d);
   }
 }

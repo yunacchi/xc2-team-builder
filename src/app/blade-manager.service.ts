@@ -116,7 +116,6 @@ export class BladeManagerService {
   private bladeMapSubscription: Subscription;
   private searchIndexSubscription: Subscription;
 
-  public allBlades$: Observable<Blade[]> = this._blades$.pipe(filter((a) => a.length > 0));
   public allDrivers$: Observable<Driver[]> = this._drivers$.pipe(filter((a) => a.length > 0));
   public sortOrder$: Observable<BladeOrderingType> = this._sortOrder$.asObservable();
   public grouping$: Observable<BladeGroupingType> = this._grouping$.asObservable();
@@ -127,6 +126,26 @@ export class BladeManagerService {
 
   // Used for triggering recompute of filter on lang change.
   private lang$: BehaviorSubject<string> = new BehaviorSubject(undefined);
+
+  public allBlades$: Observable<Blade[]> = this._blades$.pipe(
+    filter((a) => a.length > 0),
+  );
+
+  public ungroupedBlades$: Observable<Blade[]> = combineLatest(
+    this._blades$,
+    this._sortOrder$,
+    this._searchFilter$,
+    this._bladeSearchIndex$,
+  ).pipe(
+    filter((a) => a.length > 0),
+    map(([blades, sortOrder, searchFilter, index]) => {
+      const filteredBlades = filterBlades(blades, index, searchFilter);
+      return orderBlades(
+        filteredBlades,
+        this.tlService,
+        sortOrder);
+    })
+  );
 
   constructor(
     private dbService: DbRepositoryService,
