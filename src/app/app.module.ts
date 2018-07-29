@@ -21,9 +21,10 @@ import { Xc2ElementIconComponent } from './xc2-element-icon/xc2-element-icon.com
 import { Xc2RoleIconComponent } from './xc2-role-icon/xc2-role-icon.component';
 import { Xc2DriverComboIconComponent } from './xc2-driver-combo-icon/xc2-driver-combo-icon.component';
 import { BladeTooltipContentComponent } from './blade-tooltip-content/blade-tooltip-content.component';
+import { VERSION } from '../environments/version';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json?h=' + VERSION.hash);
 }
 
 

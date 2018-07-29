@@ -3,14 +3,15 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { first, map, withLatestFrom, filter } from 'rxjs/operators';
 import { DbBlade, DbStore, DbWeaponClass, driverCharacters } from './model';
+import { VERSION } from '../environments/version';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DbRepositoryService {
 
-  private bladesJsonUrl = 'assets/db/blades.json';
-  private weaponClassesJsonUrl = 'assets/db/weapons.json';
+  private bladesJsonUrl = 'assets/db/blades.json?h=' + VERSION.hash;
+  private weaponClassesJsonUrl = 'assets/db/weapons.json?t=' + VERSION.hash;
 
   private _loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   private _dbStore$: BehaviorSubject<DbStore> = new BehaviorSubject<DbStore>({
