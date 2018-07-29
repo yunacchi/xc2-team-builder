@@ -11,14 +11,14 @@ export type DriverComboMap = {
 };
 
 // 'HANA' is just a temporary role for Poppi
-// while game setings are not applied, so it's not here.
+// while game settings are not applied, so it's not here.
 export const roles: RoleId[] = [
     'ATK', 'HLR', 'TNK'
 ];
 
 // Uses the order from the game's Blade Manager.
 // 'HANA' is just a temporary element for Poppi
-// while game setings are not applied, so it's not here.
+// while game settings are not applied, so it's not here.
 export const elements: ElementId[] = [
     'FIRE',
     'WATER',
@@ -350,6 +350,10 @@ export const driverCharacters: DbDriverChara[] = [
     },
 ];
 
+export interface DriverComboSet {
+    driverId: DriverCharaId;
+    combos: DriverComboId[];
+}
 
 /**
  * Processed Blade, with regards to what blades have been found,
@@ -429,6 +433,8 @@ export interface Blade {
      */
     weaponClass: DbWeaponClass;
 
+    driverCombos: DriverComboSet[];
+
     /**
      * The diamond portrait thumbnail URL to display with the Blade.
      *
@@ -487,14 +493,6 @@ export interface Blade {
      * @memberof Blade
      */
     boundDriver?: Driver;
-
-    /**
-     * The available driver combos of this blade, for its bound Driver.
-     *
-     * @type {DriverComboId[]}
-     * @memberof Blade
-     */
-    driverCombos?: DriverComboId[];
 }
 
 /**

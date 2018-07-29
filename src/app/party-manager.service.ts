@@ -29,6 +29,7 @@ export interface EffectivePartyMember {
   blades: Blade[];
   inBattle: boolean;
   hiddenBlade?: Blade;
+  classModifiers: ClassModifier[];
 }
 
 export interface EffectiveParty {
@@ -42,6 +43,11 @@ export interface EffectiveParty {
 export interface PartyError {
   key: string;
   params?: any;
+}
+
+export interface ClassModifier {
+  id: string;
+  value: number;
 }
 
 function addBladeToParty(ep: EffectiveParty, epm: EffectivePartyMember, blade: Blade, isHidden: boolean) {
@@ -86,6 +92,32 @@ function addBladeToParty(ep: EffectiveParty, epm: EffectivePartyMember, blade: B
     } else {
       m.value += blade.db.modifier.value;
     }
+  }
+}
+
+function buildClassModifiers(classId: string): ClassModifier[] {
+  switch (classId) {
+    case '': return [];
+    case 'ATK': return [{ id: 'DAMAGE', value: 1 }];
+    case 'HLR': return [{ id: 'POTION', value: 1 }, { id: 'STEALTH', value: 1 }];
+    case 'TNK': return [{ id: 'DEFENSE', value: 1 }, { id: 'ATKAGGRO', value: 1 }, { id: 'ARTSAGGRO', value: 1 }];
+    case 'ATK-ATK': return [{ id: 'DAMAGE', value: 2 }];
+    case 'ATK-HLR': return [{ id: 'DAMAGE', value: 1 }, { id: 'POTION', value: 1 }, { id: 'STEALTH', value: 1 }];
+    case 'ATK-TNK': return [{ id: 'DEFENSE', value: 1 }, { id: 'DAMAGE', value: 1 }, { id: 'ARTSAGGRO', value: 1 }];
+    case 'HLR-HLR': return [{ id: 'POTION', value: 2 }, { id: 'STEALTH', value: 2 }];
+    case 'HLR-TNK': return [{ id: 'DEFENSE', value: 1 }, { id: 'POTION', value: 1 }];
+    case 'TNK-TNK': return [{ id: 'DEFENSE', value: 2 }, { id: 'ATKAGGRO', value: 2 }, { id: 'ARTSAGGRO', value: 2 }];
+    case 'ATK-ATK-ATK': return [{ id: 'DAMAGE', value: 3 }];
+    case 'ATK-ATK-HLR': return [{ id: 'DAMAGE', value: 2 }, { id: 'POTION', value: 1 }, { id: 'STEALTH', value: 1 }];
+    case 'ATK-ATK-TNK': return [{ id: 'DEFENSE', value: 1 }, { id: 'DAMAGE', value: 2 }, { id: 'ARTSAGGRO', value: 1 }];
+    case 'ATK-HLR-HLR': return [{ id: 'DAMAGE', value: 1 }, { id: 'POTION', value: 2 }, { id: 'STEALTH', value: 2 }];
+    case 'ATK-HLR-TNK': return [{ id: 'DEFENSE', value: 1 }, { id: 'DAMAGE', value: 1 }, { id: 'POTION', value: 1 }];
+    case 'ATK-TNK-TNK': return [{ id: 'DEFENSE', value: 2 }, { id: 'DAMAGE', value: 1 }, { id: 'ARTSAGGRO', value: 2 }];
+    case 'HLR-HLR-HLR': return [{ id: 'POTION', value: 3 }, { id: 'STEALTH', value: 3 }];
+    case 'HLR-HLR-TNK': return [{ id: 'DEFENSE', value: 1 }, { id: 'POTION', value: 2 }, { id: 'STEALTH', value: 2 }];
+    case 'HLR-TNK-TNK': return [{ id: 'DEFENSE', value: 2 }, { id: 'POTION', value: 1 }, { id: 'ARTSAGGRO', value: 1 }];
+    case 'TNK-TNK-TNK': return [{ id: 'DEFENSE', value: 3 }, { id: 'ATKAGGRO', value: 3 }, { id: 'ARTSAGGRO', value: 3 }];
+    default: throw new Error(`Unknown class ID: ${classId}`);
   }
 }
 
@@ -217,12 +249,12 @@ export class PartyManagerService {
           elements: [],
           hiddenBlade: undefined, // Implicit Blade (For the Mythra-Pyra problem)
           inBattle: pm.inBattle,
-          roles: []
+          roles: [],
+          classModifiers: [],
         };
         // const roles: RoleId[] = [];
         let bladeCount = 0;
 
-        // Only add battle members to the partyMembers.
         ep.partyMembers.push(epm);
 
         // Add Blades
@@ -284,6 +316,7 @@ export class PartyManagerService {
 
         // Guess Class, which is the concatenated, ordered list of roles (eg. ATK-ATK-HLR or ATK-HLR-TNK)
         epm.classId = epm.roles.sort().join('-');
+        epm.classModifiers = buildClassModifiers(epm.classId);
         // Re-order elements and driver combos by their idx
         epm.elements = epm.elements.sort((a, b) => elements.indexOf(a) - elements.indexOf(b));
         epm.driverCombos = epm.driverCombos.sort((a, b) => driverCombos.indexOf(a) - driverCombos.indexOf(b));

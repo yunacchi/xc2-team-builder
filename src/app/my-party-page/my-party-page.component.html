@@ -29,9 +29,9 @@
                     <!-- <img class="element-img active" [src]="'assets/xc2/elements/'+blade.element+'.png'" [attr.title]="'elements.'+blade.element|translate"> -->
                     <div class="blade-name">
                       {{'blades.'+blade.id|translate}}</div>
-                      <xc2-element-icon [element]="blade.element"></xc2-element-icon>
-                      <xc2-role-icon [role]="blade.role"></xc2-role-icon>
-                      <xc2-driver-combo-icon *ngFor="let dc of getDriverCombos(blade,partyMember.driver.id)" [driverCombo]="dc"></xc2-driver-combo-icon>
+                    <xc2-element-icon [element]="blade.element"></xc2-element-icon>
+                    <xc2-role-icon [role]="blade.role"></xc2-role-icon>
+                    <xc2-driver-combo-icon *ngFor="let dc of getDriverCombos(blade,partyMember.driver.id)" [driverCombo]="dc"></xc2-driver-combo-icon>
                   </div>
 
                 </div>
@@ -49,81 +49,89 @@
           </div>
         </div>
 
-        
         <div class="stat-modifiers" *ngIf="this.currentParty && this.currentParty.partyMembers[partyIdx] as partyMember">
           <div *ngFor="let m of partyMember.modifiers">
             {{'modifiers.'+m.id|translate}} +{{m.value}}%
           </div>
-      </div>
-    </div>
-  </div>
+        </div>
 
-  <div class="party-stats container">
-    <div class="row" *ngIf="this.currentParty && this.currentParty.errors.length">
-      <div class="col-md">
-        <h3>{{'my-party.party-issues'|translate}}</h3>
-        <ul>
-          <li *ngFor="let e of this.currentParty.errors">
-            {{e.key|translate:translateParams(e.params)}}
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md" *ngIf="this.currentParty">
-        <span class="stat-title">{{'my-party.elements'|translate}} {{this.currentParty.elements.length}} / {{elements.length}}</span>
-        <img class="element-img" *ngFor="let e of elements" [src]="'assets/xc2/elements/'+e+'.png'" [attr.title]="'elements.'+e|translate"
-          [ngClass]="{'active':this.currentParty.elements.indexOf(e) >= 0}">
-      </div>
-      <div class="col-md" *ngIf="this.currentParty">
-        <span class="stat-title">{{'my-party.driver-combos'|translate}} {{this.currentParty.driverCombos.length}} / {{driverCombos.length}}</span>
-        <span class="driver-combo" *ngFor="let dc of driverCombos" [ngClass]="{'active':this.currentParty.driverCombos.indexOf(dc) >= 0}">
-          <xc2-driver-combo-icon [driverCombo]="dc"></xc2-driver-combo-icon>
-        </span>
-      </div>
-    </div>
-  </div>
-
-  <div class="blade-selection container">
-    <h3>{{'my-party.blades'|translate}}</h3>
-
-    <div class="row">
-      <div class="col">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" [formControl]="searchFilterControl" [attr.placeholder]="'app.filter-placeholder'|translate"
-            [attr.aria-label]="'app.filter-placeholder'|translate">
+        <div class="class-modifiers" *ngIf="this.currentParty && this.currentParty.partyMembers[partyIdx] as partyMember">
+          <div *ngFor="let m of partyMember.classModifiers">
+            {{'class-attributes.'+m.id|translate}}
+            <i class="fas fa-arrow-up" *ngIf="m.value > 0"></i>
+            <i class="fas fa-arrow-up" *ngIf="m.value > 1"></i>
+            <i class="fas fa-arrow-up" *ngIf="m.value > 2"></i>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col">
-        <div class="filter-toolbar">
-          {{'my-party.filter-driver'|translate}}
-          <span class="filter-link" (click)="filterDriver()" [ngClass]="{active:!driverFilter}">{{'my-party.filter-driver-all'|translate}}</span>
-          <span *ngFor="let d of drivers; let l=last">
-            <span>/</span>
-            <span class="filter-link" (click)="filterDriver(d)" [ngClass]="{active: driverFilter && driverFilter.id === d.id}">{{'drivers.'+d.id|translate}}</span>
-          </span>
+    <div class="party-stats container">
+      <div class="row" *ngIf="this.currentParty && this.currentParty.errors.length">
+        <div class="col-md">
+          <h3>{{'my-party.party-issues'|translate}}</h3>
+          <ul>
+            <li *ngFor="let e of this.currentParty.errors">
+              {{e.key|translate:translateParams(e.params)}}
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="col">
-        <div class="filter-toolbar">
-          {{'app.ordering.label'|translate}}
-          <span *ngFor="let o of bladeOrderingTypes; let l=last">
-            <span class="filter-link" (click)="orderBy(o)" [ngClass]="{active:o===currentOrder}">{{'app.ordering.'+o|translate}}</span>
-            <span *ngIf="!l">/</span>
+
+      <div class="row">
+        <div class="col-md" *ngIf="this.currentParty">
+          <span class="stat-title">{{'my-party.elements'|translate}} {{this.currentParty.elements.length}} / {{elements.length}}</span>
+          <img class="element-img" *ngFor="let e of elements" [src]="'assets/xc2/elements/'+e+'.png'" [attr.title]="'elements.'+e|translate"
+            [ngClass]="{'active':this.currentParty.elements.indexOf(e) >= 0}">
+        </div>
+        <div class="col-md" *ngIf="this.currentParty">
+          <span class="stat-title">{{'my-party.driver-combos'|translate}} {{this.currentParty.driverCombos.length}} / {{driverCombos.length}}</span>
+          <span class="driver-combo" *ngFor="let dc of driverCombos" [ngClass]="{'active':this.currentParty.driverCombos.indexOf(dc) >= 0}">
+            <xc2-driver-combo-icon [driverCombo]="dc"></xc2-driver-combo-icon>
           </span>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-sm-3 blade-item" *ngFor="let blade of usableBlades" [dndDraggable]="blade.id" (dndStart)="onBladeDragStart($event, blade.id)">
-        <app-blade-thumbnail [blade]="blade" [showElement]="true" [showDriver]="true" [showRole]="true"></app-blade-thumbnail>
-        <span class="blade-name">{{'blades.'+blade.id|translate}}</span>
+    <div class="blade-selection container">
+      <h3>{{'my-party.blades'|translate}}</h3>
+
+      <div class="row">
+        <div class="col">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" [formControl]="searchFilterControl" [attr.placeholder]="'app.filter-placeholder'|translate"
+              [attr.aria-label]="'app.filter-placeholder'|translate">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="filter-toolbar">
+            {{'my-party.filter-driver'|translate}}
+            <span class="filter-link" (click)="filterDriver()" [ngClass]="{active:!driverFilter}">{{'my-party.filter-driver-all'|translate}}</span>
+            <span *ngFor="let d of drivers; let l=last">
+              <span>/</span>
+              <span class="filter-link" (click)="filterDriver(d)" [ngClass]="{active: driverFilter && driverFilter.id === d.id}">{{'drivers.'+d.id|translate}}</span>
+            </span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="filter-toolbar">
+            {{'app.ordering.label'|translate}}
+            <span *ngFor="let o of bladeOrderingTypes; let l=last">
+              <span class="filter-link" (click)="orderBy(o)" [ngClass]="{active:o===currentOrder}">{{'app.ordering.'+o|translate}}</span>
+              <span *ngIf="!l">/</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 blade-item" *ngFor="let blade of usableBlades" [dndDraggable]="blade.id" (dndStart)="onBladeDragStart($event, blade.id)">
+          <app-blade-thumbnail [blade]="blade" [showElement]="true" [showDriver]="true" [showRole]="true"></app-blade-thumbnail>
+          <span class="blade-name">{{'blades.'+blade.id|translate}}</span>
+        </div>
       </div>
     </div>
   </div>
-</div>

@@ -3,7 +3,7 @@ import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
 import { map, share, distinctUntilChanged, filter } from 'rxjs/operators';
 import { DbRepositoryService } from './db-repository.service';
 import { GameSettingsService } from './game-settings.service';
-import { Blade, Driver, DriverCharaId, elements, roles, bladeTypes } from './model';
+import { Blade, Driver, DriverCharaId, elements, roles, bladeTypes, driverCombos } from './model';
 import { isEqual, sortBy, uniq, flatten } from 'lodash';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -425,22 +425,23 @@ export class BladeManagerService {
           // Map registered blades
           if (gameSettingsBlade) {
             b.isFound = true;
-            if (b.boundDriver) {
-              const dc = b.weaponClass.driverCombos[b.boundDriver.id];
-              if (dc) {
-                if (typeof dc === 'string') {
-                  // Simple string
-                  b.driverCombos = [dc];
-                } else {
-                  // Array
-                  b.driverCombos = [...dc];
-                }
-              }
-            }
+          }
 
-            if (dbBlade.missingImg) {
-              b.thumbUrl = `assets/xc2/diamond_portraits/WHOS-THAT-BLADE.png`;
+          // Map Driver Combos for every Driver
+          // Exclude N/A and Unknown
+          Object.keys(b.weaponClass.driverCombos).forEach(driverId => {
+            const combos = b.weaponClass.driverCombos[driverId]
+              .filter(c => driverCombos.indexOf(c) >= 0);
+            if(combos.length > 0) {
+              b.driverCombos.push({
+                driverId: <DriverCharaId>driverId,
+                combos: combos,
+              });
             }
+          })
+
+          if (dbBlade.missingImg) {
+            b.thumbUrl = `assets/xc2/diamond_portraits/WHOS-THAT-BLADE.png`;
           }
 
           // Replace image for not-found blades
