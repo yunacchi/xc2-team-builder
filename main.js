@@ -201,7 +201,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 function HttpLoaderFactory(http) {
-    return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_6__["TranslateHttpLoader"](http);
+    return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_6__["TranslateHttpLoader"](http, "./assets/i18n/", ".json");
 }
 var appRoutes = [
     { path: 'my-game', component: _my_game_page_my_game_page_component__WEBPACK_IMPORTED_MODULE_13__["MyGamePageComponent"] },
