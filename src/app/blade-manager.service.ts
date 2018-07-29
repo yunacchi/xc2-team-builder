@@ -427,14 +427,14 @@ export class BladeManagerService {
             b.isFound = true;
           }
 
-          // Map Driver Combos for every Driver
+          // Map Driver Combos for every known Driver
           // Exclude N/A and Unknown
           Object.keys(b.weaponClass.driverCombos).forEach(driverId => {
             const combos = b.weaponClass.driverCombos[driverId]
               .filter(c => driverCombos.indexOf(c) >= 0);
-            if(combos.length > 0) {
+            if (combos.length > 0 && !driverMap[driverId].isHidden) {
               b.driverCombos.push({
-                driverId: <DriverCharaId>driverId,
+                driver: driverMap[driverId],
                 combos: combos,
               });
             }

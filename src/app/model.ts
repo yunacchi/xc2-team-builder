@@ -351,7 +351,7 @@ export const driverCharacters: DbDriverChara[] = [
 ];
 
 export interface DriverComboSet {
-    driverId: DriverCharaId;
+    driver: Driver;
     combos: DriverComboId[];
 }
 
