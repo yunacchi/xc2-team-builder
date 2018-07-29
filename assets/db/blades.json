@@ -202,7 +202,11 @@
       "element": "EARTH",
       "type": "GACHA",
       "missingImg": true,
-      "gender": "F"
+      "gender": "F",
+      "modifier": {
+        "id": "DEXTERITY",
+        "value": 10
+      }
     },
     {
       "albumNumber": 17,
@@ -647,7 +651,11 @@
       "element": "FIRE",
       "requiresExpansionPass": true,
       "missingImg": true,
-      "gender": "F"
+      "gender": "F",
+      "modifier": {
+        "id": "ETHER",
+        "value": 20
+      }
     }
   ]
 }
