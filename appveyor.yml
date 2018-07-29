@@ -27,11 +27,11 @@ deploy:
       branch: master
 deploy_script:
   - git config --global credential.helper store
-  - ps: Add-Content "$env:USERPROFILE.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+  - ps: Add-Content "$HOME\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
   - git config --global user.email %github_email%
   - git config --global user.name "yunacchi"
   - cd "dist\xc2-team-builder"
   - git add --all
   - git commit -m "Automated gh-pages update"
-  - git push origin gh-pages
+  - git push origin gh-pages --verbose
   - cd "..\.."
