@@ -50,7 +50,10 @@
     "switch-to-homura": "Switch to Pyra? Mythra will still be engaged to Rex.",
     "switch-to-hikari": "Switch to Mythra? Pyra will still be engaged to Rex.",
     "unbound-blade": "This Blade can be engaged to any Driver.",
-    "locked-blade": "This Blade cannot be rebound to another Driver."
+    "locked-blade": "This Blade cannot be rebound to another Driver.",
+    "footer-issues": "Issues",
+    "footer-contact": "Contact",
+    "footer-github": "Fork me on GitHub"
   },
   "my-game": {
     "story-chapter": "Story chapter",

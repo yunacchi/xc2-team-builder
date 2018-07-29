@@ -1052,7 +1052,7 @@ var DbRepositoryService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"footer-container\">\r\n  <div class=\"footer-bg\"></div>\r\n  <p class=\"footer-text\">\r\n    {{'app.discharge-disclaimer'|translate}}\r\n    <br> {{'app.game-copyright'|translate}}\r\n    <br> {{'app.assets-copyright'|translate}}\r\n  </p>\r\n</div>"
+module.exports = "<div class=\"footer-container\">\r\n  <div class=\"footer-bg\"></div>\r\n  <p class=\"footer-text\">\r\n    {{'app.discharge-disclaimer'|translate}}\r\n    <br>{{'app.game-copyright'|translate}}\r\n    <br>{{'app.assets-copyright'|translate}}\r\n  </p>\r\n  <p class=\"footer-links\">\r\n    <a [href]=\"contactHref\" target=\"_blank\">{{'app.footer-contact'|translate}}</a>\r\n    -\r\n    <a [href]=\"issuesHref\" target=\"_blank\">{{'app.footer-issues'|translate}}</a>\r\n    -\r\n    <a [href]=\"repoHref\" target=\"_blank\">\r\n      <i class=\"fab fa-github\"></i>\r\n      {{'app.footer-github'|translate}}\r\n    </a>\r\n  </p>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1063,7 +1063,7 @@ module.exports = "<div class=\"footer-container\">\r\n  <div class=\"footer-bg\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".footer-container {\n  position: relative;\n  height: 100px; }\n  .footer-container .footer-text {\n    position: absolute;\n    z-index: 11;\n    top: 0;\n    left: 0;\n    width: 100%;\n    text-align: center;\n    font-size: 0.8em;\n    font-style: italic;\n    opacity: 0.6;\n    color: #000;\n    text-shadow: white 0px 0px 10px;\n    margin-bottom: 0;\n    margin-top: 1rem; }\n  .footer-container .footer-bg {\n    background-color: rgba(245, 245, 245, 0.5);\n    -webkit-filter: blur(5px);\n            filter: blur(5px);\n    position: absolute;\n    z-index: 10;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%; }\n"
+module.exports = ".footer-container {\n  position: relative;\n  height: 100px; }\n  .footer-container .footer-text, .footer-container .footer-links {\n    position: absolute;\n    z-index: 11;\n    width: 100%;\n    text-align: center;\n    font-size: 0.8em;\n    color: #000;\n    text-shadow: white 0px 0px 10px; }\n  .footer-container .footer-text {\n    top: 0;\n    left: 0;\n    font-style: italic;\n    opacity: 0.8;\n    margin-top: 1rem;\n    margin-bottom: 0; }\n  .footer-container .footer-links {\n    bottom: 0;\n    left: 0;\n    margin-bottom: 0.3rem; }\n  .footer-container .footer-links a {\n      font-weight: bold;\n      color: #000;\n      opacity: 1.0; }\n  .footer-container .footer-bg {\n    background-color: rgba(245, 245, 245, 0.5);\n    -webkit-filter: blur(5px);\n            filter: blur(5px);\n    position: absolute;\n    z-index: 10;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%; }\n"
 
 /***/ }),
 
@@ -1090,6 +1090,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var FooterComponent = /** @class */ (function () {
     function FooterComponent() {
+        this.contactHref = 'https://github.com/yunacchi/xc2-team-builder/issues';
+        this.issuesHref = 'https://github.com/yunacchi/xc2-team-builder/issues';
+        this.repoHref = 'https://github.com/yunacchi/xc2-team-builder';
     }
     FooterComponent.prototype.ngOnInit = function () {
     };
