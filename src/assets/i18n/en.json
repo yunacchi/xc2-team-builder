@@ -212,6 +212,7 @@
     "HANABUSTER": "Poppibuster",
     "SHULK": "Shulk",
     "FIORUN": "Fiora",
+    "HIBANA": "Crossette",
     "KASUMI": "Haze",
     "FAN": "Fan",
     "SHIN": "Jin",
@@ -233,7 +234,8 @@
     "FIORUN": "Available during Challenge Battles, and can be brought to Alrest after finishing the Challenge Battle \"Dino Drama\".",
     "TENNIN": "Awakened with the Sealed Core Crystal, from the Altar of Sealing in Theosoir, Tantal.",
     "HANA_JD": "Obtained at the end of the quest \"Powered-Up Poppi\".",
-    "SATAHIKO": "Obtained at the Megaflote Base in the Land of Morytha, after the relevant events in the World Tree."
+    "SATAHIKO": "Obtained at the Megaflote Base in the Land of Morytha, after the relevant events in the World Tree.",
+    "HIBANA": "Awakened using the Ebullient Core Crystal, from the \"A Firecracker of a Gal\" DLC Key Item."
   },
   "classes": {
     "": "No class",

@@ -636,6 +636,18 @@
         "id": "STRENGTH",
         "value": 15
       }
+    },
+    {
+      "albumNumber": 50,
+      "id": "HIBANA",
+      "weapon": "W_BALL",
+      "type": "QUEST",
+      "gameVersion": "1.5.1",
+      "chapter": 2,
+      "element": "FIRE",
+      "requiresExpansionPass": true,
+      "missingImg": true,
+      "gender": "F"
     }
   ]
 }
