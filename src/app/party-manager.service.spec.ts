@@ -185,10 +185,10 @@ describe('PartyManagerService', () => {
             expect(ep.partyMembers[0].driverCombos[0]).toBe('TOPPLE');
             expect(ep.partyMembers[0].elements.length).toBe(2);
             expect(ep.partyMembers[0].elements).toEqual(['FIRE', 'LIGHT']);
-            expect(ep.partyMembers[0].modifiers).toEqual({
-              'ETHER': 10,
-              'STRENGTH': 10,
-            });
+            expect(ep.partyMembers[0].modifiers).toEqual([
+              { id: 'STRENGTH', value: 10 },
+              { id: 'ETHER', value: 10 },
+            ]);
 
             expect(ep.partyMembers[1].driver.id).toBe('NIA');
             expect(ep.partyMembers[1].classId).toBe('HLR');
@@ -199,9 +199,9 @@ describe('PartyManagerService', () => {
             expect(ep.partyMembers[1].driverCombos[0]).toBe('BREAK');
             expect(ep.partyMembers[1].elements.length).toBe(1);
             expect(ep.partyMembers[1].elements).toEqual(['WATER']);
-            expect(ep.partyMembers[1].modifiers).toEqual({
-              'ETHER': 10,
-            });
+            expect(ep.partyMembers[1].modifiers).toEqual([
+              { id: 'ETHER', value: 10 },
+            ]);
 
             expect(ep.partyMembers[2].driver.id).toBe('TORA');
             expect(ep.partyMembers[2].classId).toBe('TNK-TNK');
@@ -213,9 +213,9 @@ describe('PartyManagerService', () => {
             expect(ep.partyMembers[2].driverCombos).toEqual(['TOPPLE', 'SMASH']);
             expect(ep.partyMembers[2].elements.length).toBe(2);
             expect(ep.partyMembers[2].elements).toEqual(['FIRE', 'EARTH']);
-            expect(ep.partyMembers[2].modifiers).toEqual({
+            expect(ep.partyMembers[2].modifiers).toEqual([
               // Poppi does not know what modifiers you put on her!
-            });
+            ]);
 
             expect(ep.elements.length).toBe(4);
             expect(ep.elements).toEqual(['FIRE', 'WATER', 'EARTH', 'LIGHT']);
@@ -251,9 +251,9 @@ describe('PartyManagerService', () => {
             expect(ep.partyMembers[0].hiddenBlade).toBeUndefined();
             expect(ep.partyMembers[0].elements.length).toBe(1);
             expect(ep.partyMembers[0].elements).toEqual(['FIRE']);
-            expect(ep.partyMembers[0].modifiers).toEqual({
-              'STRENGTH': 10,
-            });
+            expect(ep.partyMembers[0].modifiers).toEqual([
+              { id: 'STRENGTH', value: 10 },
+            ]);
           });
         })));
 
@@ -283,10 +283,10 @@ describe('PartyManagerService', () => {
             expect(ep.partyMembers[0].hiddenBlade.id).toBe('SEIHAI_HOMURA');
             expect(ep.partyMembers[0].elements.length).toBe(2);
             expect(ep.partyMembers[0].elements).toEqual(['FIRE', 'LIGHT']);
-            expect(ep.partyMembers[0].modifiers).toEqual({
-              'ETHER': 10,
-              'STRENGTH': 10,
-            });
+            expect(ep.partyMembers[0].modifiers).toEqual([
+              { id: 'ETHER', value: 10 },
+              { id: 'STRENGTH', value: 10 },
+            ]);
           });
         })));
 
@@ -316,10 +316,10 @@ describe('PartyManagerService', () => {
             expect(ep.partyMembers[0].hiddenBlade.id).toBe('SEIHAI_HIKARI');
             expect(ep.partyMembers[0].elements.length).toBe(2);
             expect(ep.partyMembers[0].elements).toEqual(['FIRE', 'LIGHT']);
-            expect(ep.partyMembers[0].modifiers).toEqual({
-              'ETHER': 10,
-              'STRENGTH': 10,
-            });
+            expect(ep.partyMembers[0].modifiers).toEqual([
+              { id: 'STRENGTH', value: 10 },
+              { id: 'ETHER', value: 10 },
+            ]);
           });
         })));
 
