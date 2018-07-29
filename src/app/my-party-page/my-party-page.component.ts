@@ -199,11 +199,12 @@ export class MyPartyPageComponent implements OnInit, OnDestroy {
   public onBladeDragStart(evt: DragEvent, bladeId: string, originDriverId?: string) {
   }
 
-  public onBladeDropOnCharacterBladeSlot(evt: DragDropData, partyMember: EffectivePartyMember, blade: Blade) {
+  public onBladeDropOnCharacterBladeSlot(evt: DragDropData, partyMember: EffectivePartyMember, bladeToReplace: Blade) {
     const newDesc = createDescriptionFromEffectiveParty(this.currentParty);
     const driver = newDesc.partyMembers.find(x => x.driverId === partyMember.driver.id);
-    if (canEngageBladeOn(blade, partyMember.driver)) {
-      engageBladeOn(driver, evt.data, blade.id);
+    const bladeToSet = this.blades.find(b => b.id === evt.data);
+    if (canEngageBladeOn(bladeToSet, partyMember.driver)) {
+      engageBladeOn(driver, bladeToSet.id, bladeToReplace.id);
       this.applyPartyDesc(newDesc);
     }
   }
