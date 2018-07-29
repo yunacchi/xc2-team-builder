@@ -81,8 +81,10 @@ export function canEngageBladeOn(b: Blade, d: Driver): boolean {
   } else if (d.id === 'REX' && enableMasterDriver) {
     return b.exclusiveDriver !== 'TORA'; // All Blades except Poppi are fair game on Rex
   } else {
-    // Only exclusive Blades, and non-exclusive, bound Blades
-    return b.exclusiveDriver === d.id || (b.boundDriver && b.boundDriver.id === d.id);
+    // Only exclusive Blades, non-exclusive bound Blades, and unbound Blades like Poppibuster, Shulk and Fiora
+    return b.exclusiveDriver === d.id
+      || (b.boundDriver && b.boundDriver.id === d.id)
+      || b.db.unbound;
   }
 }
 
