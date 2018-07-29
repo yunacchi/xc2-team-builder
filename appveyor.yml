@@ -19,7 +19,7 @@ install:
 before_build:
   - git worktree add "dist\xc2-team-builder" gh-pages
 build_script:
-  - ng build --prod --base-href "/xc2-team-builder/" --delete-output-path=false
+  - ng build --no-progress --prod --base-href "/xc2-team-builder/" --delete-output-path=false
 deploy:
   - provider: Environment
     name: production
@@ -30,4 +30,8 @@ deploy_script:
   - ps: Add-Content "$env:USERPROFILE.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
   - git config --global user.email %github_email%
   - git config --global user.name "yunacchi"
-  - cd "dist\xc2-team-builder" && git add --all && git commit -m "Automated gh-pages update" && git push origin gh-pages && cd "..\.."
+  - cd "dist\xc2-team-builder"
+  - git add --all
+  - git commit -m "Automated gh-pages update"
+  - git push origin gh-pages
+  - cd "..\.."
