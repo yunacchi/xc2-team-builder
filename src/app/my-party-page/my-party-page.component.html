@@ -21,7 +21,8 @@
               <div class="party-member-blade" *ngFor="let bladeIdx of bladeCnt">
 
                 <div class="blade active-blade" *ngIf="partyMember.blades[bladeIdx] as blade" dndDropzone (dndDrop)="onBladeDropOnCharacterBladeSlot($event, partyMember, blade)"
-                  (click)="onCharacterSlotBladeClick($event, partyMember, blade)" [dndDraggable]="blade.id" (dndStart)="onBladeDragStart($event, blade.id, partyMember.driver.id)">
+                  (click)="onCharacterSlotBladeClick($event, partyMember, blade)" [dndDraggable]="{bladeId: blade.id, sourceDriverId: partyMember.driver.id}"
+                  (dndStart)="onBladeDragStart($event, blade.id, partyMember.driver.id)">
 
                   <app-blade-thumbnail [blade]="blade" [showElement]="false"></app-blade-thumbnail>
 
@@ -128,7 +129,7 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-3 blade-item" *ngFor="let blade of usableBlades" [dndDraggable]="blade.id" (dndStart)="onBladeDragStart($event, blade.id)">
+        <div class="col-sm-3 blade-item" *ngFor="let blade of usableBlades" [dndDraggable]="{bladeId: blade.id}" (dndStart)="onBladeDragStart($event, blade.id)">
           <app-blade-thumbnail [blade]="blade" [showElement]="true" [showDriver]="true" [showRole]="true"></app-blade-thumbnail>
           <span class="blade-name">{{'blades.'+blade.id|translate}}</span>
         </div>

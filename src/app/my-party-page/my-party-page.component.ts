@@ -6,7 +6,7 @@ import {
 import { BladeManagerService, BladeOrderingType, bladeOrderingTypes } from '../blade-manager.service';
 import { Subject, combineLatest, BehaviorSubject } from 'rxjs';
 import { takeUntil, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Blade, Driver, ElementId, elements, driverCombos, DriverComboId } from '../model';
+import { Blade, Driver, ElementId, elements, driverCombos, DriverComboId, DriverCharaId } from '../model';
 import { GameSettingsService } from '../game-settings.service';
 import { DragDropData } from 'ngx-drag-drop/dnd-utils';
 import { TranslateService } from '@ngx-translate/core';
@@ -86,6 +86,11 @@ export function canEngageBladeOn(b: Blade, d: Driver): boolean {
       || (b.boundDriver && b.boundDriver.id === d.id)
       || b.db.unbound;
   }
+}
+
+export interface DragBladeData {
+  sourceDriverId?: DriverCharaId;
+  bladeId: string;
 }
 
 @Component({
@@ -202,21 +207,31 @@ export class MyPartyPageComponent implements OnInit, OnDestroy {
   }
 
   public onBladeDropOnCharacterBladeSlot(evt: DragDropData, partyMember: EffectivePartyMember, bladeToReplace: Blade) {
+    const dragData: DragBladeData = evt.data;
     const newDesc = createDescriptionFromEffectiveParty(this.currentParty);
     const driver = newDesc.partyMembers.find(x => x.driverId === partyMember.driver.id);
-    const bladeToSet = this.blades.find(b => b.id === evt.data);
+    const bladeToSet = this.blades.find(b => b.id === dragData.bladeId);
     if (canEngageBladeOn(bladeToSet, partyMember.driver)) {
       engageBladeOn(driver, bladeToSet.id, bladeToReplace.id);
+      if (dragData.sourceDriverId && dragData.sourceDriverId !== partyMember.driver.id) {
+        const oldDriver = newDesc.partyMembers.find(d => d.driverId === dragData.sourceDriverId);
+        removeBladeFrom(oldDriver, bladeToSet.id);
+      }
       this.applyPartyDesc(newDesc);
     }
   }
 
   public onBladeDropOnCharacterEmptySlot(evt: DragDropData, partyMember: EffectivePartyMember) {
+    const dragData: DragBladeData = evt.data;
     const newDesc = createDescriptionFromEffectiveParty(this.currentParty);
-    const blade = this.blades.find(b => b.id === evt.data);
+    const bladeToSet = this.blades.find(b => b.id === dragData.bladeId);
     const driver = newDesc.partyMembers.find(x => x.driverId === partyMember.driver.id);
-    if (canEngageBladeOn(blade, partyMember.driver)) {
-      engageBladeOn(driver, blade.id, undefined);
+    if (canEngageBladeOn(bladeToSet, partyMember.driver)) {
+      engageBladeOn(driver, bladeToSet.id, undefined);
+      if (dragData.sourceDriverId && dragData.sourceDriverId !== partyMember.driver.id) {
+        const oldDriver = newDesc.partyMembers.find(d => d.driverId === dragData.sourceDriverId);
+        removeBladeFrom(oldDriver, bladeToSet.id);
+      }
       this.applyPartyDesc(newDesc);
     }
   }
