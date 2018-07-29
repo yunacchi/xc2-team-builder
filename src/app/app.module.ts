@@ -73,6 +73,7 @@ const appRoutes: Routes = [
     }),
     RouterModule.forRoot(
       appRoutes,
+      { useHash: true }
       // { enableTracing: true } // <-- debugging purposes only
     ),
     DndModule,
