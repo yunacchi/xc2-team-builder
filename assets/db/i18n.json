@@ -1,0 +1,414 @@
+{
+    "supported_languages": [
+        "EN", "EN_JA"
+    ],
+    "fallback": "EN",
+    "translations": {
+        "LANG:EN": {
+            "EN": "English (localized)",
+            "EN_JA": "English (localized)"
+        },
+        "LANG:EN_JA": {
+            "EN": "English (translated)",
+            "EN_JA": "English (translated)"
+        },
+        "DRIVER": {
+            "EN": "Driver"
+        },
+        "BLADE": {
+            "EN": "Blade"
+        },
+        "WEAPON CLASS": {
+            "EN": "Weapon class"
+        },
+        "EXCLUSIVE DRIVER": {
+            "EN": "Exclusive driver"
+        },
+        "BOUND DRIVER": {
+            "EN": "Bound driver"
+        },
+        "DRIVER COMBO": {
+            "EN": "Driver combo"
+        },
+        "BREAK": {
+            "EN": "Break"
+        },
+        "TOPPLE": {
+            "EN": "Topple"
+        },
+        "LAUNCH": {
+            "EN": "Launch"
+        },
+        "SMASH": {
+            "EN": "Smash"
+        },
+        "N/A": {
+            "EN": "N/A"
+        },
+        "NONE": {
+            "EN": "(none)"
+        },
+        "UNKNOWN": {
+            "EN": "(unknown)"
+        },
+        "ROLE": {
+            "EN": "Role"
+        },
+        "ROLE:ATK": {
+            "EN": "Attacker"
+        },
+        "ROLE:TNK": {
+            "EN": "Tank"
+        },
+        "ROLE:HLR": {
+            "EN": "Healer"
+        },
+        "ROLE:HANA": {
+            "EN": "Determined by the Role CPU"
+        },
+        "BTYPE:SEIHAI": {
+            "EN": "Aegis blade form",
+            "EN_JA": "Holy Grail blade form"
+        },
+        "BTYPE:CHARA": {
+            "EN": "Main character blade"
+        },
+        "BTYPE:HANA": {
+            "EN": "Poppi artificial blade form",
+            "EN_JA": "Hana artificial blade form"
+        },
+        "BTYPE:STORY": {
+            "EN": "Story blade"
+        },
+        "BTYPE:BESTGIRL": {
+            "EN": "Nia blade form"
+        },
+        "BTYPE:DLC1": {
+            "EN": "Lottery blade (New Game+ only)",
+            "EN_JA": "Gacha blade (New Game+ only)"
+        },
+        "BTYPE:DLC2": {
+            "EN": "DLC blade (special)"
+        },
+        "BTYPE:DEFAULT": {
+            "EN": "Lottery blade",
+            "EN_JA": "Gacha blade"
+        },
+        "BTYPE:QUEST": {
+            "EN": "Quest/non-lottery blade",
+            "EN_JA": "Quest/non-gacha blade"
+        },
+        "CHARA:REX": {
+            "EN": "Rex",
+            "EN_JA": "Rex"
+        },
+        "CHARA:NIA": {
+            "EN": "Nia",
+            "EN_JA": "Nia"
+        },
+        "CHARA:TORA": {
+            "EN": "Tora",
+            "EN_JA": "Tora"
+        },
+        "CHARA:MELEPH": {
+            "EN": "Mòrag",
+            "EN_JA": "Meleph"
+        },
+        "CHARA:ZEKE": {
+            "EN": "Zeke",
+            "EN_JA": "Zeke"
+        },
+        "BLADE:SEIHAI_HOMURA": {
+            "EN": "Pyra",
+            "EN_JA": "Homura"
+        },
+        "BLADE:SEIHAI_HIKARI": {
+            "EN": "Mythra",
+            "EN_JA": "Hikari"
+        },
+        "BLADE:BYAKKO": {
+            "EN": "Dromarch",
+            "EN_JA": "Byakko"
+        },
+        "BLADE:HANA_JS": {
+            "EN": "Poppi α",
+            "EN_JA": "Hana JS"
+        },
+        "BLADE:HANA_JK": {
+            "EN": "Poppi QT",
+            "EN_JA": "Hana JK"
+        },
+        "BLADE:HANA_JD": {
+            "EN": "Poppi QTπ",
+            "EN_JA": "Hana JD"
+        },
+        "BLADE:SUZAKU": {
+            "EN": "Roc",
+            "EN_JA": "Suzaku"
+        },
+        "BLADE:KAGUTSUCHI": {
+            "EN": "Brighid",
+            "EN_JA": "Kagutsuchi"
+        },
+        "BLADE:SAIKA": {
+            "EN": "Pandoria",
+            "EN_JA": "Saika"
+        },
+        "BLADE:NIA": {
+            "EN": "Nia",
+            "EN_JA": "Nia"
+        },
+        "BLADE:WADATSUMI": {
+            "EN": "Aegaon",
+            "EN_JA": "Wadatsumi"
+        },
+        "BLADE:GUREN": {
+            "EN": "Godfrey",
+            "EN_JA": "Guren"
+        },
+        "BLADE:ZIKARAO": {
+            "EN": "Wulfric",
+            "EN_JA": "Djikarao"
+        },
+        "BLADE:VASARA": {
+            "EN": "Perceval",
+            "EN_JA": "Vasara"
+        },
+        "BLADE:MEI": {
+            "EN": "Vale",
+            "EN_JA": "Mei"
+        },
+        "BLADE:YUUOU": {
+            "EN": "Gorg",
+            "EN_JA": "Yuuou"
+        },
+        "BLADE:IDATEN": {
+            "EN": "Boreas",
+            "EN_JA": "Idaten"
+        },
+        "BLADE:KUBIRA": {
+            "EN": "Dagas",
+            "EN_JA": "Kubira"
+        },
+        "BLADE:KASANE": {
+            "EN": "Kasandra",
+            "EN_JA": "Kasane"
+        },
+        "BLADE:MIKUMARI": {
+            "EN": "Praxis",
+            "EN_JA": "Mikumari"
+        },
+        "BLADE:SEORI": {
+            "EN": "Theory",
+            "EN_JA": "Seori"
+        },
+        "BLADE:TOKIHA": {
+            "EN": "Perun",
+            "EN_JA": "Tokiha"
+        },
+        "BLADE:ZAKURO": {
+            "EN": "Kora",
+            "EN_JA": "Zakuro"
+        },
+        "BLADE:AZAMI": {
+            "EN": "Azami",
+            "EN_JA": "Azami"
+        },
+        "BLADE:NANAKOORI": {
+            "EN": "Ursula",
+            "EN_JA": "Nanakoori"
+        },
+        "BLADE:UKA": {
+            "EN": "Nim",
+            "EN_JA": "Uka"
+        },
+        "BLADE:RINNE": {
+            "EN": "Sheba",
+            "EN_JA": "Rinne"
+        },
+        "BLADE:MUSUBI": {
+            "EN": "Vess",
+            "EN_JA": "Musubi"
+        },
+        "BLADE:SHIKI": {
+            "EN": "Adenine",
+            "EN_JA": "Shiki"
+        },
+        "BLADE:RAIKO": {
+            "EN": "Electra",
+            "EN_JA": "Raiko"
+        },
+        "BLADE:YAEGIRI": {
+            "EN": "Zenobia",
+            "EN_JA": "Yaegiri"
+        },
+        "BLADE:IBUKI": {
+            "EN": "Finch",
+            "EN_JA": "Ibuki"
+        },
+        "BLADE:HOTARU": {
+            "EN": "Floren",
+            "EN_JA": "Hotaru"
+        },
+        "BLADE:TSUKI": {
+            "EN": "Dahlia",
+            "EN_JA": "Tsuki"
+        },
+        "BLADE:YOSHITSUNE": {
+            "EN": "Akhos",
+            "EN_JA": "Yoshitsune"
+        },
+        "BLADE:BENKEI": {
+            "EN": "Patroka",
+            "EN_JA": "Benkei"
+        },
+        "BLADE:KAMUI": {
+            "EN": "Obrona",
+            "EN_JA": "Kamui"
+        },
+        "BLADE:OOTSUCHI": {
+            "EN": "Cressidus",
+            "EN_JA": "Ootsuchi"
+        },
+        "BLADE:ZANTETSU": {
+            "EN": "Sever",
+            "EN_JA": "Zantetsu"
+        },
+        "BLADE:TELOS": {
+            "EN": "T-elos",
+            "EN_JA": "T-elos"
+        },
+        "BLADE:SHULK": {
+            "EN": "Shulk",
+            "EN_JA": "Shulk"
+        },
+        "BLADE:FIORUN": {
+            "EN": "Fiora",
+            "EN_JA": "Fiorun"
+        },
+        "BLADE:SHIN": {
+            "EN": "Jin",
+            "EN_JA": "Shin"
+        },
+        "BLADE:METSU": {
+            "EN": "Malos",
+            "EN_JA": "Metsu"
+        },
+        "BLADE:SATAHIKO": {
+            "EN": "Mikhail",
+            "EN_JA": "Satahiko"
+        },
+        "BLADE:KOSMOS": {
+            "EN": "KOS-MOS",
+            "EN_JA": "KOS-MOS Re:"
+        },
+        "BLADE:NYUUTSU": {
+            "EN": "Newt",
+            "EN_JA": "Nyuutsu"
+        },
+        "BLADE:TENNI": {
+            "EN": "Herald",
+            "EN_JA": "Tenni"
+        },
+        "BLADE:MENOO": {
+            "EN": "Agate",
+            "EN_JA": "Meno"
+        },
+        "BLADE:RAGOO": {
+            "EN": "Perdido",
+            "EN_JA": "Rago"
+        },
+        "BLADE:HANABUSTER": {
+            "EN": "Poppibuster",
+            "EN_JA": "Hanabuster"
+        },
+        "BLADE:KASUMI": {
+            "EN": "Haze",
+            "EN_JA": "Kasumi"
+        },
+        "WPN:WB_SEIHAI": {
+            "EN": "Aegis Sword"
+        },
+        "WPN:WB_NIA": {
+            "EN": "Catalyst Sword"
+        },
+        "WPN:WB_KAGUTSUCHI": {
+            "EN": "Whipswords"
+        },
+        "WPN:WB_SAIKA": {
+            "EN": "Big Bang Edge"
+        },
+        "WPN:WB_SUZAKU": {
+            "EN": "Dual Scythes"
+        },
+        "WPN:WB_HANA_JS": {
+            "EN": "Drill Shield"
+        },
+        "WPN:WB_HANA_JK": {
+            "EN": "Mech Arms"
+        },
+        "WPN:WB_HANA_JD": {
+            "EN": "Variable Saber"
+        },
+        "WPN:W_RINGS": {
+            "EN": "Twin Rings"
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        },
+        "WPN:": {
+            "EN": ""
+        }
+    }
+}

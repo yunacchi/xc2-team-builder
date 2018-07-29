@@ -1,0 +1,27 @@
+# Notes about automatic party-matching (to-do)
+
+Blade team prep is divided in two parts: Blade matching and Party constraint matching.
+This is basically brute-forcing.
+
+Blade matching basically builds a huge list of all possible party combinations,
+with respect to basic Driver and Blade engagement constraints, and current chapter status
+(ie. availability of character blades, and Rex as Master Driver).
+
+Party constraint matching filters (and sorts?) teams matching element sets and driver combo sets,
+with respect to eg. your Poppi element/role configuration.
+
+First, let's get these facts out of the way:
+- Only Rex can engage Pyra and Mythra.
+- Only Tora can engage any of the Poppi forms.
+- Tora cannot engage any blade other than Poppi.
+- Original Character blades cannot be disengaged from their character until NG+.
+  - Exception is Dromarch when Nia uses her Blade Form.
+- Starting in chapter 4, engaging Pyra implies engaging Mythra (and vice-versa). They're referred to as 'SEIHAI' (loc: Aegis) in the blade selection.
+- Starting in chapter 7, Nia can switch between Driver form and Blade form.
+  - For spoiler purposes, Blade Nia is hidden until chapter 8, despite being available in chapter 7.
+  - For the purpose of party creation, Nia cannot be a Driver and a Blade at the same time. She cannot engage herself, either (though that would be interesting).
+  - Only Rex can engage Nia. (And Nia will probably never be engaged to Rex. But I shall stay on this ship, the SS Melia, until it sinks)
+  - Nia cannot engage any blades while in Blade form (despite being perfectly able to engage Dromarch in cutscenes. Ah, whatever).
+- Starting in chapter 8, Rex can engage any non-engaged blade from any other party character, with the exception of Poppi and its forms.
+  - Pneuma is not part of blade selection (You can't engage her).
+- Nia, regardless of form, is best girl. Blade form is much more beautiful, though.
