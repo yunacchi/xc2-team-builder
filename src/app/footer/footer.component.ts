@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  public contactHref = 'https://github.com/yunacchi/xc2-team-builder/issues';
+  public issuesHref = 'https://github.com/yunacchi/xc2-team-builder/issues';
+  public repoHref = 'https://github.com/yunacchi/xc2-team-builder';
+
   constructor() { }
 
   ngOnInit() {

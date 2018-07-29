@@ -2,7 +2,17 @@
   <div class="footer-bg"></div>
   <p class="footer-text">
     {{'app.discharge-disclaimer'|translate}}
-    <br> {{'app.game-copyright'|translate}}
-    <br> {{'app.assets-copyright'|translate}}
+    <br>{{'app.game-copyright'|translate}}
+    <br>{{'app.assets-copyright'|translate}}
+  </p>
+  <p class="footer-links">
+    <a [href]="contactHref" target="_blank">{{'app.footer-contact'|translate}}</a>
+    -
+    <a [href]="issuesHref" target="_blank">{{'app.footer-issues'|translate}}</a>
+    -
+    <a [href]="repoHref" target="_blank">
+      <i class="fab fa-github"></i>
+      {{'app.footer-github'|translate}}
+    </a>
   </p>
 </div>

@@ -2,23 +2,33 @@
     position: relative;
     height: 100px;
     
-    .footer-text {
+    .footer-text, .footer-links {
         position: absolute;
         z-index: 11;
-        top: 0;
-        left: 0;
         width: 100%;
-        
         
         text-align: center;
         font-size: 0.8em;
-        font-style: italic;
-        opacity: 0.6;
         color: #000;
         text-shadow: white 0px 0px 10px;
-        margin-bottom: 0;
+    }
+    .footer-text {
+        top: 0;
+        left: 0;
+        font-style: italic;
+        opacity: 0.8;
         margin-top: 1rem;
-
+        margin-bottom: 0;
+    }
+    .footer-links {
+        bottom: 0;
+        left: 0;
+        margin-bottom: 0.3rem;
+        a {
+            font-weight: bold;
+            color: #000;
+            opacity: 1.0;
+        }
     }
     .footer-bg {
         background-color: rgba(245,245,245, 0.5);
