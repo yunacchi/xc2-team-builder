@@ -1,4 +1,4 @@
-<div class="blade-thumbnail" [ngClass]="{'no-role': !showRole, 'no-element': !showElement, 'no-driver': !showDriver}">
+<div class="blade-thumbnail" [tooltip]="blade ? tooltipContentTemplate : undefined" placement="auto" container="body" containerClass="blade-tooltip" [ngClass]="{'no-role': !showRole, 'no-element': !showElement, 'no-driver': !showDriver}">
   <ng-container *ngIf="blade">
     <div [hidden]="!blade.isFound || !showRole" class="role" [attr.title]="('roles.'+blade.role|translate) + ' (' + ('weapons.'+blade.weaponClass.id|translate)  + ')'"
       [ngClass]="blade.role">
@@ -14,3 +14,6 @@
     <img class="portrait" src="assets/xc2/diamond_portraits/NOTHING-TO-SEE-HERE.png">
   </ng-container>
 </div>
+<ng-template #tooltipContentTemplate>
+  <app-blade-tooltip-content [blade]="blade"></app-blade-tooltip-content>
+</ng-template>

@@ -1,0 +1,73 @@
+<div class="blade-tooltip-content" *ngIf="blade">
+  <div class="d-flex flex-nowrap flex-column">
+    <div class="d-flex flex-nowrap flex-row">
+      <div class="bgimg portrait" [ngStyle]="{'backgroundImage': 'url('+blade.thumbUrl+')'}"></div>
+      <div class="title-container d-flex flex-nowrap flex-column align-items-stretch">
+        <div class="title">{{'blades.'+blade.id|translate}}</div>
+        <div class="subtitle d-flex flex-nowrap flex-row align-items-center" *ngIf="blade.isFound && !blade.isHidden">
+          <xc2-element-icon [element]="blade.element"></xc2-element-icon>
+          <span>{{'elements.'+blade.element|translate}}</span>
+          <xc2-role-icon [role]="blade.role"></xc2-role-icon>
+          <span>{{'roles.'+blade.role|translate}}</span>
+        </div>
+        <div class="subtitle">{{'blade-types.'+blade.bladeType|translate}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="properties d-flex flex-nowrap flex-column">
+    <div class="d-flex flex-nowrap flex-row" *ngIf="blade.isFound && !blade.isHidden">
+      <div class="property-name">{{'blade-props.weapon'|translate}}</div>
+      <div class="property-value">
+        {{'weapons.'+blade.weaponClass.id|translate}}
+        <xc2-role-icon [role]="blade.role"></xc2-role-icon>
+      </div>
+    </div>
+    <div class="d-flex flex-nowrap flex-row" *ngIf="blade.isFound && !blade.isHidden">
+      <div class="property-name">{{'blade-props.stat-modifier'|translate}}</div>
+      <div class="property-value" *ngIf="blade.db.modifier">
+        {{'modifiers.'+blade.db.modifier.id|translate}} +{{blade.db.modifier.value}}%
+      </div>
+      <div class="property-value" *ngIf="!blade.db.modifier && blade.db.element === 'HANA'">
+        {{'blade-props.stat-modifier-poppi'|translate}}
+      </div>
+      <div class="property-value" *ngIf="!blade.db.modifier && blade.db.element !== 'HANA'">
+        {{'blade-props.stat-modifier-unknown'|translate}}
+      </div>
+    </div>
+    <div class="d-flex flex-nowrap flex-row" *ngIf="blade.exclusiveDriver && blade.isFound && !blade.isHidden">
+      <div class="property-name">{{'blade-props.exclusive-driver'|translate}}</div>
+      <div class="property-value">{{'drivers.'+blade.exclusiveDriver|translate}}</div>
+    </div>
+    <div class="d-flex flex-nowrap flex-row" *ngIf="blade.db.requiresExpansionPass">
+      <div class="property-name">
+        {{'blade-props.requires-expansion-pass'|translate}}
+      </div>
+    </div>
+    <div class="d-flex flex-nowrap flex-row" *ngIf="blade.db.unbound && blade.isFound && !blade.isHidden">
+      <div class="property-name ">
+        {{'blade-props.unbound'|translate}}
+      </div>
+    </div>
+    <div class="d-flex flex-nowrap flex-row" *ngIf="blade.minChapter && ( blade.bladeType !== 'GACHA' || blade.minChapter > 10 )">
+      <div class="property-name" *ngIf="blade.minChapter < 11">
+        {{('blade-props.availability-chapter'|translate:{c:blade.minChapter})}}
+      </div>
+      <div class="property-name" *ngIf="blade.minChapter === 11">
+        {{'blade-props.availability-chapter-11'|translate}}
+      </div>
+      <div class="property-name" *ngIf="blade.minChapter > 11">
+        {{'blade-props.availability-chapter-12'|translate}}
+      </div>
+    </div>
+    <div class="d-flex flex-nowrap flex-row" *ngIf="blade.bladeType === 'QUEST'">
+      <div class="property-name wrap-text">
+        {{'blade-acquisition.'+blade.id|translate}}
+      </div>
+    </div>
+    <div class="d-flex flex-nowrap flex-row" *ngIf="blade.db.element === 'HANA'">
+      <div class="property-name wrap-text">
+          {{'blade-props.poppi-notice'|translate}}
+      </div>
+    </div>
+  </div>
+</div>

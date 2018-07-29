@@ -45,9 +45,6 @@
     "stat-modifiers": "Modifiers",
     "elements": "Elements",
     "driver-combos": "Driver combos",
-    "availability-chapter": "Available starting at chapter {{c}}.",
-    "availability-chapter-11": "Available after clearing the game.",
-    "availability-chapter-12": "Available in New Game+ only.",
     "switch-nia-to-blade": "Make Nia a Blade?",
     "switch-nia-to-driver": "Make Nia a Driver?",
     "switch-to-homura": "Switch to Pyra? Mythra will still be engaged to Rex.",
@@ -99,13 +96,13 @@
     "HLR": "Healer"
   },
   "blade-types": {
-    "SEIHAI": "Aegis",
-    "HANA": "Poppi",
+    "SEIHAI": "Aegis Blade",
+    "HANA": "Poppi Form",
     "CHARA": "Character Blade",
     "STORY": "Story Blade",
     "GACHA": "Lottery Blade",
     "QUEST": "Quest/Special Blade",
-    "DLC1": "Torna Blade (NG+)",
+    "DLC1": "Torna Blade",
     "DLC2": "Challenge Mode Blade"
   },
   "elements": {
@@ -221,7 +218,7 @@
     "MINOCHI": "Minoth",
     "MALVENI": "Amalthus"
   },
-  "bladeAcquisition": {
+  "blade-acquisition": {
     "ZIKARAO": "Awakened with the Beastly Core Crystal, dropped by a chapter 3 story boss.",
     "KASANE": "Awakened with the Lucky Core Crystal, dropped by a mob during a special event in Mor Ardain.",
     "MIKUMARI": "Awakened with her own Core Crystal, obtained at the end of the side quest \"Crystal Clear\".",
@@ -257,7 +254,7 @@
     "HLR-TNK-TNK": "Royal Knight",
     "TNK-TNK-TNK": "Master Defender"
   },
-  "classAttributes": {
+  "class-attributes": {
     "DAMAGE": "Boosts damage dealt",
     "POTION": "HP Potion effect up",
     "STEALTH": "Lower Arts/Spec. aggro",
@@ -273,7 +270,7 @@
     "STRENGTH": "Strength Mod.",
     "LUCK": "Luck Mod."
   },
-  "driverCombos": {
+  "driver-combos": {
     "BREAK": "Break",
     "TOPPLE": "Topple",
     "LAUNCH": "Launch",
@@ -289,5 +286,18 @@
     "too-many-blades-engaged-on-character": "Too many Blades on a Driver!",
     "blade-engaged-multiple-times": "{{b}} is engaged more than once!",
     "party-is-empty": "The party is empty!"
+  },
+  "blade-props": {
+    "weapon": "Weapon:",
+    "exclusive-driver": "Can only be bound to",
+    "unbound": "Can be engaged by any Driver",
+    "stat-modifier": "Modifier:",
+    "stat-modifier-unknown": "Unknown!",
+    "stat-modifier-poppi": "Variable (Role CPU)",
+    "poppi-notice": "Role and Element can be customized.",
+    "availability-chapter": "Available starting at chapter {{c}}",
+    "availability-chapter-11": "Available after clearing the game",
+    "availability-chapter-12": "Available in New Game+ only",
+    "requires-expansion-pass": "Requires the Expansion Pass"
   }
 }

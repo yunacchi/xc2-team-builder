@@ -57,3 +57,8 @@ h1, h2, h3 {
   font-weight: bold;
   font-style: italic;
 }
+
+// Tooltip code for Blade tooltips - contained in <body>
+.blade-tooltip > .tooltip-inner {
+  max-width: 300px;
+}

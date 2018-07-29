@@ -48,6 +48,12 @@
             </div>
           </div>
         </div>
+
+        
+        <div class="stat-modifiers" *ngIf="this.currentParty && this.currentParty.partyMembers[partyIdx] as partyMember">
+          <div *ngFor="let m of partyMember.modifiers">
+            {{'modifiers.'+m.id|translate}} +{{m.value}}%
+          </div>
       </div>
     </div>
   </div>

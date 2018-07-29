@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { BsDropdownModule, ButtonsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, ButtonsModule, TooltipModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AppComponent } from './app.component';
 import { BladeDriverSelectionRowComponent } from './blade-driver-selection-row/blade-driver-selection-row.component';
@@ -20,6 +20,7 @@ import { DndModule } from 'ngx-drag-drop';
 import { Xc2ElementIconComponent } from './xc2-element-icon/xc2-element-icon.component';
 import { Xc2RoleIconComponent } from './xc2-role-icon/xc2-role-icon.component';
 import { Xc2DriverComboIconComponent } from './xc2-driver-combo-icon/xc2-driver-combo-icon.component';
+import { BladeTooltipContentComponent } from './blade-tooltip-content/blade-tooltip-content.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
     Xc2ElementIconComponent,
     Xc2RoleIconComponent,
     Xc2DriverComboIconComponent,
+    BladeTooltipContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,7 @@ const appRoutes: Routes = [
     ButtonsModule.forRoot(),
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

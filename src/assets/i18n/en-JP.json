@@ -19,10 +19,10 @@
         "ZEKE": "Zeke"
     },
     "blade-types": {
-        "SEIHAI": "Holy Grail",
-        "HANA": "Hana",
+        "SEIHAI": "Holy Grail Blade",
+        "HANA": "Hana Form",
         "GACHA": "Gacha Blade",
-        "DLC1": "Iira Blade (NG+)"
+        "DLC1": "Iira Blade"
     },
     "chapters": {
         "4": "Holy Grail",

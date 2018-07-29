@@ -72,3 +72,6 @@
     display: inline-block;
     background-size: contain;
 }
+:host ::ng-deep .tooltip-inner {
+    max-width: 500px;
+}

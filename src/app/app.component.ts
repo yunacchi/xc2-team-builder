@@ -36,7 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
       });
 
     combineLatest(
-      this.gameSettingsService.gameSettings$,
+      this.gameSettingsService.siteSettings$,
       this.translateService.get('app.spoiler-warning-title'),
       this.translateService.get('app.spoiler-warning'),
       this.translateService.get('app.close-action'),
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
     )
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(([settings, title, messageHtml, close, copyright, copyright2, disclaimer]) => {
-        if (!settings.s) {
+        if (!settings.disclaimerClosed) {
           // Show spoiler warning.
           Swal({
             titleText: title,

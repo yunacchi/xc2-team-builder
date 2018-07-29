@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { BladeManagerService } from './blade-manager.service';
-import { Blade, Driver, DriverComboId, driverCombos, ElementId, elements, RoleId } from './model';
+import { Blade, Driver, DriverComboId, driverCombos, ElementId, elements, RoleId, DbStatModifier } from './model';
 import { uniqWith, isEqual } from 'lodash';
 import { GameSettingsService } from './game-settings.service';
 
@@ -22,7 +22,7 @@ export interface PartyMemberDescriptor {
 export interface EffectivePartyMember {
   elements: ElementId[];
   driverCombos: DriverComboId[];
-  modifiers: { [modifierId: string]: number };
+  modifiers: DbStatModifier[];
   classId: string;
   roles: RoleId[];
   driver: Driver;
@@ -76,10 +76,15 @@ function addBladeToParty(ep: EffectiveParty, epm: EffectivePartyMember, blade: B
 
   // Add modifier
   if (blade.db.modifier !== undefined) {
-    if (epm.modifiers[blade.db.modifier.id]) {
-      epm.modifiers[blade.db.modifier.id] += blade.db.modifier.value;
+    let m: DbStatModifier = epm.modifiers.find(m => m.id === blade.db.modifier.id);
+    if (m === undefined) {
+      m = {
+        id: blade.db.modifier.id,
+        value: blade.db.modifier.value,
+      };
+      epm.modifiers.push(m);
     } else {
-      epm.modifiers[blade.db.modifier.id] = blade.db.modifier.value;
+      m.value += blade.db.modifier.value;
     }
   }
 }
@@ -208,7 +213,7 @@ export class PartyManagerService {
           blades: [], // Engaged Blades
           classId: undefined,
           driverCombos: [],
-          modifiers: {},
+          modifiers: [],
           elements: [],
           hiddenBlade: undefined, // Implicit Blade (For the Mythra-Pyra problem)
           inBattle: pm.inBattle,
