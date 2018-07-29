@@ -250,7 +250,9 @@ var AppModule = /** @class */ (function () {
                         deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"]]
                     }
                 }),
-                _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forRoot(appRoutes),
+                _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forRoot(appRoutes, { useHash: true }
+                // { enableTracing: true } // <-- debugging purposes only
+                ),
                 ngx_drag_drop__WEBPACK_IMPORTED_MODULE_18__["DndModule"],
             ],
             providers: [
