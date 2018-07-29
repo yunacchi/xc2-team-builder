@@ -1,10 +1,10 @@
-# Xenoblade 2 team calculator
+# Xenoblade 2 team builder
 
-Put in your Blades and their Drivers, see which teams can help you chain Blade and Driver combos.
+Put in your Blades and their Drivers, find out which teams can help you chain Blade and Driver combos.
 
 ## SPOILER WARNING
 
-This repository contains very heavy Xenoblade Chronicles 2 spoilers relevant to the main story, side quests, update content and DLCs.
+This repository contains very heavy Xenoblade Chronicles 2 spoilers relevant to the main story, side quests, update content and expansion pass content.
 
 It's recommended not to use this before reaching chapter 8 in the main story.
 
@@ -16,9 +16,11 @@ This project uses the [Angular CLI](https://github.com/angular/angular-cli), wit
 
 Short version:
 
-- `ng serve` for a dev server on `http://localhost:4200/`.
+- `npm install` to install node packages
+- `ng serve` for a dev server on `http://localhost:4200/`
 - `ng generate component|directive|pipe|service|class|guard|interface|enum|module <name>` to generate files
-- `ng build` to build the project
+- `ng test` to run in-browser tests using Karma (test runner), Jasmine (testing framework), and the [Angular testing framework](https://angular.io/guide/testing).
+- `ng build` to build the project in `dist/xc2-team-builder`
 
 ## Licensing and © copyright
 
@@ -43,6 +45,7 @@ This repository and its software use the following non-exhaustive list of open-s
 - [Bootstrap](https://github.com/twbs/bootstrap) (MIT license)
 - [Font Awesome](https://github.com/FortAwesome/Font-Awesome) (Icons: CC BY 4.0 License, Fonts: SIL OFL 1.1 License, Code: MIT License)
 - [valor-software/ngx-bootstrap](https://github.com/valor-software/ngx-bootstrap) (MIT license)
+- [ngx-translate](https://github.com/ngx-translate/core) (MIT license)
 
 ## Contact
 

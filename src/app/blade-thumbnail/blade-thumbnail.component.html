@@ -1,0 +1,19 @@
+<div class="blade-thumbnail" [tooltip]="blade ? tooltipContentTemplate : undefined" placement="auto" container="body" containerClass="blade-tooltip" [ngClass]="{'no-role': !showRole, 'no-element': !showElement, 'no-driver': !showDriver}">
+  <ng-container *ngIf="blade">
+    <div [hidden]="!blade.isFound || !showRole" class="role" [attr.title]="('roles.'+blade.role|translate) + ' (' + ('weapons.'+blade.weaponClass.id|translate)  + ')'"
+      [ngClass]="blade.role">
+      <xc2-role-icon [role]="blade.role"></xc2-role-icon>
+    </div>
+    <div [hidden]="!blade.isFound || !showElement" class="bgimg element" [attr.title]="'elements.'+blade.element|translate" [ngStyle]="{'backgroundImage': 'url(assets/xc2/elements/'+blade.element+'.png)'}"></div>
+    <div class="bgimg portrait" [attr.title]="'#'+ blade.db.albumNumber + ': ' +('blades.'+blade.id|translate)" [ngStyle]="{'backgroundImage': 'url('+blade.thumbUrl+')'}"></div>
+    <div class="role-bg"></div>
+    <div *ngIf="blade.boundDriver && !blade.db.unbound && showDriver" class="bgimg driver-portrait" [attr.title]="'drivers.'+blade.boundDriver.id|translate"
+      [ngStyle]="{'backgroundImage': 'url(assets/xc2/driver_icons/'+blade.boundDriver.id+'.png)'}"></div>
+  </ng-container>
+  <ng-container *ngIf="!blade">
+    <img class="portrait" src="assets/xc2/diamond_portraits/NOTHING-TO-SEE-HERE.png">
+  </ng-container>
+</div>
+<ng-template #tooltipContentTemplate>
+  <app-blade-tooltip-content [blade]="blade"></app-blade-tooltip-content>
+</ng-template>

@@ -1,0 +1,33 @@
+@import '../../_variables';
+
+$blade-tooltip-thumb-size: 66px;
+
+:host {
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    .bgimg {
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .portrait {
+        height: $blade-tooltip-thumb-size;
+        width: $blade-tooltip-thumb-size;
+    }
+    .title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        font-style: italic;
+    }
+    .property-name {
+        margin-right: 5px;
+        color: #eee;
+    }
+    .property-value {
+        font-weight: bold;
+    }
+    .wrap-text {
+        white-space: normal;
+        text-overflow: ellipsis;
+    }
+}

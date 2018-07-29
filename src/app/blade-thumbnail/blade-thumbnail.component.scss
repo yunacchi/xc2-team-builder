@@ -1,0 +1,77 @@
+@import '../../_variables';
+
+:host, .blade-thumbnail {
+    display: inline-block;
+    height: $blade-row-height;
+}
+.blade-thumbnail {
+    width: $blade-row-height * 1.5;
+
+    &.no-role.no-element, .no-driver {
+        width: $blade-row-height * 1.25;
+    }
+    &.no-role.no-element.no-driver {
+        width: $blade-row-height;
+    }
+}
+
+.blade-thumbnail {
+    position: relative;
+    z-index: 10;
+    .portrait {
+        position: absolute;
+        left: $blade-row-height / 4;
+        height: $blade-row-height;
+        width: $blade-row-height;
+        z-index: 11;
+    }
+    &.no-role.no-element {
+        .portrait {
+            left: 0;
+        }
+    }
+    .element {
+        position: absolute;
+        top: $blade-row-height / 2;
+        left: 0;
+        height: $blade-row-height / 2;
+        width: $blade-row-height / 2;
+        z-index: 12;
+    }
+    .driver-portrait {
+        position: absolute;
+        top: $blade-row-height / 2;
+        left: $blade-row-height;
+        height: $blade-row-height / 2;
+        width: $blade-row-height / 2;
+        z-index: 13;
+    }
+    .role {
+        cursor: default;
+        position: absolute;
+        z-index: 15;
+        left: 0;
+        top: 5px;
+        height: $blade-row-height / 2;
+        width: $blade-row-height / 2;   
+        text-align: center;
+        text-shadow: 0px 0px 3px rgba(0,0,0, 1);
+        font-weight: bold;
+        &.ATK {
+            color:red;
+        }
+        &.TNK {
+            color: blue;
+        }
+        &.HLR {
+            color: lime;
+        }
+    }
+}
+.bgimg {
+    display: inline-block;
+    background-size: contain;
+}
+:host ::ng-deep .tooltip-inner {
+    max-width: 500px;
+}

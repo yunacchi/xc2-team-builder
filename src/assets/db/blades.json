@@ -1,359 +1,641 @@
 {
-    "blades": [
-        {
-            "albumNumber": 1,
-            "id": "SEIHAI_HOMURA",
-            "exclusiveDriver": "REX",
-            "type": "SEIHAI",
-            "chapter": 1,
-            "weapon": "WB_SEIHAI",
-            "element": "FIRE"
-        },
-        {
-            "albumNumber": 2,
-            "id": "SEIHAI_HIKARI",
-            "exclusiveDriver": "REX",
-            "type": "SEIHAI",
-            "chapter": 4,
-            "weapon": "WB_SEIHAI",
-            "element": "LIGHT"
-        },
-        {
-            "albumNumber": 3,
-            "id": "BYAKKO",
-            "exclusiveDriver": "NIA",
-            "type": "CHARA",
-            "chapter": 2,
-            "weapon": "W_RINGS",
-            "element": "WATER"
-        },
-        {
-            "albumNumber": 4,
-            "id": "HANA_JS",
-            "exclusiveDriver": "TORA",
-            "type": "HANA",
-            "chapter": 2,
-            "weapon": "WB_HANA_JS",
-            "element": "HANA"
-        },
-        {
-            "albumNumber": 5,
-            "id": "HANA_JK",
-            "exclusiveDriver": "TORA",
-            "type": "HANA",
-            "chapter": 2,
-            "weapon": "WB_HANA_JK",
-            "element": "HANA"
-        },
-        {
-            "albumNumber": 6,
-            "id": "HANA_JD",
-            "exclusiveDriver": "TORA",
-            "type": "HANA",
-            "chapter": 2,
-            "weapon": "WB_HANA_JD",
-            "element": "HANA"
-        },
-        {
-            "albumNumber": 7,
-            "id": "SUZAKU",
-            "exclusiveDriver": "REX",
-            "type": "STORY",
-            "chapter": 4,
-            "weapon": "WB_SUZAKU",
-            "element": "WIND"
-        },
-        {
-            "albumNumber": 8,
-            "id": "KAGUTSUCHI",
-            "exclusiveDriver": "MELEPH",
-            "type": "CHARA",
-            "chapter": 5,
-            "weapon": "WB_KAGUTSUCHI",
-            "element": "FIRE"
-        },
-        {
-            "albumNumber": 9,
-            "id": "SAIKA",
-            "exclusiveDriver": "ZEKE",
-            "type": "CHARA",
-            "chapter": 6,
-            "weapon": "WB_SAIKA",
-            "element": "ELECTRIC"
-        },
-        {
-            "albumNumber": 10,
-            "id": "NIA",
-            "exclusiveDriver": "REX",
-            "type": "STORY",
-            "isBestGirl": true,
-            "chapter": 7,
-            "weapon": "WB_NIA",
-            "element": "WATER"
-        },
-        {
-            "albumNumber": 11,
-            "id": "WADATSUMI",
-            "exclusiveDriver": "MELEPH",
-            "type": "STORY",
-            "chapter": 6,
-            "weapon": "W_KATANA",
-            "element": "WATER"
-        },
-        {
-            "albumNumber": 12,
-            "id": "GUREN",
-            "weapon": "W_HAMMER",
-            "element": ""
-        },
-        {
-            "albumNumber": 13,
-            "id": "ZIKARAO",
-            "weapon": "W_LANCE",
-            "type": "QUEST",
-            "acquisition": "Special: Beastly Core Crystal",
-            "element": "EARTH"
-        },
-        {
-            "albumNumber": 14,
-            "id": "VASARA",
-            "weapon": "W_KATANA",
-            "element": "DARK"
-        },
-        {
-            "albumNumber": 15,
-            "id": "MEI",
-            "weapon": "W_LANCE",
-            "element": "DARK"
-        },
-        {
-            "albumNumber": 16,
-            "id": "",
-            "weapon": "W_"
-        },
-        {
-            "albumNumber": 17,
-            "id": "YUUOU",
-            "weapon": "W_AXE",
-            "element": ""
-        },
-        {
-            "albumNumber": 18,
-            "id": "IDATEN",
-            "weapon": "W_BALL",
-            "element": "WIND"
-        },
-        {
-            "albumNumber": 19,
-            "id": "KUBIRA",
-            "weapon": "W_AXE",
-            "element": ""
-        },
-        {
-            "albumNumber": 20,
-            "id": "KASANE",
-            "weapon": "W_HAMMER",
-            "type": "QUEST",
-            "acquisition": "Special: Lucky Core Crystal",
-            "element": "DARK"
-        },
-        {
-            "albumNumber": 21,
-            "id": "MIKUMARI",
-            "type": "QUEST",
-            "weapon": "W_LANCE",
-            "acquisition": "Quest: Crystal Clear",
-            "element": ""
-        },
-        {
-            "albumNumber": 22,
-            "id": "SEORI",
-            "type": "QUEST",
-            "weapon": "W_KATANA",
-            "acquisition": "Quest: Blade-Sharp Memory",
-            "element": ""
-        },
-        {
-            "albumNumber": 23,
-            "id": "TOKIHA",
-            "weapon": "W_LANCE",
-            "element": ""
-        },
-        {
-            "albumNumber": 24,
-            "id": "ZAKURO",
-            "weapon": "W_CLAWS",
-            "element": ""
-        },
-        {
-            "albumNumber": 25,
-            "id": "AZAMI",
-            "weapon": "W_CANNON",
-            "element": "DARK"
-        },
-        {
-            "albumNumber": 26,
-            "id": "NANAKOORI",
-            "weapon": "W_CLAWS",
-            "element": "ICE"
-        },
-        {
-            "albumNumber": 27,
-            "id": "",
-            "weapon": "W_",
-            "element": ""
-        },
-        {
-            "albumNumber": 28,
-            "id": "UKA",
-            "weapon": "W_CLAWS",
-            "element": "EARTH"
-        },
-        {
-            "albumNumber": 29,
-            "id": "RINNE",
-            "weapon": "W_CANNON",
-            "type": "QUEST",
-            "acquisition": "Special: Inherited Core Crystal",
-            "element": "WATER"
-        },
-        {
-            "albumNumber": 30,
-            "id": "MUSUBI",
-            "weapon": "W_BALL",
-            "type": "QUEST",
-            "acquisition": "Quest: Tranquility",
-            "element": ""
-        },
-        {
-            "albumNumber": 31,
-            "id": "SHIKI",
-            "weapon": "W_CLAWS",
-            "element": "WIND"
-        },
-        {
-            "albumNumber": 32,
-            "id": "RAIKO",
-            "weapon": "W_HAMMER",
-            "element": "ELECTRIC"
-        },
-        {
-            "albumNumber": 33,
-            "id": "YAEGIRI",
-            "weapon": "W_AXE",
-            "element": "WIND"
-        },
-        {
-            "albumNumber": 34,
-            "id": "IBUKI",
-            "weapon": "W_HAMMER",
-            "element": "WIND"
-        },
-        {
-            "albumNumber": 35,
-            "id": "HOTARU",
-            "weapon": "W_BALL",
-            "element": ""
-        },
-        {
-            "albumNumber": 36,
-            "id": "KOSMOS",
-            "weapon": "W_CANNON",
-            "element": "LIGHT"
-        },
-        {
-            "albumNumber": 37,
-            "id": "",
-            "weapon": "W_",
-            "element": ""
-        },
-        {
-            "albumNumber": 38,
-            "id": "TSUKI",
-            "weapon": "W_BALL",
-            "element": "ICE"
-        },
-        {
-            "albumNumber": 39,
-            "id": "YOSHITSUNE",
-            "weapon": "WB_YOSHITSUNE",
-            "type": "DLC1",
-            "element": ""
-        },
-        {
-            "albumNumber": 40,
-            "id": "BENKEI",
-            "weapon": "WB_BENKEI",
-            "type": "DLC1",
-            "element": ""
-        },
-        {
-            "albumNumber": 41,
-            "id": "",
-            "weapon": "W_",
-            "type": "DLC1",
-            "element": ""
-        },
-        {
-            "albumNumber": 42,
-            "id": "KAMUI",
-            "weapon": "WB_KAMUI",
-            "type": "DLC1",
-            "element": ""
-        },
-        {
-            "albumNumber": 43,
-            "id": "",
-            "weapon": "W_",
-            "type": "DLC1",
-            "element": ""
-        },
-        {
-            "albumNumber": 44,
-            "id": "OOTSUCHI",
-            "weapon": "WB_OOTSUCHI",
-            "type": "DLC1",
-            "element": ""
-        },
-        {
-            "albumNumber": 45,
-            "id": "ZANTETSU",
-            "weapon": "WB_ZANTETSU",
-            "type": "DLC1",
-            "element": ""
-        },
-        {
-            "albumNumber": 46,
-            "id": "TELOS",
-            "weapon": "W_AXE",
-            "element": "DARK"
-        },
-        {
-            "albumNumber": 47,
-            "id": "",
-            "weapon": "W_",
-            "element": ""
-        },
-        {
-            "albumNumber": 48,
-            "id": "SHULK",
-            "weapon": "WB_SHULK",
-            "type": "DLC2",
-            "element": "LIGHT"
-        },
-        {
-            "albumNumber": 49,
-            "id": "FIORUN",
-            "weapon": "WB_FIORUN",
-            "type": "DLC2",
-            "element": "LIGHT"
-        },
-        {
-            "albumNumber": 999,
-            "id": "KASUMI",
-            "weapon": "WB_KASUMI",
-            "element": "",
-            "hidden": true
-        }
-    ]
+  "blades": [{
+      "albumNumber": 1,
+      "id": "SEIHAI_HOMURA",
+      "exclusiveDriver": "REX",
+      "type": "SEIHAI",
+      "chapter": 1,
+      "weapon": "WB_SEIHAI",
+      "element": "FIRE",
+      "gender": "F",
+      "modifier": {
+        "id": "STRENGTH",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 2,
+      "id": "SEIHAI_HIKARI",
+      "exclusiveDriver": "REX",
+      "type": "SEIHAI",
+      "chapter": 4,
+      "weapon": "WB_SEIHAI",
+      "element": "LIGHT",
+      "gender": "F",
+      "modifier": {
+        "id": "ETHER",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 3,
+      "id": "BYAKKO",
+      "exclusiveDriver": "NIA",
+      "type": "CHARA",
+      "chapter": 2,
+      "weapon": "W_RINGS",
+      "element": "WATER",
+      "gender": "M",
+      "modifier": {
+        "id": "ETHER",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 4,
+      "id": "HANA_JS",
+      "exclusiveDriver": "TORA",
+      "type": "CHARA",
+      "chapter": 2,
+      "weapon": "WB_HANA_JS",
+      "element": "HANA",
+      "gender": "F"
+    },
+    {
+      "albumNumber": 5,
+      "id": "HANA_JK",
+      "exclusiveDriver": "TORA",
+      "type": "CHARA",
+      "chapter": 5,
+      "weapon": "WB_HANA_JK",
+      "element": "HANA",
+      "gender": "F"
+    },
+    {
+      "albumNumber": 6,
+      "id": "HANA_JD",
+      "exclusiveDriver": "TORA",
+      "type": "QUEST",
+      "chapter": 8,
+      "weapon": "WB_HANA_JD",
+      "element": "HANA",
+      "gender": "F"
+    },
+    {
+      "albumNumber": 7,
+      "id": "SUZAKU",
+      "exclusiveDriver": "REX",
+      "type": "STORY",
+      "chapter": 4,
+      "weapon": "WB_SUZAKU",
+      "element": "WIND",
+      "gender": "N/A",
+      "modifier": {
+        "id": "DEXTERITY",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 8,
+      "id": "KAGUTSUCHI",
+      "exclusiveDriver": "MELEPH",
+      "type": "CHARA",
+      "chapter": 5,
+      "weapon": "WB_KAGUTSUCHI",
+      "element": "FIRE",
+      "gender": "F",
+      "modifier": {
+        "id": "AGILITY",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 9,
+      "id": "SAIKA",
+      "exclusiveDriver": "ZEKE",
+      "type": "CHARA",
+      "chapter": 6,
+      "weapon": "WB_SAIKA",
+      "element": "ELECTRIC",
+      "gender": "F",
+      "modifier": {
+        "id": "STRENGTH",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 10,
+      "id": "NIA",
+      "exclusiveDriver": "REX",
+      "type": "STORY",
+      "chapter": 8,
+      "weapon": "WB_NIA",
+      "element": "WATER",
+      "aliases": [
+        "Catalyst",
+        "Bladiest Blade",
+        "Best girl"
+      ],
+      "gender": "F",
+      "modifier": {
+        "id": "MAXHP",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 11,
+      "id": "WADATSUMI",
+      "exclusiveDriver": "MELEPH",
+      "type": "STORY",
+      "chapter": 6,
+      "weapon": "W_KATANA",
+      "element": "WATER",
+      "gender": "M",
+      "modifier": {
+        "id": "AGILITY",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 12,
+      "id": "GUREN",
+      "weapon": "W_HAMMER",
+      "element": "ICE",
+      "type": "GACHA",
+      "gender": "M",
+      "modifier": {
+        "id": "MAXHP",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 13,
+      "id": "ZIKARAO",
+      "weapon": "W_LANCE",
+      "type": "QUEST",
+      "chapter": 3,
+      "element": "EARTH",
+      "gender": "M",
+      "modifier": {
+        "id": "STRENGTH",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 14,
+      "id": "VASARA",
+      "weapon": "W_KATANA",
+      "element": "DARK",
+      "type": "GACHA",
+      "gender": "M",
+      "modifier": {
+        "id": "AGILITY",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 15,
+      "id": "MEI",
+      "weapon": "W_LANCE",
+      "element": "DARK",
+      "type": "GACHA",
+      "gender": "F",
+      "modifier": {
+        "id": "ETHER",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 16,
+      "id": "MENOO",
+      "weapon": "W_AXE",
+      "element": "EARTH",
+      "type": "GACHA",
+      "missingImg": true,
+      "gender": "F"
+    },
+    {
+      "albumNumber": 17,
+      "id": "YUUOU",
+      "weapon": "W_AXE",
+      "element": "WATER",
+      "type": "GACHA",
+      "gender": "M",
+      "modifier": {
+        "id": "MAXHP",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 18,
+      "id": "IDATEN",
+      "weapon": "W_BALL",
+      "element": "WIND",
+      "type": "GACHA",
+      "gender": "M",
+      "modifier": {
+        "id": "MAXHP",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 19,
+      "id": "KUBIRA",
+      "weapon": "W_AXE",
+      "element": "FIRE",
+      "type": "GACHA",
+      "gender": "M",
+      "modifier": {
+        "id": "STRENGTH",
+        "value": 5
+      }
+    },
+    {
+      "albumNumber": 20,
+      "id": "KASANE",
+      "weapon": "W_HAMMER",
+      "type": "QUEST",
+      "chapter": 4,
+      "element": "DARK",
+      "gender": "F",
+      "modifier": {
+        "id": "MAXHP",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 21,
+      "id": "MIKUMARI",
+      "type": "QUEST",
+      "weapon": "W_LANCE",
+      "element": "WATER",
+      "chapter": 5,
+      "gender": "F",
+      "modifier": {
+        "id": "DEXTERITY",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 22,
+      "id": "SEORI",
+      "type": "QUEST",
+      "weapon": "W_KATANA",
+      "element": "ICE",
+      "chapter": 7,
+      "gender": "F",
+      "modifier": {
+        "id": "AGILITY",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 23,
+      "id": "TOKIHA",
+      "weapon": "W_LANCE",
+      "element": "ICE",
+      "type": "GACHA",
+      "gender": "F",
+      "modifier": {
+        "id": "DEXTERITY",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 24,
+      "id": "ZAKURO",
+      "weapon": "W_CLAWS",
+      "element": "ELECTRIC",
+      "type": "GACHA",
+      "gender": "F",
+      "modifier": {
+        "id": "ETHER",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 25,
+      "id": "AZAMI",
+      "weapon": "W_CANNON",
+      "element": "DARK",
+      "type": "GACHA",
+      "gender": "F",
+      "modifier": {
+        "id": "ETHER",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 26,
+      "id": "NANAKOORI",
+      "weapon": "W_CLAWS",
+      "element": "ICE",
+      "type": "GACHA",
+      "gender": "F",
+      "modifier": {
+        "id": "AGILITY",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 27,
+      "id": "NYUUTSU",
+      "weapon": "W_KATANA",
+      "element": "FIRE",
+      "type": "GACHA",
+      "gender": "F",
+      "modifier": {
+        "id": "MAXHP",
+        "value": 20
+      }
+    },
+    {
+      "albumNumber": 28,
+      "id": "UKA",
+      "weapon": "W_CLAWS",
+      "element": "EARTH",
+      "type": "GACHA",
+      "gender": "F",
+      "modifier": {
+        "id": "DEXTERITY",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 29,
+      "id": "RINNE",
+      "weapon": "W_CANNON",
+      "type": "QUEST",
+      "element": "WATER",
+      "chapter": 2,
+      "gender": "F",
+      "modifier": {
+        "id": "ETHER",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 30,
+      "id": "MUSUBI",
+      "weapon": "W_BALL",
+      "type": "QUEST",
+      "element": "ELECTRIC",
+      "chapter": 4,
+      "gender": "F",
+      "modifier": {
+        "id": "MAXHP",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 31,
+      "id": "SHIKI",
+      "weapon": "W_CLAWS",
+      "element": "WIND",
+      "type": "GACHA",
+      "gender": "F",
+      "modifier": {
+        "id": "DEXTERITY",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 32,
+      "id": "RAIKO",
+      "weapon": "W_HAMMER",
+      "element": "ELECTRIC",
+      "type": "GACHA",
+      "gender": "F",
+      "modifier": {
+        "id": "MAXHP",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 33,
+      "id": "YAEGIRI",
+      "weapon": "W_AXE",
+      "element": "WIND",
+      "type": "GACHA",
+      "gender": "F",
+      "modifier": {
+        "id": "STRENGTH",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 34,
+      "id": "IBUKI",
+      "weapon": "W_HAMMER",
+      "element": "WIND",
+      "type": "GACHA",
+      "gender": "F",
+      "modifier": {
+        "id": "AGILITY",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 35,
+      "id": "HOTARU",
+      "weapon": "W_BALL",
+      "element": "EARTH",
+      "type": "GACHA",
+      "gender": "M",
+      "modifier": {
+        "id": "ETHER",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 36,
+      "id": "KOSMOS",
+      "weapon": "W_CANNON",
+      "element": "LIGHT",
+      "type": "GACHA",
+      "gender": "F",
+      "modifier": {
+        "id": "ETHER",
+        "value": 20
+      }
+    },
+    {
+      "albumNumber": 37,
+      "id": "TENNIN",
+      "weapon": "W_CANNON",
+      "element": "ELECTRIC",
+      "type": "QUEST",
+      "chapter": 6,
+      "gender": "F",
+      "modifier": {
+        "id": "STRENGTH",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 38,
+      "id": "TSUKI",
+      "weapon": "W_BALL",
+      "element": "ICE",
+      "type": "GACHA",
+      "gender": "F",
+      "modifier": {
+        "id": "DEXTERITY",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 39,
+      "id": "YOSHITSUNE",
+      "weapon": "WB_YOSHITSUNE",
+      "type": "GACHA",
+      "gameVersion": "1.3.0",
+      "element": "ELECTRIC",
+      "chapter": 12,
+      "gender": "M",
+      "modifier": {
+        "id": "ETHER",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 40,
+      "id": "BENKEI",
+      "weapon": "WB_BENKEI",
+      "type": "GACHA",
+      "gameVersion": "1.3.0",
+      "element": "EARTH",
+      "chapter": 12,
+      "gender": "F",
+      "modifier": {
+        "id": "STRENGTH",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 41,
+      "id": "SATAHIKO",
+      "weapon": "WB_SATAHIKO",
+      "type": "QUEST",
+      "gameVersion": "1.3.0",
+      "element": "DARK",
+      "missingImg": true,
+      "chapter": 12,
+      "gender": "M",
+      "modifier": {
+        "id": "AGILITY",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 42,
+      "id": "KAMUI",
+      "weapon": "WB_KAMUI",
+      "type": "GACHA",
+      "gameVersion": "1.3.0",
+      "element": "ELECTRIC",
+      "chapter": 12,
+      "gender": "F",
+      "modifier": {
+        "id": "AGILITY",
+        "value": 20
+      }
+    },
+    {
+      "albumNumber": 43,
+      "id": "RAGO",
+      "weapon": "WB_RAGO",
+      "type": "GACHA",
+      "gameVersion": "1.3.0",
+      "element": "FIRE",
+      "missingImg": true,
+      "chapter": 12,
+      "gender": "M",
+      "modifier": {
+        "id": "STRENGTH",
+        "value": 10
+      }
+    },
+    {
+      "albumNumber": 44,
+      "id": "OOTSUCHI",
+      "weapon": "WB_OOTSUCHI",
+      "type": "GACHA",
+      "gameVersion": "1.3.0",
+      "element": "EARTH",
+      "chapter": 12,
+      "gender": "M",
+      "modifier": {
+        "id": "MAXHP",
+        "value": 20
+      }
+    },
+    {
+      "albumNumber": 45,
+      "id": "ZANTETSU",
+      "weapon": "WB_ZANTETSU",
+      "type": "GACHA",
+      "gameVersion": "1.3.0",
+      "element": "WIND",
+      "chapter": 12,
+      "gender": "M",
+      "modifier": {
+        "id": "STRENGTH",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 46,
+      "id": "TELOS",
+      "weapon": "W_AXE",
+      "type": "GACHA",
+      "gameVersion": "1.4.0",
+      "element": "DARK",
+      "chapter": 11,
+      "gender": "F",
+      "modifier": {
+        "id": "STRENGTH",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 47,
+      "id": "HANABUSTER",
+      "weapon": "W_HAMMER",
+      "element": "LIGHT",
+      "type": "QUEST",
+      "gameVersion": "1.4.0",
+      "chapter": 6,
+      "missingImg": true,
+      "requiresExpansionPass": true,
+      "unbound": true,
+      "gender": "N/A",
+      "modifier": {
+        "id": "AGILITY",
+        "value": 15
+      }
+    },
+    {
+      "albumNumber": 48,
+      "id": "SHULK",
+      "weapon": "WB_SHULK",
+      "type": "QUEST",
+      "gameVersion": "1.5.0",
+      "chapter": 4,
+      "element": "LIGHT",
+      "requiresExpansionPass": true,
+      "unbound": true,
+      "gender": "M",
+      "modifier": {
+        "id": "ETHER",
+        "value": 20
+      }
+    },
+    {
+      "albumNumber": 49,
+      "id": "FIORUN",
+      "weapon": "WB_FIORUN",
+      "type": "QUEST",
+      "gameVersion": "1.5.0",
+      "chapter": 4,
+      "element": "WIND",
+      "requiresExpansionPass": true,
+      "unbound": true,
+      "gender": "F",
+      "modifier": {
+        "id": "STRENGTH",
+        "value": 15
+      }
+    }
+  ]
 }

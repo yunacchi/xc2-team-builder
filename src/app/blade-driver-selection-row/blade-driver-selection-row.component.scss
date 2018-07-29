@@ -1,0 +1,49 @@
+@import '../../_variables';
+
+.btn-group.all-drivers-group {
+    &.active, &:hover {
+        & .character-img, & .role-img, & .element-img {
+            opacity: 1;
+        }
+    }
+}
+
+.character-button {
+    height: $blade-row-height;
+}
+
+.blade-name {
+    margin-left: 10px;
+}
+
+.character-button, .element-button, .role-button {
+    padding: 0;
+    .character-img, .element-img, .role-img {
+        opacity: 0.3;
+        background-size: contain;
+    }
+    .character-img {
+        display: inline-block;
+        height: $blade-row-height;
+        width: $blade-row-height;
+    }
+    .element-img {
+        height: $blade-row-height/2;
+        width: $blade-row-height/2;
+    }
+    .role-img {
+        height: $blade-row-height/2;
+        padding: 0 3px;
+        font-weight: bold;
+    }
+    &.active, &:hover {
+        & .character-img, & .role-img, & .element-img {
+            opacity: 1;
+        }
+    }
+}
+.blade-col {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+}

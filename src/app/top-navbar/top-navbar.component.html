@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" i18n="Navbar Brand@@navbarBrand" routerLink="/">XC2 team builder</a>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" irouterLink="/">{{'app.title'|translate}}</a>
   <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" aria-controls="navbarSupportedContent"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,14 +8,28 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent" [collapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/my-blades" i18n="Navbar item: My Blades@@navbarItem_myBlades">
-          My Blades
+        <a class="nav-link" routerLink="/my-game">
+          {{'app.my-game'|translate}}
         </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/my-game" i18n="Navbar item: My Game@@navbarItem_myGame">
-          My Game
+        <a class="nav-link" routerLink="/my-party">
+          {{'app.my-party'|translate}}
         </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown" dropdown placement="bottom right">
+        <a class="nav-link dropdown-toggle" id="navbarLangDropdown" role="button" dropdownToggle
+          aria-haspopup="true" aria-expanded="false" aria-controls="nav-dropdown-lang">
+          <i class="fas fa-globe"></i>
+          {{'languages.'+currentLanguage|translate}}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarLangDropdown" id="nav-dropdown-lang" *dropdownMenu>
+          <a class="dropdown-item" *ngFor="let language of languages" (click)="selectLanguage(language)">
+              {{'languages.'+language|translate}}
+          </a>
+        </div>
       </li>
     </ul>
   </div>

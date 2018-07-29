@@ -1,15 +1,15 @@
-import { TestBed, inject } from '@angular/core/testing';
+// import { TestBed, inject } from '@angular/core/testing';
 
-import { TeamComputerService } from './team-computer.service';
+// import { TeamComputerService } from './team-computer.service';
 
-describe('TeamComputerService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [TeamComputerService]
-    });
-  });
+// describe('TeamComputerService', () => {
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({
+//       providers: [TeamComputerService]
+//     });
+//   });
 
-  it('should be created', inject([TeamComputerService], (service: TeamComputerService) => {
-    expect(service).toBeTruthy();
-  }));
-});
+//   it('should be created', inject([TeamComputerService], (service: TeamComputerService) => {
+//     expect(service).toBeTruthy();
+//   }));
+// });

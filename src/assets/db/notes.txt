@@ -1,3 +1,5 @@
+# Notes about automatic party-matching (to-do)
+
 Blade team prep is divided in two parts: Blade matching and Party constraint matching.
 This is basically brute-forcing.
 
@@ -12,7 +14,7 @@ First, let's get these facts out of the way:
 - Only Rex can engage Pyra and Mythra.
 - Only Tora can engage any of the Poppi forms.
 - Tora cannot engage any blade other than Poppi.
-- Original Character blades cannot be disengaged from their character until NG+? I don't remember.
+- Original Character blades cannot be disengaged from their character until NG+.
   - Exception is Dromarch when Nia uses her Blade Form.
 - Starting in chapter 4, engaging Pyra implies engaging Mythra (and vice-versa). They're referred to as 'SEIHAI' (loc: Aegis) in the blade selection.
 - Starting in chapter 7, Nia can switch between Driver form and Blade form.
