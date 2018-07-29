@@ -1,0 +1,33 @@
+
+environment:
+  nodejs_version: "10"
+  access_token:
+    secure: 7LnLLGLKS7fCsg9zCnrGrfDBMHDxTxtEi9yWlizBuNQ2sTUmVc5nlYhRgNm1EGNB
+  github_email:
+    secure: CalFXmjQGK4p8BMiyE3rjo5AeI3+YhYw/M5vzs/rrXw=
+version: 1.0.{build}-{branch}
+branches:
+  only:
+    - master
+    - develop
+    - build
+image: Visual Studio 2017
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install -g @angular/cli
+  - npm install
+before_build:
+  - git worktree add "dist\xc2-team-builder" gh-pages
+build_script:
+  - ng build --prod --base-href "/xc2-team-builder/" --delete-output-path=false
+deploy:
+  - provider: Environment
+    name: production
+    on:
+      branch: master
+deploy_script:
+  - git config --global credential.helper store
+  - ps: Add-Content "$env:USERPROFILE.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+  - git config --global user.email %github_email%
+  - git config --global user.name "yunacchi"
+  - cd "dist\xc2-team-builder" && git add --all && git commit -m "Automated gh-pages update" && git push origin gh-pages && cd "..\.."
