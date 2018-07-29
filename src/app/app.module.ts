@@ -23,7 +23,7 @@ import { Xc2DriverComboIconComponent } from './xc2-driver-combo-icon/xc2-driver-
 import { BladeTooltipContentComponent } from './blade-tooltip-content/blade-tooltip-content.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 
 
