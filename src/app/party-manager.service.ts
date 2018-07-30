@@ -1,23 +1,15 @@
 import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { isEqual, uniqWith } from 'lodash';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { BladeManagerService } from './blade-manager.service';
-import { Blade, Driver, DriverComboId, driverCombos, ElementId, elements, RoleId, DbStatModifier } from './model';
-import { uniqWith, isEqual } from 'lodash';
 import { GameSettingsService } from './game-settings.service';
+import {
+  Blade, DbStatModifier, Driver, DriverComboId, driverCombos,
+  ElementId, elements, PartyDescription, PartyMemberDescriptor,
+  RoleId
+} from './model';
 
-
-export interface PartyDescription {
-  partyMembers: PartyMemberDescriptor[];
-  gameChapter: number;
-}
-
-export interface PartyMemberDescriptor {
-  driverId: string;
-  bladeIds: string[];
-  inBattle: boolean;
-}
 
 export interface EffectivePartyMember {
   elements: ElementId[];
@@ -82,7 +74,7 @@ function addBladeToParty(ep: EffectiveParty, epm: EffectivePartyMember, blade: B
 
   // Add modifier
   if (blade.db.modifier !== undefined) {
-    let m: DbStatModifier = epm.modifiers.find(m => m.id === blade.db.modifier.id);
+    let m: DbStatModifier = epm.modifiers.find(mod => mod.id === blade.db.modifier.id);
     if (m === undefined) {
       m = {
         id: blade.db.modifier.id,

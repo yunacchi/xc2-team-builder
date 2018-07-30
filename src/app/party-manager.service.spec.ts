@@ -1,11 +1,12 @@
-import { TestBed, inject, async } from '@angular/core/testing';
-
-import { PartyManagerService, PartyMemberDescriptor, PartyDescription } from './party-manager.service';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { HttpLoaderFactory } from './app.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { async, inject, TestBed } from '@angular/core/testing';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { first } from 'rxjs/operators';
+import { HttpLoaderFactory } from './app.module';
 import { GameSettingsService } from './game-settings.service';
+import { PartyDescription } from './model';
+import { PartyManagerService } from './party-manager.service';
+
 
 describe('PartyManagerService', () => {
   beforeEach(() => {

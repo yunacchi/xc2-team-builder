@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
-  PartyManagerService, EffectivePartyMember, EffectiveParty,
-  PartyDescription, PartyMemberDescriptor
+  PartyManagerService, EffectivePartyMember, EffectiveParty
 } from '../party-manager.service';
 import { BladeManagerService, BladeOrderingType, bladeOrderingTypes } from '../blade-manager.service';
 import { Subject, combineLatest, BehaviorSubject } from 'rxjs';
 import { takeUntil, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Blade, Driver, ElementId, elements, driverCombos, DriverComboId } from '../model';
+import { Blade, Driver, ElementId, elements, driverCombos, DriverComboId, PartyDescription, PartyMemberDescriptor } from '../model';
 import { GameSettingsService } from '../game-settings.service';
 import { DragDropData } from 'ngx-drag-drop/dnd-utils';
 import { TranslateService } from '@ngx-translate/core';

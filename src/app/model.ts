@@ -532,3 +532,62 @@ export interface Driver {
      */
     boundBlades: Blade[];
 }
+
+
+/**
+ * Storable description of a battle party
+ *
+ * @export
+ * @interface PartyDescription
+ */
+export interface PartyDescription {
+    /**
+     * Description of the Party's members
+     *
+     * @type {PartyMemberDescriptor[]}
+     * @memberof PartyDescription
+     */
+    partyMembers: PartyMemberDescriptor[];
+
+    /**
+     * Active chapter of the battle party;
+     * modifies things like implicit Pyra/Mythra
+     *
+     * @type {number}
+     * @memberof PartyDescription
+     */
+    gameChapter: number;
+}
+
+/**
+ * Description of a party member, in or out of battle
+ *
+ * @export
+ * @interface PartyMemberDescriptor
+ */
+export interface PartyMemberDescriptor {
+    /**
+     * ID of the Driver
+     *
+     * @type {string}
+     * @memberof PartyMemberDescriptor
+     */
+    driverId: string;
+
+    /**
+     * IDs of the Blades on this Driver,
+     * in slot order (top, middle right, bottom)
+     *
+     * @type {string[]}
+     * @memberof PartyMemberDescriptor
+     */
+    bladeIds: string[];
+
+    /**
+     * True if the Drover is engaged in battle
+     *
+     * @type {boolean}
+     * @memberof PartyMemberDescriptor
+     */
+    inBattle: boolean;
+}
