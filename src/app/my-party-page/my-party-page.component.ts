@@ -95,8 +95,6 @@ export function canEngageBladeOn(b: Blade, d: Driver): boolean {
 export class MyPartyPageComponent implements OnInit, OnDestroy {
 
   private unsubscribe = new Subject<void>();
-  private defaultPartyDesc: PartyDescription = undefined;
-  private defaultParty: EffectiveParty = undefined;
   private blades: Blade[] = [];
 
   public searchFilterControl = new FormControl();
@@ -144,12 +142,14 @@ export class MyPartyPageComponent implements OnInit, OnDestroy {
     ).pipe(
       takeUntil(this.unsubscribe),
     ).subscribe(([p, s]) => {
-      this.defaultPartyDesc = p;
-      this.defaultParty = this.partyManagerService.buildEffectiveParty(p);
-
-      if (!this.currentParty) {
-        this.currentPartyDesc = this.defaultPartyDesc;
-        this.currentParty = this.defaultParty;
+      if (s.p === undefined) {
+        // Load default party
+        this.currentPartyDesc = p;
+        this.currentParty = this.partyManagerService.buildEffectiveParty(p);
+      } else {
+        // Load last used party
+        this.currentPartyDesc = p;
+        this.currentParty = this.partyManagerService.buildEffectiveParty(s.p);
       }
     });
 
@@ -176,8 +176,8 @@ export class MyPartyPageComponent implements OnInit, OnDestroy {
   }
 
   public applyPartyDesc(partyDesc: PartyDescription) {
-    this.currentPartyDesc = partyDesc;
-    this.currentParty = this.partyManagerService.buildEffectiveParty(partyDesc);
+    // Changing settings will cause the party to be reloaded
+    this.gameSettingsService.setLastUsedParty(partyDesc);
   }
 
   public ngOnDestroy() {

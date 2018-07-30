@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { cloneDeep, merge } from 'lodash';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DriverCharaId, ElementId, RoleId } from './model';
-import { FindValueSubscriber } from 'rxjs/internal/operators/find';
+import { DriverCharaId, ElementId, RoleId, PartyDescription } from './model';
 
 /**
  * A registered, bound blade.
@@ -94,6 +93,15 @@ export interface GameSettings {
    * @memberof GameSettings
    */
   e: boolean;
+
+  /**
+   * Description of the last used party.
+   * If undefined, a default Party will be loaded.
+   *
+   * @type {PartyDescription}
+   * @memberof GameSettings
+   */
+  p?: PartyDescription;
 }
 
 export interface SiteSettings {
@@ -277,5 +285,11 @@ export class GameSettingsService {
 
   public resetSettings(): void {
     this.clearGameSettings();
+  }
+
+  public setLastUsedParty(partyDescription: PartyDescription): void {
+    this.changeGameSettings(s => {
+      s.p = partyDescription;
+    });
   }
 }
