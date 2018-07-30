@@ -201,7 +201,6 @@
       "weapon": "W_AXE",
       "element": "EARTH",
       "type": "GACHA",
-      "missingImg": true,
       "gender": "F",
       "modifier": {
         "id": "DEXTERITY",
@@ -513,7 +512,6 @@
       "type": "QUEST",
       "gameVersion": "1.3.0",
       "element": "DARK",
-      "missingImg": true,
       "chapter": 12,
       "gender": "M",
       "modifier": {
@@ -542,7 +540,6 @@
       "type": "GACHA",
       "gameVersion": "1.3.0",
       "element": "FIRE",
-      "missingImg": true,
       "chapter": 12,
       "gender": "M",
       "modifier": {
@@ -600,7 +597,6 @@
       "type": "QUEST",
       "gameVersion": "1.4.0",
       "chapter": 6,
-      "missingImg": true,
       "requiresExpansionPass": true,
       "unbound": true,
       "gender": "N/A",
@@ -650,7 +646,6 @@
       "chapter": 2,
       "element": "FIRE",
       "requiresExpansionPass": true,
-      "missingImg": true,
       "gender": "F",
       "modifier": {
         "id": "ETHER",

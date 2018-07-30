@@ -355,7 +355,7 @@ export class BladeManagerService {
             isFound: false, // Overridden below
             isHidden: true, // Overridden below
             weaponClass: weapon,
-            thumbUrl: `assets/xc2/diamond_portraits/${dbBlade.id}.png`,
+            thumbUrl: `assets/xc2/diamond_portraits/blades/${dbBlade.id}.png`,
             aliases: dbBlade.aliases ? dbBlade.aliases : [],
             requiresExpansionPass: dbBlade.requiresExpansionPass ? true : false,
             canChangeBoundDriver: true
@@ -441,12 +441,12 @@ export class BladeManagerService {
           })
 
           if (dbBlade.missingImg) {
-            b.thumbUrl = `assets/xc2/diamond_portraits/WHOS-THAT-BLADE.png`;
+            b.thumbUrl = `assets/xc2/diamond_portraits/EMPTY.png`;
           }
 
           // Replace image for not-found blades
           if (!b.isFound) {
-            b.thumbUrl = `assets/xc2/diamond_portraits/NOTHING-TO-SEE-HERE.png`;
+            b.thumbUrl = `assets/xc2/diamond_portraits/EMPTY.png`;
           }
 
           // Add to relevant driver
