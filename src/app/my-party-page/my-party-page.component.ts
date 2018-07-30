@@ -68,7 +68,7 @@ export function engageBladeOn(pm: PartyMemberDescriptor, bladeIdToSet?: string, 
 
 export function removeBladeFrom(pm: PartyMemberDescriptor, bladeIdToRemove: string) {
   const idxOfBladeToRemove = pm.bladeIds.indexOf(bladeIdToRemove);
-  if (idxOfBladeToRemove >= 0) {
+  if (idxOfBladeToRemove >= 0 && pm.bladeIds.length > 1) {
     pm.bladeIds.splice(idxOfBladeToRemove, 1);
   }
 }
