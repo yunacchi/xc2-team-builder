@@ -79,7 +79,7 @@
       "role": "TNK",
       "sortIdx": 6,
       "driverCombos": {
-        "REX": [null],
+        "REX": [""],
         "NIA": ["N/A"],
         "TORA": ["N/A"],
         "MELEPH": ["BREAK"],
@@ -91,7 +91,7 @@
       "role": "ATK",
       "sortIdx": 7,
       "driverCombos": {
-        "REX": [null],
+        "REX": ["LAUNCH"],
         "NIA": ["N/A"],
         "TORA": ["N/A"],
         "MELEPH": ["N/A"],
@@ -283,11 +283,11 @@
       "role": "ATK",
       "sortIdx": 23,
       "driverCombos": {
-        "REX": [null],
-        "NIA": [null],
+        "REX": [""],
+        "NIA": [""],
         "TORA": ["N/A"],
-        "MELEPH": [null],
-        "ZEKE": [null]
+        "MELEPH": ["TOPPLE"],
+        "ZEKE": ["LAUNCH"]
       }
     },
     {
@@ -295,11 +295,11 @@
       "role": "HLR",
       "sortIdx": 24,
       "driverCombos": {
-        "REX": [null],
+        "REX": [""],
         "NIA": ["BREAK"],
         "TORA": ["N/A"],
-        "MELEPH": [null],
-        "ZEKE": [null]
+        "MELEPH": [""],
+        "ZEKE": [""]
       }
     }
   ]
